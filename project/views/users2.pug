@@ -1,0 +1,7 @@
+extends layout
+
+block content
+    h1= title
+    p Bienvenido #{username}
+    form(action="/logout", method="POST")
+        button(name='submitButton', value='log_out') Cerrar sesion
