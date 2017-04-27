@@ -1,9 +1,21 @@
 extends layout
 
 block content
-    h1= title
-    p Welcome to #{title}
-    form(action="/login", method="POST")
-        input#username(name='username', placeholder='username', type='text')
-        input#password(name='password', placeholder='password', type='password')
-        button Log-in
+	form(action="/login", method="POST")
+	.login-wrap
+		.login-html
+			input#tab-1.sign-in(type='radio', name='tab', checked='')
+			label.tab(for='tab-1') Sign In
+			input#tab-2.sign-up(type='radio', name='tab')
+			label.tab(for='tab-2')
+			.login-form
+				.sign-in-htm
+					.group
+						label.label(for='username') Username
+						input#username.input(name='username', type='text')
+					.group
+						label.label(for='password') Password
+						input#password.input(name='password', type='password')
+					.group
+						button.button Log-in
+					.hr
