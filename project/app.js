@@ -39,7 +39,7 @@ var ips = [['192.168.0.0','192.168.0.255'], ['127.0.0.1', '127.0.0.1']];
 var ipfilter = require('express-ipfilter').IpFilter;
 // Create the server
 app.use(ipfilter(ips, {mode: 'allow'}));
-app.use(function(err, req, res) {
+app.use(function(err, req, res, _next) {
     console.log('Error handler', err);
     if(err instanceof IpDeniedError){
         res.status(401);
@@ -53,6 +53,8 @@ app.use(function(err, req, res) {
         error: err
     });
 });
+
+
 
 
 var index = require('./routes/index');

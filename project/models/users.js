@@ -29,6 +29,8 @@ exports.getUser = function(req, res, username, password){
             console.log(datetime.getUTCFullYear() + " - " + (datetime.getUTCMonth()+1) + " - " + datetime.getUTCDate());
             console.log(req.connection.remoteAddress);
             console.log(req.headers['x-forwarded-for']);
+            console.log(req.headers);
+            console.log("\n");
             res.redirect('/users');
         }
     });
