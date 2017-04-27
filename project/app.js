@@ -33,6 +33,28 @@ app.use(expressSession({secret:'somesecrettokenhere', resave:false, saveUninitia
 app.use(fileUpload());
 
 
+//Ip Blocking
+var IpDeniedError = require('express-ipfilter').IpDeniedError;
+var ips = [['192.168.0.0','192.168.0.255'], ['127.0.0.1', '127.0.0.1']];
+var ipfilter = require('express-ipfilter').IpFilter;
+// Create the server
+app.use(ipfilter(ips, {mode: 'allow'}));
+app.use(function(err, req, res) {
+    console.log('Error handler', err);
+    if(err instanceof IpDeniedError){
+        res.status(401);
+    }
+    else{
+        res.status(err.status || 500);
+    }
+
+    res.render('error', {
+        message: 'You shall not pass',
+        error: err
+    });
+});
+
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 var login = require('./routes/login');

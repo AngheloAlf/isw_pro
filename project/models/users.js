@@ -24,6 +24,11 @@ exports.getUser = function(req, res, username, password){
         }
         else{//login user
             req.session.userData = {userID: rows[0].id_user, userName: username, usertype: rows[0].usertype};
+            var datetime = new Date();
+
+            console.log(datetime.getUTCFullYear() + " - " + (datetime.getUTCMonth()+1) + " - " + datetime.getUTCDate());
+            console.log(req.connection.remoteAddress);
+            console.log(req.headers['x-forwarded-for']);
             res.redirect('/users');
         }
     });
