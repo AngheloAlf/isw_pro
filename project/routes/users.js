@@ -27,4 +27,25 @@ router.get('/', function(req, res){
     });
 });
 
+/* GET users listing. */
+router.get('/createTicket', function(req, res){
+    common.verificateLogin(req, res, function(req, res){
+        var username = req.session.userData.userName;
+        var usertype = req.session.userData.usertype;
+
+        if(usertype === 0){
+            res.render('createTicket', {title: 'Operador', username: username});
+        }
+        else if(usertype === 1){
+            res.render('createTicket', {title: 'Supervisor', username: username});
+        }
+        else if(usertype === 2){
+            res.render('createTicket', {title: 'Jefe', username: username});
+        }
+        else if(usertype === 3){
+            res.render('noPermissionsError', {title: 'No tienes permisos', username: username, accion: "Crear ticket"});
+        }
+    });
+});
+
 module.exports = router;

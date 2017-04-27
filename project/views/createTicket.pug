@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    h1= title
+    p Bienvenido #{username}
+
+    form(action="", method="POST")
+        input#username(name='placeholder', placeholder='placeholder', type='text')
+        button(name='submitButton', value='createTicket') Crear ticket
+
+    form(action="/logout", method="POST")
+        button(name='submitButton', value='log_out') Cerrar sesion

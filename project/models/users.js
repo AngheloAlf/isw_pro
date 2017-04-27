@@ -46,5 +46,3 @@ exports.getUser = function(req, res, username, password){
 
     });
 };
-
-

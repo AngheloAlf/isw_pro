@@ -1,0 +1,13 @@
+extends layout
+
+block content
+    h1= title
+    p Bienvenido #{username}
+
+    p No tienes permisos para realizar la acción: #{accion}
+
+    form(action="/users", method="GET")
+        button Volver atras
+
+    form(action="/logout", method="POST")
+        button(name='submitButton', value='log_out') Cerrar sesion
