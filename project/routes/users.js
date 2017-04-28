@@ -42,7 +42,7 @@ router.get('/createTicket', function(req, res){
         else if(usertype === 2){
             res.render('createTicket', {title: 'Jefe', username: username});
         }
-        else if(usertype === 3){
+        else{
             res.render('noPermissionsError', {title: 'No tienes permisos', username: username, accion: "Crear ticket"});
         }
     });
