@@ -43,6 +43,5 @@ exports.getUser = function(req, res, username, password){
         logsLogin.addsLogLogin(req, res, userId, username, date, ip, ipProxy, connSuccessful);
 
         res.redirect('/users');
-
     });
 };

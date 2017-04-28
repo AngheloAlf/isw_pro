@@ -2,7 +2,7 @@
  * Created by Anghelo on 26-04-2017.
  */
 
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 
 var userModel = require("../models/users");
