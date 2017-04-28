@@ -5,7 +5,19 @@ block content
     p Bienvenido #{username}
 
     form(action="", method="POST")
-        input#username(name='placeholder', placeholder='placeholder', type='text')
+        input#fuente(name='fuente', placeholder='fuente', type='text')
+        input#ip_origen(name='ip_origen', placeholder='ip_origen', type='text')
+        input#ip_destino(name='ip_destino', placeholder='ip_destino', type='text')
+        input#puerto(name='puerto', placeholder='puerto', type='text')
+        input#protocolo(name='protocolo', placeholder='protocolo', type='text')
+        input#tipo(name='tipo', placeholder='tipo', type='text')
+        input#intencionalidad(name='intencionalidad', placeholder='intencionalidad', type='text')
+        input#subarea(name='subarea', placeholder='subarea', type='text')
+        input#sistema_seguridad(name='sistema_seguridad', placeholder='sistema_seguridad', type='text')
+        input#fecha_operacion(name='fecha_operacion', placeholder='fecha_operacion', type='date')
+        input#comentarios(name='comentarios', placeholder='comentarios', type='text')
+        input#correo_origen(name='correo_origen', placeholder='correo_origen', type='email')
+        input#correo_afectado(name='correo_afectado', placeholder='correo_afectado', type='email')
         button(name='submitButton', value='createTicket') Crear ticket
 
     form(action="/logout", method="POST")
