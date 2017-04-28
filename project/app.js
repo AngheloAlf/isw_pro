@@ -61,11 +61,13 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var login = require('./routes/login');
 var logout = require('./routes/logout');
+var ticketCrud = require("./routes/ticketCrud");
 
 app.use('/', index);
 app.use('/users', users);
 app.use('/login', login);
 app.use('/logout', logout);
+app.use('/ticketCrud', ticketCrud);
 
 
 // catch 404 and forward to error handler

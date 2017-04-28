@@ -4,7 +4,7 @@ block content
     h1= title
     p Bienvenido #{username}
 
-    form(action="", method="POST")
+    form(action="/ticketCrud/create", method="POST")
         input#fuente(name='fuente', placeholder='fuente', type='text')
         input#ip_origen(name='ip_origen', placeholder='ip_origen', type='text')
         input#ip_destino(name='ip_destino', placeholder='ip_destino', type='text')

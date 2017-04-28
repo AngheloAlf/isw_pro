@@ -23,7 +23,7 @@ exports.updateLogLogOut = function(req, res, userId, timeOnline){
             throw err;
         }
 
-        if(rows.changedRows == 1){
+        if(rows.changedRows === 1){
             // Updated !
         }
         else{
