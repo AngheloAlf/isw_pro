@@ -65,6 +65,20 @@ router.get("/viewTickets", function(req, res){
     });
 });
 
+router.get("/createUser", function(req, res){
+    common.verificateLogin(req, res, function(req, res) {
+        var username = req.session.userData.userName;
+        var usertype = req.session.userData.usertype;
+
+        if(usertype === 3){
+            res.render('createUser', {title: 'Admin', username: username});
+        }
+        else{
+            res.render('noPermissionsError', {title: 'No tienes permisos', username: username, accion: "Crear usuario"});
+        }
+    });
+});
+
 router.get("/stylesheets/:sheets", function(req, res){
     res.redirect("/stylesheets/" + req.params.sheets);
 });

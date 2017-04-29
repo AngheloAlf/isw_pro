@@ -14,6 +14,7 @@ exports.User = User;
 
 exports.getUser = function(req, res, username, password){
     var userVar = new User();
+    username = username.toLowerCase();
     var where = "username='" + username + "' AND password='" + password + "'";
 
     userVar.find('all', {fields: ["id", "usertype"], where: where}, function (err, rows){
@@ -43,5 +44,27 @@ exports.getUser = function(req, res, username, password){
         logsLogin.addsLogLogin(req, res, userId, username, date, ip, ipProxy, connSuccessful);
 
         res.redirect('/users');
+    });
+};
+
+exports.createUser = function(req, res, username, password, usertype){
+    var userVar = new User();
+    username = username.toLowerCase();
+    var where = "username='" + username + "'";
+
+    userVar.find('all', {fields: ["id"], where: where}, function (err, rows){
+        if(err){
+            throw err;
+        }
+
+        if(rows[0] === undefined){ //User not found
+            var newUser = new User({username: username, password: password, usertype: usertype});
+            newUser.save();
+            res.redirect("/users");
+        }
+        else{ //The username already exists
+            //TODO: Show 'The username already exists' error
+            res.redirect("/users");
+        }
     });
 };

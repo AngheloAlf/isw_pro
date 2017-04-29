@@ -27,6 +27,7 @@ router.post('/create', function(req, res){
             var correo_origen = req.body.correo_origen;
             var correo_afectado = req.body.correo_afectado;
 
+            // TODO: input verifications
             ticketsModel.createTicket(req, res, userId, fuente, ip_origen, ip_destino, puerto, protocolo, tipo, intencionalidad, subarea, sistema_seguridad, fecha_operacion, comentarios, correo_origen, correo_afectado);
             res.redirect("/users");
         }
@@ -36,6 +37,7 @@ router.post('/create', function(req, res){
     });
 });
 
+/* view ticket */
 router.get("/view", function(req, res){
     common.verificateLogin(req, res, function(req, res){
         if(req.session.userData.usertype < 3){

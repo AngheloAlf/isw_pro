@@ -62,19 +62,25 @@ var users = require('./routes/users');
 var login = require('./routes/login');
 var logout = require('./routes/logout');
 var ticketCrud = require("./routes/ticketCrud");
+var userCrud = require("./routes/userCrud");
 
 app.use('/', index);
 app.use('/users', users);
 app.use('/login', login);
 app.use('/logout', logout);
 app.use('/ticketCrud', ticketCrud);
+app.use('/userCrud', userCrud);
 
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
+    /*
     var err = new Error('Not Found');
     err.status = 404;
     next(err);
+    */
+    //TODO: Make a 404 view
+    res.redirect("https://matias.ma/nsfw/");
 });
 
 

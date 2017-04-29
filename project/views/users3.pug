@@ -3,5 +3,18 @@ extends layout
 block content
     h1= title
     p Bienvenido #{username}
+
+    a(href="/users/createUser") Crear usuario
+
+    br
+    br
+    br
+    br
+    br
+    br
+    br
+    br
+    br
+
     form(action="/logout", method="POST")
         button(name='submitButton', value='log_out') Cerrar sesion
