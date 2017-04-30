@@ -12,6 +12,9 @@ var ticketsModel = require("../models/tickets");
 router.post('/create', function(req, res){
     common.verificateLogin(req, res, function(req, res){
         if(req.session.userData.usertype < 3){
+            var datetime = new Date();
+            var date = datetime.getUTCFullYear() + "-" + (datetime.getUTCMonth()+1) + "-" + datetime.getUTCDate() + " " + datetime.getUTCHours()+":" + datetime.getUTCMinutes()+":" + datetime.getUTCSeconds();
+
             var userId = req.session.userData.userID;
             var fuente = req.body.fuente;
             var ip_origen = req.body.ip_origen;
@@ -28,7 +31,7 @@ router.post('/create', function(req, res){
             var correo_afectado = req.body.correo_afectado;
 
             // TODO: input verifications
-            ticketsModel.createTicket(req, res, userId, fuente, ip_origen, ip_destino, puerto, protocolo, tipo, intencionalidad, subarea, sistema_seguridad, fecha_operacion, comentarios, correo_origen, correo_afectado);
+            ticketsModel.createTicket(req, res, userId, date, fuente, ip_origen, ip_destino, puerto, protocolo, tipo, intencionalidad, subarea, sistema_seguridad, fecha_operacion, comentarios, correo_origen, correo_afectado);
             res.redirect("/users");
         }
         else{
@@ -50,7 +53,9 @@ router.get("/read", function(req, res){
     });
 });
 
+
 router.get("/", function(req, res){
+    /* Si la direccion es localhost/ticketCrud/ se redirecciona a localhost/ */
     res.redirect('/');
 });
 

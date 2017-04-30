@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2017-04-30 13:36:11
+Date: 2017-04-30 14:10:23
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -29,7 +29,7 @@ CREATE TABLE `logs_login` (
   `conn_successful` tinyint(4) DEFAULT NULL,
   `timeOnline` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of logs_login
@@ -59,6 +59,7 @@ INSERT INTO `logs_login` VALUES ('22', '1', 'operador', '2017-04-30 14:27:28', '
 INSERT INTO `logs_login` VALUES ('23', '1', 'operador', '2017-04-30 14:29:02', '::ffff:127.0.0.1', null, '1', null);
 INSERT INTO `logs_login` VALUES ('24', '1', 'operador', '2017-04-30 14:30:22', '::ffff:127.0.0.1', null, '1', null);
 INSERT INTO `logs_login` VALUES ('25', '1', 'operador', '2017-04-30 14:48:01', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('26', '1', 'operador', '2017-04-30 16:52:41', '::ffff:127.0.0.1', null, '1', null);
 
 -- ----------------------------
 -- Table structure for tickets
@@ -67,7 +68,9 @@ DROP TABLE IF EXISTS `tickets`;
 CREATE TABLE `tickets` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `propietario` int(10) unsigned NOT NULL,
+  `fecha_creacion` datetime NOT NULL,
   `fecha_aplazado` date DEFAULT NULL,
+  `encargador` int(11) DEFAULT NULL,
   `fuente` varchar(255) DEFAULT NULL,
   `ip_origen` varchar(255) DEFAULT NULL,
   `ip_destino` varchar(255) DEFAULT NULL,
@@ -88,7 +91,6 @@ CREATE TABLE `tickets` (
 -- ----------------------------
 -- Records of tickets
 -- ----------------------------
-INSERT INTO `tickets` VALUES ('2', '1', null, 'fuente', '123.123.123.123', '123.123.123.123', '88', 'proto', 'tipo', 'intencionalidad', 'subarea', 'seguridad', '2017-04-26 00:00:00', null, 'comentarios', 'wea@wea.wea', 'afectado@correo.mail');
 
 -- ----------------------------
 -- Table structure for users
