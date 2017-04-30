@@ -1,22 +1,44 @@
-extends layout
+extends layout_index
+
 
 block content
-    h1= title
-    p Bienvenido #{username}
+    #wrapper
+        // Page Content
+        #page-content-wrapper
+            .container-fluid
+                .row
+                    .col-lg-12
+                        h1 Sistema de gestión de tickets
+                        a#menu-toggle.btn.btn-default(href='#menu-toggle') Menu
+                        br
+                        br 
+                        p
+                            | Bienvenido #{username} .
+                        p
+                            | Crear usuarios.
 
-    form(action="/userCrud/create", method="POST")
-        input#username(name='username', placeholder='username', type='text')
-        input#password(name='password', placeholder='password', type='password')
-        input#password2(name='password2', placeholder='verificar pass', type='password')
-        select#usertype(name='usertype')
-            option(value='0') Operador
-            option(value='1') Supervisor
-            option(value='2') Jefe
-        button(name='submitButton', value='createTicket') Crear ticket
+                            form(action="/userCrud/create", method="POST")
+                                input#username(name='username', placeholder='username', type='text')
+                                input#password(name='password', placeholder='password', type='password')
+                                input#password2(name='password2', placeholder='verificar pass', type='password')
+                                select#usertype(name='usertype')
+                                    option(value='0') Operador
+                                    option(value='1') Supervisor
+                                    option(value='2') Jefe
+                                button(name='submitButton', value='createTicket') Crear Usuario
 
-    form(action="/users", method="GET")
-        button Volver atras
+                            form(action="/users", method="GET")
+                                button Volver atras
 
-
-    form(action="/logout", method="POST")
-        button(name='submitButton', value='log_out') Cerrar sesion
+        // /#page-content-wrapper
+    // /#wrapper
+    // jQuery
+    script(src='js/jquery.js')
+    // Bootstrap Core JavaScript
+    script(src='js/bootstrap.min.js')
+    // Menu Toggle Script
+    script.
+        $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+        });

@@ -1,20 +1,67 @@
-extends layout
+extends layout_index
+
 
 block content
-    h1= title
-    p Bienvenido #{username}
+    #wrapper
+        // Sidebar
+        #sidebar-wrapper
+            ul.sidebar-nav
+                li.sidebar-brand
+                    a(href='users/users3')
+                        | Redirec index user
+                li
+                    a(href="/users/createUser") Crear usuario
+                li
+                    a(href='#') Accion 2
+                li
+                    a(href='#') Accion 3
+                li
+                    a(href='#') Accion 4
+                li
+                    a(href='#') Accion 5
+                li
+                    a(href='#') Accion 6
+                li
+                    br
+                li
+                    br
+                li
+                    br
+                li
+                    br
+                li
+                    br
+                li
+                    br
+                li
+                    br
+                li
+                    form(action="/logout", method="POST")
+                        button.button(name='submitButton', value='log_out') Cerrar sesion
+        // /#sidebar-wrapper
+        // Page Content
+        #page-content-wrapper
+            .container-fluid
+                .row
+                    .col-lg-12
+                        h1 Sistema de gestión de tickets
+                        a#menu-toggle.btn.btn-default(href='#menu-toggle') Menu
+                        br
+                        br 
+                        p
+                            | Bienvenido #{username} .
+                        p
+                            | Desde menu podras acceder a las distintas opciones disponibles para ti.
 
-    a(href="/users/createUser") Crear usuario
-
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-
-    form(action="/logout", method="POST")
-        button(name='submitButton', value='log_out') Cerrar sesion
+        // /#page-content-wrapper
+    // /#wrapper
+    // jQuery
+    script(src='js/jquery.js')
+    // Bootstrap Core JavaScript
+    script(src='js/bootstrap.min.js')
+    // Menu Toggle Script
+    script.
+        $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+        });

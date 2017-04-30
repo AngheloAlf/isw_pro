@@ -7,7 +7,7 @@ var mysqlModel = require('mysql-model');
 var IswDB = mysqlModel.createConnection({
     host     : '127.0.0.1',
     user     : 'root',
-    password : '',
+    password : 'gabriela94',
     database : 'isw',
     dateStrings: 'date'
 });
