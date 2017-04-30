@@ -15,10 +15,9 @@ exports.addsLogLogin = function(req, res, userId, username, date, ip, ip_proxy, 
 };
 
 exports.updateLogLogOut = function(req, res, userId, timeOnline){
-    var userVar = new Logs_login();
-    var where = "user_id='" + userId + "'";
+    var logVar = new Logs_login();
 
-    userVar.query('UPDATE logs_login SET timeOnline="' + timeOnline + '" where user_id="' + userId + '" ORDER BY id DESC LIMIT 1', function (err, rows){
+    logVar.query('UPDATE logs_login SET timeOnline="' + timeOnline + '" where user_id="' + userId + '" ORDER BY id DESC LIMIT 1', function (err, rows){
         if(err){
             throw err;
         }

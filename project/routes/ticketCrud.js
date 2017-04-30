@@ -65,6 +65,18 @@ router.get("/read/:ticketId", function(req, res){
     });
 });
 
+router.post("/assignTicket", function(req, res){
+    common.verificateLogin(req, res, function(req, res){
+        if(req.session.userData.usertype < 3 && req.session.userData.usertype > 0){
+            ticketsModel.assignTicket(req, res, req.body.ticketId, req.body.operadorId);
+        }
+        else{
+            var username = req.session.userData.userName;
+            res.render('noPermissionsError', {title: 'No tienes permisos', username: username, accion: "Asignar ticket"});
+        }
+    });
+});
+
 router.get("/", function(req, res){
     /* Si la direccion es localhost/ticketCrud/ se redirecciona a localhost/ */
     res.redirect('/');

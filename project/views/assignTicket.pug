@@ -12,6 +12,7 @@ block content
                 th id
                 th propietario
                 th fecha_creacion
+                th encargado
                 th fuente
                 th ip_origen
                 th ip_destino
@@ -30,6 +31,7 @@ block content
                 td {{ ticket.id }}
                 td {{ ticket.propietario }}
                 td {{ ticket.fecha_creacion }}
+                td {{ ticket.encargado }}
                 td {{ ticket.fuente }}
                 td {{ ticket.ip_origen }}
                 td {{ ticket.ip_destino }}
@@ -48,15 +50,16 @@ block content
 
 
 
-        form(action="", method="POST")
+        form(action="/ticketCrud/assignTicket", method="POST")
             p Asignar este ticket al siguiente operador:
+            input#ticketIdForm(name="ticketId", value='{ticketId}', hidden="")
             select#operadorId(name="operadorId", required="")
                 option(ng-repeat="user in usersData", value="{{ user.id }}") {{ user.username }}
             button(name='submitButton', value='assign') Asignar ticket
 
     br
 
-    form(action="/users/viewTicket", method="GET")
+    form(action="/users/viewTickets", method="GET")
         button Volver atras
 
 

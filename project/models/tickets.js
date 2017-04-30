@@ -41,3 +41,23 @@ exports.sendTicket = function(req, res, ticketId){
         res.send(JSON.stringify(rows));
     });
 };
+
+exports.assignTicket = function(req, res, ticketId, userId){
+    var ticketVar = new Tickets();
+    var where = "id='" + ticketId + "'";
+    var query = "UPDATE tickets SET encargado='" + userId + "' WHERE " + where;
+
+    ticketVar.query(query, function(err, rows){
+        if(err){
+            throw err;
+        }
+
+        if(rows.changedRows === 1){
+            // Updated !
+        }
+        else{
+            // Not found
+        }
+        res.redirect("/users");
+    });
+};
