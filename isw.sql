@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2017-04-30 14:10:23
+Date: 2017-04-30 14:12:19
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -70,7 +70,7 @@ CREATE TABLE `tickets` (
   `propietario` int(10) unsigned NOT NULL,
   `fecha_creacion` datetime NOT NULL,
   `fecha_aplazado` date DEFAULT NULL,
-  `encargador` int(11) DEFAULT NULL,
+  `encargado` int(11) DEFAULT NULL,
   `fuente` varchar(255) DEFAULT NULL,
   `ip_origen` varchar(255) DEFAULT NULL,
   `ip_destino` varchar(255) DEFAULT NULL,
