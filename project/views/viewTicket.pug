@@ -9,6 +9,7 @@ block content
             tr
                 th id
                 th propietario
+                th fecha_creacion
                 th fuente
                 th ip_origen
                 th ip_destino
@@ -27,6 +28,7 @@ block content
             tr(ng-repeat="ticket in ticketsData")
                 td {{ ticket.id }}
                 td {{ ticket.propietario }}
+                td {{ ticket.fecha_creacion }}
                 td {{ ticket.fuente }}
                 td {{ ticket.ip_origen }}
                 td {{ ticket.ip_destino }}

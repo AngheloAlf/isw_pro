@@ -32,6 +32,17 @@ router.post('/create', function(req, res){
     });
 });
 
+router.get("/readByType/:type", function(req, res){
+    common.verificateLogin(req, res, function(req, res){
+        if(req.session.userData.usertype > 0 && req.session.userData.usertype <= 3){
+            usersModel.sendUsersByType(req, res, req.params.type);
+        }
+        else{
+            res.redirect("/");
+        }
+    });
+});
+
 router.get("/", function(req, res){
     res.redirect('/');
 });

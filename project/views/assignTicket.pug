@@ -4,13 +4,14 @@ block content
     h1= title
     p Bienvenido #{username}
 
-    input#ticketId(hidden="", value="#{ticketId}", name="ticketId")
+    p#ticketId(hidden="") #{ticketId}
 
-    div.transgray.segment(ng-app='assignTickets', ng-controller='assignTicketsCtrl')
+    div(ng-app='assignTickets', ng-controller='assignTicketsCtrl')
         table
             tr
                 th id
                 th propietario
+                th fecha_creacion
                 th fuente
                 th ip_origen
                 th ip_destino
@@ -28,6 +29,7 @@ block content
             tr(ng-repeat="ticket in ticketsData")
                 td {{ ticket.id }}
                 td {{ ticket.propietario }}
+                td {{ ticket.fecha_creacion }}
                 td {{ ticket.fuente }}
                 td {{ ticket.ip_origen }}
                 td {{ ticket.ip_destino }}
@@ -43,6 +45,16 @@ block content
                 td {{ ticket.correo_origen }}
                 td {{ ticket.correo_afectado }}
 
+
+
+
+        form(action="", method="POST")
+            p Asignar este ticket al siguiente operador:
+            select#operadorId(name="operadorId", required="")
+                option(ng-repeat="user in usersData", value="{{ user.id }}") {{ user.username }}
+            button(name='submitButton', value='assign') Asignar ticket
+
+    br
 
     form(action="/users/viewTicket", method="GET")
         button Volver atras

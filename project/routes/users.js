@@ -85,6 +85,9 @@ router.all("/viewTickets/:ticketId", function(req, res){
         var usertype = req.session.userData.usertype;
         var ticketId = req.params.ticketId;
 
+        if(usertype === 0){
+            res.render('assignTicket', {title: 'Operador', username: username, ticketId: ticketId});
+        }
         if(usertype === 1){
             res.render('assignTicket', {title: 'Supervisor', username: username, ticketId: ticketId});
         }

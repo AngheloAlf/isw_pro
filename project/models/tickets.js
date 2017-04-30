@@ -32,7 +32,7 @@ exports.sendTicket = function(req, res, ticketId){
     var tickectVar = new Tickets();
     var datetime = new Date();
     var fecha = datetime.getUTCFullYear() + "-" + (datetime.getUTCMonth()+1) + "-" + datetime.getUTCDate();
-    var where = "id='"+ticketId+"' fecha_aplazado IS NULL OR fecha_aplazado BETWEEN '2017-04-30' AND '" + fecha +"'";
+    var where = "id='"+ticketId+"' AND (fecha_aplazado IS NULL OR fecha_aplazado BETWEEN '2017-04-30' AND '" + fecha +"')";
 
     tickectVar.find('all', {where: where}, function (err, rows){
         if(err){

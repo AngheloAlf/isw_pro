@@ -6,9 +6,8 @@ var app = angular.module('viewTickets', []);
 app.controller('viewTicketsCtrl', function ($scope, $http) {
     $http.get("/ticketCrud/read")
         .then(function(response){
-                $scope.ticketsData = response.data;
-            }
-        );
+            $scope.ticketsData = response.data;
+        });
     /*
     $scope.getSelectedProject = function(){
         var projectID = document.getElementById("readProject").value;

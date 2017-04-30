@@ -11,11 +11,9 @@ var User = Db.extend({
 });
 exports.User = User;
 
-
 exports.getUser = function(req, res, username, password){
     var userVar = new User();
-    username = username.toLowerCase();
-    var where = "username='" + username + "' AND password='" + password + "'";
+    var where = "LCASE(username)='" + username.toLowerCase() + "' AND password='" + password + "'";
 
     userVar.find('all', {fields: ["id", "usertype"], where: where}, function (err, rows){
         if(err){
@@ -49,8 +47,7 @@ exports.getUser = function(req, res, username, password){
 
 exports.createUser = function(req, res, username, password, usertype){
     var userVar = new User();
-    username = username.toLowerCase();
-    var where = "username='" + username + "'";
+    var where = "LCASE(username)='" + username.toLowerCase() + "'";
 
     userVar.find('all', {fields: ["id"], where: where}, function (err, rows){
         if(err){
@@ -66,5 +63,19 @@ exports.createUser = function(req, res, username, password, usertype){
             //TODO: Show 'The username already exists' error
             res.redirect("/users");
         }
+    });
+};
+
+exports.sendUsersByType = function(req, res, type){
+    var userVar = new User();
+    var where = "usertype='" + type + "'";
+
+    userVar.find("all", {fields: ["id", "username"], where: where}, function (err, rows){
+        if(err){
+            throw err;
+        }
+
+        res.send(JSON.stringify(rows));
+
     });
 };
