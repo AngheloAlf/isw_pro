@@ -38,12 +38,13 @@ router.post('/create', function(req, res){
 });
 
 /* view ticket */
-router.get("/view", function(req, res){
+router.get("/read", function(req, res){
     common.verificateLogin(req, res, function(req, res){
         if(req.session.userData.usertype < 3){
-            res.send("asdasdasdasd");
+            ticketsModel.sendAllTickets(req, res);
         }
         else{
+            var username = req.session.userData.userName;
             res.render('noPermissionsError', {title: 'No tienes permisos', username: username, accion: "Crear ticket"});
         }
     });

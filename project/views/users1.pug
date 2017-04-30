@@ -4,6 +4,9 @@ block content
     h1= title
     p Bienvenido #{username}
     a(href="/users/createTicket") Crear Ticket
+    br
+    br
+    a(href="/users/viewTickets") Ver tickets
 
     br
     br
@@ -12,8 +15,7 @@ block content
     br
     br
     br
-    br
-    br
+
 
     form(action="/logout", method="POST")
         button(name='submitButton', value='log_out') Cerrar sesion
