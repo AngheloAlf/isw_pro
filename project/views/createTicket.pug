@@ -20,5 +20,9 @@ block content
         input#correo_afectado(name='correo_afectado', placeholder='correo_afectado', type='email')
         button(name='submitButton', value='createTicket') Crear ticket
 
+    form(action="/users", method="GET")
+        button Volver atras
+
+
     form(action="/logout", method="POST")
         button(name='submitButton', value='log_out') Cerrar sesion

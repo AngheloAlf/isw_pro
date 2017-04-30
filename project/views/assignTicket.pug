@@ -4,7 +4,9 @@ block content
     h1= title
     p Bienvenido #{username}
 
-    div.transgray.segment(ng-app='viewTickets', ng-controller='viewTicketsCtrl')
+    input#ticketId(hidden="", value="#{ticketId}", name="ticketId")
+
+    div.transgray.segment(ng-app='assignTickets', ng-controller='assignTicketsCtrl')
         table
             tr
                 th id
@@ -23,7 +25,6 @@ block content
                 th comentarios
                 th correo_origen
                 th correo_afectado
-                th Ver ticket
             tr(ng-repeat="ticket in ticketsData")
                 td {{ ticket.id }}
                 td {{ ticket.propietario }}
@@ -41,15 +42,13 @@ block content
                 td {{ ticket.comentarios }}
                 td {{ ticket.correo_origen }}
                 td {{ ticket.correo_afectado }}
-                td
-                    a(href='/users/viewTickets/{{ ticket.id }}') Ver este ticket
 
 
-    form(action="/users", method="GET")
+    form(action="/users/viewTicket", method="GET")
         button Volver atras
 
 
     form(action="/logout", method="POST")
         button(name='submitButton', value='log_out') Cerrar sesion
 
-    script(src='/angular/viewTicket.js')
+    script(src='/angular/assignTicket.js')

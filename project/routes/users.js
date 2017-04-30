@@ -3,8 +3,8 @@ var router = express.Router();
 
 var common = require("./common");
 
-/* GET users listing. */
-router.get('/', function(req, res){
+/* Pagina principal */
+router.all('/', function(req, res){
     common.verificateLogin(req, res, function(req, res){
         var username = req.session.userData.userName;
         var usertype = req.session.userData.usertype;
@@ -25,7 +25,7 @@ router.get('/', function(req, res){
 });
 
 /* crear Ticket */
-router.get('/createTicket', function(req, res){
+router.all('/createTicket', function(req, res){
     common.verificateLogin(req, res, function(req, res){
         var username = req.session.userData.userName;
         var usertype = req.session.userData.usertype;
@@ -45,7 +45,7 @@ router.get('/createTicket', function(req, res){
     });
 });
 
-router.get("/viewTickets", function(req, res){
+router.all("/viewTickets", function(req, res){
     common.verificateLogin(req, res, function(req, res){
         var username = req.session.userData.userName;
         var usertype = req.session.userData.usertype;
@@ -65,7 +65,7 @@ router.get("/viewTickets", function(req, res){
     });
 });
 
-router.get("/createUser", function(req, res){
+router.all("/createUser", function(req, res){
     common.verificateLogin(req, res, function(req, res) {
         var username = req.session.userData.userName;
         var usertype = req.session.userData.usertype;
@@ -79,8 +79,32 @@ router.get("/createUser", function(req, res){
     });
 });
 
-router.get("/stylesheets/:sheets", function(req, res){
+router.all("/viewTickets/:ticketId", function(req, res){
+    common.verificateLogin(req, res, function(req, res){
+        var username = req.session.userData.userName;
+        var usertype = req.session.userData.usertype;
+        var ticketId = req.params.ticketId;
+
+        if(usertype === 1){
+            res.render('assignTicket', {title: 'Supervisor', username: username, ticketId: ticketId});
+        }
+        else if(usertype === 2){
+            res.render('assignTicket', {title: 'Jefe', username: username, ticketId: ticketId});
+        }
+        else{
+            res.render('noPermissionsError', {title: 'No tienes permisos', username: username, accion: "Designar encargado de ticket"});
+        }
+    });
+});
+
+router.all("*/stylesheets/:sheets", function(req, res){
     res.redirect("/stylesheets/" + req.params.sheets);
+});
+router.all("*/javascript/:js", function(req, res){
+    res.redirect("/stylesheets/" + req.params.js);
+});
+router.all("*/angular/:angularjs", function(req, res){
+    res.redirect("/stylesheets/" + req.params.angularjs);
 });
 
 module.exports = router;

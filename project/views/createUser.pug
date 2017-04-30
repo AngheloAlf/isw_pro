@@ -14,5 +14,9 @@ block content
             option(value='2') Jefe
         button(name='submitButton', value='createTicket') Crear ticket
 
+    form(action="/users", method="GET")
+        button Volver atras
+
+
     form(action="/logout", method="POST")
         button(name='submitButton', value='log_out') Cerrar sesion
