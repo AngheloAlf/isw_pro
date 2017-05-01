@@ -60,7 +60,7 @@ router.get("/read/:ticketId", function(req, res){
     common.verificateLogin(req, res, function(req, res){
         var usertype = req.session.userData.usertype;
         if(usertype < 3){
-            ticketsModel.sendTicket(req, res, req.params.ticketId);
+            ticketsModel.sendTicketById(req, res, req.params.ticketId);
         }
         else{
             var username = req.session.userData.userName;
@@ -96,9 +96,22 @@ router.post("/delete", function(req, res){
     });
 });
 
-router.get("/", function(req, res){
+router.all("/", function(req, res){
     /* Si la direccion es localhost/ticketCrud/ se redirecciona a localhost/ */
     res.redirect('/');
+});
+
+router.get("/readByUser/:userId", function(req, res){
+    common.verificateLogin(req, res, function(req, res){
+        var usertype = req.session.userData.usertype;
+        if(usertype === 0){
+            ticketsModel.sendTicketsByUser(req, res, req.params.userId);
+        }
+        else{
+            var username = req.session.userData.userName;
+            res.render('noPermissionsError', {title: 'No tienes permisos', username: username, accion: "Ver tus tickets asignados", usertype: usertype});
+        }
+    });
 });
 
 

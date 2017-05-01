@@ -28,7 +28,7 @@ exports.sendAllTickets = function(req, res){
     });
 };
 
-exports.sendTicket = function(req, res, ticketId){
+exports.sendTicketById = function(req, res, ticketId){
     var tickectVar = new Tickets();
     var datetime = new Date();
     var fecha = datetime.getUTCFullYear() + "-" + (datetime.getUTCMonth()+1) + "-" + datetime.getUTCDate();
@@ -38,7 +38,7 @@ exports.sendTicket = function(req, res, ticketId){
         if(err){
             throw err;
         }
-        res.send(JSON.stringify(rows));
+        res.send(JSON.stringify(rows[0]));
     });
 };
 
@@ -79,5 +79,19 @@ exports.deleteTicket = function(req, res, ticketId){
             // Not found
         }
         res.redirect("/users");
+    });
+};
+
+exports.sendTicketsByUser = function(req, res, userId){
+    var tickectVar = new Tickets();
+    var datetime = new Date();
+    var fecha = datetime.getUTCFullYear() + "-" + (datetime.getUTCMonth()+1) + "-" + datetime.getUTCDate();
+    var where = "encargado='"+userId+"' AND (fecha_aplazado IS NULL OR fecha_aplazado BETWEEN '2017-04-30' AND '" + fecha +"')";
+
+    tickectVar.find('all', {where: where}, function (err, rows){
+        if(err){
+            throw err;
+        }
+        res.send(JSON.stringify(rows));
     });
 };

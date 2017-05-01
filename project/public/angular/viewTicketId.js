@@ -11,7 +11,7 @@ app.controller('assignTicketCtrl', function ($scope, $http){
     }
     $http.get("/ticketCrud/read/"+ticketId)
         .then(function(response){
-            $scope.ticketsData = response.data;
+            $scope.ticketData = response.data;
         });
     $http.get("/userCrud/readByType/0")
         .then(function(response){

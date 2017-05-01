@@ -84,6 +84,21 @@ router.all("/viewTickets/:ticketId", function(req, res){
     });
 });
 
+router.all("/viewMyTickets", function(req, res){
+    common.verificateLogin(req, res, function(req, res){
+        var userid = req.session.userData.userID;
+        var username = req.session.userData.userName;
+        var usertype = req.session.userData.usertype;
+
+        if(usertype === 0){
+            res.render('viewMyTickets', {title: tiposDeUsuario[usertype], usertype: usertype, username: username, userId: userid});
+        }
+        else{
+            res.render('noPermissionsError', {title: 'No tienes permisos', usertype: usertype, username: username, accion: "Ver tickets asignados"});
+        }
+    });
+});
+
 
 
 router.all("*/stylesheets/:sheets", function(req, res){

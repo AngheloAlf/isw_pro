@@ -1,0 +1,58 @@
+extends layout
+
+block content
+    h1= title
+    p Bienvenido #{username}
+
+    p#userId(hidden) #{userId}
+
+    div(ng-app='viewMyTickets', ng-controller='viewMyTicketsCtrl')
+        table
+            tr
+                th id
+                th propietario
+                th fecha_creacion
+                th fuente
+                th ip_origen
+                th ip_destino
+                th puerto
+                th protocolo
+                th tipo
+                th intencionalidad
+                th subarea
+                th sistema_seguridad
+                th fecha_operacion
+                th dias_transcurridos
+                th comentarios
+                th correo_origen
+                th correo_afectado
+            tr(ng-repeat="ticket in ticketsData")
+                td {{ ticket.id }}
+                td {{ ticket.propietario }}
+                td {{ ticket.fecha_creacion }}
+                td {{ ticket.fuente }}
+                td {{ ticket.ip_origen }}
+                td {{ ticket.ip_destino }}
+                td {{ ticket.puerto }}
+                td {{ ticket.protocolo }}
+                td {{ ticket.tipo }}
+                td {{ ticket.intencionalidad }}
+                td {{ ticket.subarea }}
+                td {{ ticket.sistema_seguridad }}
+                td {{ ticket.fecha_operacion }}
+                td {{ ticket.dias_transcurridos }}
+                td {{ ticket.comentarios }}
+                td {{ ticket.correo_origen }}
+                td {{ ticket.correo_afectado }}
+
+    br
+    br
+
+    form(action="/users/viewTickets", method="GET")
+        button Volver atras
+
+
+    form(action="/logout", method="POST")
+        button(name='submitButton', value='log_out') Cerrar sesion
+
+    script(src='/angular/viewMyTickets.js')
