@@ -25,8 +25,10 @@ router.post('/create', function(req, res){
 
             if(password === password2){
                 // TODO: input verifications
-                var hash = password;
-                //var hash = bcrypt.hashSync(password);
+
+                var saltRounds = 8;
+                var salt = bcrypt.genSaltSync(saltRounds);
+                var hash = bcrypt.hashSync(password, salt);
                 usersModel.createUser(req, res, username, hash, usertype);
             }
             else{

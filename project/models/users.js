@@ -4,18 +4,18 @@
 
 var Db = require('./dbModel').Db;
 var logsLogin = require('./logs_login');
-
+var bcrypt = require("bcrypt");
 
 var User = Db.extend({
     tableName: "users"
 });
 exports.User = User;
 
-exports.getUser = function(req, res, username, hash){
+exports.getUser = function(req, res, username, password){
     var userVar = new User();
-    var where = "LCASE(username)='" + username.toLowerCase() + "' AND password='" + hash + "' AND deleted='0'";
+    var where = "LCASE(username)='" + username.toLowerCase() + "' AND deleted='0'";
 
-    userVar.find('all', {fields: ["id", "usertype"], where: where}, function (err, rows){
+    userVar.find('all', {fields: ["id", "username", "password", "usertype"], where: where}, function (err, rows){
         if(err){
             throw err;
         }
@@ -23,16 +23,17 @@ exports.getUser = function(req, res, username, hash){
         var connSuccessful;
         var userId;
         var datetime = new Date();
-        if(rows[0] === undefined){ //User not found
-            userId = -1;
-            connSuccessful = false;
-        }
-        else{//login user
+
+        if(rows.length === 1 && bcrypt.compareSync(password, rows[0].password)){
             var logInTimestamp = parseInt(datetime.getTime()/1000);
-            req.session.userData = {userID: rows[0].id, userName: username, usertype: rows[0].usertype, firstTimestamp: logInTimestamp, timestamp: logInTimestamp};
+            req.session.userData = {userID: rows[0].id, userName: rows[0].username, usertype: rows[0].usertype, firstTimestamp: logInTimestamp, timestamp: logInTimestamp};
 
             userId = rows[0].id;
             connSuccessful = true;
+        }
+        else{ //User not found
+            userId = -1;
+            connSuccessful = false;
         }
         var date = datetime.getUTCFullYear() + "-" + (datetime.getUTCMonth()+1) + "-" + datetime.getUTCDate() + " " + datetime.getUTCHours()+":" + datetime.getUTCMinutes()+":" + datetime.getUTCSeconds();
         var ip = req.connection.remoteAddress;
