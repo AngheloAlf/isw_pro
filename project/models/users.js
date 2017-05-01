@@ -42,7 +42,13 @@ exports.getUser = function(req, res, username, password){
         //logs the login try
         logsLogin.addsLogLogin(req, res, userId, username, date, ip, ipProxy, connSuccessful);
 
-        res.redirect('/users');
+        if(connSuccessful){
+            res.redirect('/users');
+        }
+        else{
+            res.render("index", {title: 'Sistema de tickets', errorMsg: true});
+        }
+
     });
 };
 

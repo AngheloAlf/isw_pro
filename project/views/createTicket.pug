@@ -18,19 +18,33 @@ block content
 
                             form(action="/ticketCrud/create", method="POST")
                                 input#fuente(name='fuente', placeholder='fuente', type='text')
+                                br
                                 input#ip_origen(name='ip_origen', placeholder='ip_origen', type='text')
+                                br
                                 input#ip_destino(name='ip_destino', placeholder='ip_destino', type='text')
+                                br
                                 input#puerto(name='puerto', placeholder='puerto', type='text')
+                                br
                                 input#protocolo(name='protocolo', placeholder='protocolo', type='text')
+                                br
                                 input#tipo(name='tipo', placeholder='tipo', type='text')
+                                br
                                 input#intencionalidad(name='intencionalidad', placeholder='intencionalidad', type='text')
+                                br
                                 input#subarea(name='subarea', placeholder='subarea', type='text')
+                                br
                                 input#sistema_seguridad(name='sistema_seguridad', placeholder='sistema_seguridad', type='text')
+                                br
                                 input#fecha_operacion(name='fecha_operacion', placeholder='fecha_operacion', type='date')
+                                br
                                 input#comentarios(name='comentarios', placeholder='comentarios', type='text')
+                                br
                                 input#correo_origen(name='correo_origen', placeholder='correo_origen', type='email')
+                                br
                                 input#correo_afectado(name='correo_afectado', placeholder='correo_afectado', type='email')
+                                br
                                 button(name='submitButton', value='createTicket') Crear ticket
+                                br
 
                             form(action="/users", method="GET")
                                 button Volver atras

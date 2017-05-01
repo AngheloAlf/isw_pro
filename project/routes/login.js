@@ -9,9 +9,12 @@ var userModel = require("../models/users");
 
 /* POST login. */
 router.post('/', function(req, res){
-    if(req.body.username && req.body.password){ //if username and password are set from POST, saves the session variable
-        var username = req.body.username;
-        var password = req.body.password;
+    var username = req.body.username;
+    var password = req.body.password;
+    if(username && password){ //if username and password are set from POST, saves the session variable
+
+        // req.checkBody('username', 'Nombre invalido').notEmpty();
+        // req.checkBody('password', 'Contraseña invalida').notEmpty();
 
         userModel.getUser(req, res, username, password);
     }

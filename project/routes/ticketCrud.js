@@ -72,7 +72,7 @@ router.get("/read/:ticketId", function(req, res){
 router.post("/assign", function(req, res){
     common.verificateLogin(req, res, function(req, res){
         var usertype = req.session.userData.usertype;
-        if(usertype < 3 &&usertype > 0){
+        if(usertype < 3 && usertype > 0){
             ticketsModel.assignTicket(req, res, req.body.ticketId, req.body.operadorId);
         }
         else{
