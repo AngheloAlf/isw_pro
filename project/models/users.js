@@ -13,7 +13,7 @@ exports.User = User;
 
 exports.getUser = function(req, res, username, password){
     var userVar = new User();
-    var where = "LCASE(username)='" + username.toLowerCase() + "' AND password='" + password + "'";
+    var where = "LCASE(username)='" + username.toLowerCase() + "' AND password='" + password + "' AND deleted='0'";
 
     userVar.find('all', {fields: ["id", "usertype"], where: where}, function (err, rows){
         if(err){

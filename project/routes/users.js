@@ -86,13 +86,13 @@ router.all("/viewTickets/:ticketId", function(req, res){
         var ticketId = req.params.ticketId;
 
         if(usertype === 0){
-            res.render('assignTicket', {title: 'Operador', username: username, ticketId: ticketId});
+            res.render('viewTicketId', {title: 'Operador', username: username, ticketId: ticketId, usertype: usertype});
         }
         if(usertype === 1){
-            res.render('assignTicket', {title: 'Supervisor', username: username, ticketId: ticketId});
+            res.render('viewTicketId', {title: 'Supervisor', username: username, ticketId: ticketId, usertype: usertype});
         }
         else if(usertype === 2){
-            res.render('assignTicket', {title: 'Jefe', username: username, ticketId: ticketId});
+            res.render('viewTicketId', {title: 'Jefe', username: username, ticketId: ticketId, usertype: usertype});
         }
         else{
             res.render('noPermissionsError', {title: 'No tienes permisos', username: username, accion: "Designar encargado de ticket"});

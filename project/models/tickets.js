@@ -18,7 +18,7 @@ exports.sendAllTickets = function(req, res){
     var tickectVar = new Tickets();
     var datetime = new Date();
     var fecha = datetime.getUTCFullYear() + "-" + (datetime.getUTCMonth()+1) + "-" + datetime.getUTCDate();
-    var where = "fecha_aplazado IS NULL OR fecha_aplazado BETWEEN '2017-04-30' AND '" + fecha +"'";
+    var where = "eliminado='0' AND fecha_aplazado IS NULL OR fecha_aplazado BETWEEN '2017-04-30' AND '" + fecha +"'";
 
     tickectVar.find('all', {where: where}, function (err, rows){
         if(err){
@@ -46,6 +46,26 @@ exports.assignTicket = function(req, res, ticketId, userId){
     var ticketVar = new Tickets();
     var where = "id='" + ticketId + "'";
     var query = "UPDATE tickets SET encargado='" + userId + "' WHERE " + where;
+
+    ticketVar.query(query, function(err, rows){
+        if(err){
+            throw err;
+        }
+
+        if(rows.changedRows === 1){
+            // Updated !
+        }
+        else{
+            // Not found
+        }
+        res.redirect("/users");
+    });
+};
+
+exports.deleteTicket = function(req, res, ticketId){
+    var ticketVar = new Tickets();
+    var where = "id='" + ticketId + "'";
+    var query = "UPDATE tickets SET eliminado='1' WHERE " + where;
 
     ticketVar.query(query, function(err, rows){
         if(err){

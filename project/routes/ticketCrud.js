@@ -35,6 +35,7 @@ router.post('/create', function(req, res){
             res.redirect("/users");
         }
         else{
+            var username = req.session.userData.userName;
             res.render('noPermissionsError', {title: 'No tienes permisos', username: username, accion: "Crear ticket"});
         }
     });
@@ -65,7 +66,7 @@ router.get("/read/:ticketId", function(req, res){
     });
 });
 
-router.post("/assignTicket", function(req, res){
+router.post("/assign", function(req, res){
     common.verificateLogin(req, res, function(req, res){
         if(req.session.userData.usertype < 3 && req.session.userData.usertype > 0){
             ticketsModel.assignTicket(req, res, req.body.ticketId, req.body.operadorId);
@@ -73,6 +74,19 @@ router.post("/assignTicket", function(req, res){
         else{
             var username = req.session.userData.userName;
             res.render('noPermissionsError', {title: 'No tienes permisos', username: username, accion: "Asignar ticket"});
+        }
+    });
+});
+
+
+router.post("/delete", function(req, res){
+    common.verificateLogin(req, res, function(req, res){
+        if(req.session.userData.usertype === 1){
+            ticketsModel.deleteTicket(req, res, req.body.ticketId);
+        }
+        else{
+            var username = req.session.userData.userName;
+            res.render('noPermissionsError', {title: 'No tienes permisos', username: username, accion: "Eliminar ticket"});
         }
     });
 });
