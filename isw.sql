@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2017-04-30 19:42:52
+Date: 2017-05-01 13:39:59
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -29,7 +29,7 @@ CREATE TABLE `logs_login` (
   `conn_successful` tinyint(4) DEFAULT NULL,
   `timeOnline` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=52 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=77 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of logs_login
@@ -85,6 +85,31 @@ INSERT INTO `logs_login` VALUES ('48', '2', 'supervisor', '2017-04-30 20:01:50',
 INSERT INTO `logs_login` VALUES ('49', '2', 'supervisor', '2017-04-30 21:31:32', '::ffff:127.0.0.1', null, '1', null);
 INSERT INTO `logs_login` VALUES ('50', '2', 'supervisor', '2017-04-30 21:33:48', '::ffff:127.0.0.1', null, '1', null);
 INSERT INTO `logs_login` VALUES ('51', '2', 'supervisor', '2017-04-30 21:46:15', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('52', '4', 'admin', '2017-04-30 23:29:02', '::ffff:127.0.0.1', null, '1', '16');
+INSERT INTO `logs_login` VALUES ('53', '4', 'admin', '2017-04-30 23:29:24', '::ffff:127.0.0.1', null, '1', '81');
+INSERT INTO `logs_login` VALUES ('54', '1', 'operador', '2017-04-30 23:30:49', '::ffff:127.0.0.1', null, '1', '31');
+INSERT INTO `logs_login` VALUES ('55', '2', 'supervisor', '2017-04-30 23:31:26', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('56', '1', 'operador', '2017-04-30 23:47:54', '::ffff:127.0.0.1', null, '1', '18');
+INSERT INTO `logs_login` VALUES ('57', '2', 'supervisor', '2017-04-30 23:48:21', '::ffff:127.0.0.1', null, '1', '2166');
+INSERT INTO `logs_login` VALUES ('58', '2', 'supervisor', '2017-05-01 01:13:47', '::ffff:127.0.0.1', null, '1', '649');
+INSERT INTO `logs_login` VALUES ('59', '2', 'supervisor', '2017-05-01 01:25:16', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('60', '-1', 'supervisor', '2017-05-01 15:50:10', '::ffff:127.0.0.1', null, '0', null);
+INSERT INTO `logs_login` VALUES ('61', '-1', 'supervisor', '2017-05-01 15:50:40', '::ffff:127.0.0.1', null, '0', null);
+INSERT INTO `logs_login` VALUES ('62', '-1', 'operador', '2017-05-01 15:55:53', '::ffff:127.0.0.1', null, '0', null);
+INSERT INTO `logs_login` VALUES ('63', '-1', 'operador', '2017-05-01 15:56:44', '::ffff:127.0.0.1', null, '0', null);
+INSERT INTO `logs_login` VALUES ('64', '-1', 'operador', '2017-05-01 16:12:14', '::ffff:127.0.0.1', null, '0', null);
+INSERT INTO `logs_login` VALUES ('65', '-1', 'admin', '2017-05-01 16:12:53', '::ffff:127.0.0.1', null, '0', null);
+INSERT INTO `logs_login` VALUES ('66', '-1', 'nuevoUsuario', '2017-05-01 16:13:08', '::ffff:127.0.0.1', null, '0', null);
+INSERT INTO `logs_login` VALUES ('67', '2', 'supervisor', '2017-05-01 16:14:09', '::ffff:127.0.0.1', null, '1', '19');
+INSERT INTO `logs_login` VALUES ('68', '4', 'admin', '2017-05-01 16:14:33', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('69', '2', 'supervisor', '2017-05-01 16:21:53', '::ffff:127.0.0.1', null, '1', '3');
+INSERT INTO `logs_login` VALUES ('70', '4', 'admin', '2017-05-01 16:22:02', '::ffff:127.0.0.1', null, '1', '30');
+INSERT INTO `logs_login` VALUES ('71', '6', 'usuario', '2017-05-01 16:22:37', '::ffff:127.0.0.1', null, '1', '130');
+INSERT INTO `logs_login` VALUES ('72', '4', 'admin', '2017-05-01 16:24:54', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('73', '-1', 'admin', '2017-05-01 16:27:20', '::ffff:127.0.0.1', null, '0', null);
+INSERT INTO `logs_login` VALUES ('74', '4', 'admin', '2017-05-01 16:27:24', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('75', '4', 'admin', '2017-05-01 16:28:07', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('76', '4', 'admin', '2017-05-01 16:34:42', '::ffff:127.0.0.1', null, '1', null);
 
 -- ----------------------------
 -- Table structure for tickets
@@ -112,12 +137,13 @@ CREATE TABLE `tickets` (
   `correo_afectado` varchar(255) DEFAULT NULL,
   `eliminado` tinyint(3) unsigned DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of tickets
 -- ----------------------------
 INSERT INTO `tickets` VALUES ('3', '1', '2017-04-30 17:39:12', null, '5', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', '2016-08-05 00:00:00', null, 'asd', 'asd@asd.com', 'asd@asd.com', '1');
+INSERT INTO `tickets` VALUES ('4', '2', '2017-04-30 23:32:39', null, null, 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', '2017-04-18 00:00:00', null, 'asd', 'asd@asd.com', 'asd@asd.com', '0');
 
 -- ----------------------------
 -- Table structure for users
@@ -130,13 +156,14 @@ CREATE TABLE `users` (
   `usertype` int(11) NOT NULL COMMENT '0=operador;1=supervisor;2=jefe;3=admin',
   `deleted` tinyint(4) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('1', 'operador', '1234', '0', '0');
-INSERT INTO `users` VALUES ('2', 'supervisor', '1234', '1', '0');
-INSERT INTO `users` VALUES ('3', 'jefe', '1234', '2', '0');
-INSERT INTO `users` VALUES ('4', 'admin', 'Admin', '3', '0');
-INSERT INTO `users` VALUES ('5', 'nuevoUsuario', 'clave', '0', '0');
+INSERT INTO `users` VALUES ('1', 'operador', '$2a$08$R9JAOmzbQ/bKw8TQHavWluGxMxEqTB4tstCRHMDg52ucHHi2hdyHK', '0', '0');
+INSERT INTO `users` VALUES ('2', 'supervisor', '$2a$08$R9JAOmzbQ/bKw8TQHavWluGxMxEqTB4tstCRHMDg52ucHHi2hdyHK', '1', '0');
+INSERT INTO `users` VALUES ('3', 'jefe', '$2a$08$R9JAOmzbQ/bKw8TQHavWluGxMxEqTB4tstCRHMDg52ucHHi2hdyHK', '2', '0');
+INSERT INTO `users` VALUES ('4', 'admin', '$2a$08$K3oKGnPhuojiHJUJzQ0Kz.VA0aNDOHDEG1OPtVONwCknj4FUbktHu', '3', '0');
+INSERT INTO `users` VALUES ('5', 'nuevoUsuario', '$2a$08$9CEPQaWUTz2Zwesib3Rtku411Cucf/f9JUy8940.xdgmoJAiEVG.e', '0', '0');
+INSERT INTO `users` VALUES ('6', 'usuario', '$2a$08$FLd8px4oDdrKjyirpSoZf.jBJdJM9Csortfk8oWyGxq9u62u18iDC', '2', '0');
