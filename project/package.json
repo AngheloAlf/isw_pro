@@ -15,11 +15,13 @@
     "express-fileupload": "^0.1.2",
     "express-ipfilter": "^0.2.4",
     "express-session": "^1.15.2",
+    "express-validator": "^3.2.0",
     "morgan": "~1.8.1",
     "mysql": "^2.13.0",
     "mysql-model": "0.0.2",
     "pug": "~2.0.0-beta11",
     "serve-favicon": "~2.4.2",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "util": "^0.10.3"
   }
 }

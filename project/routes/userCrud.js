@@ -6,6 +6,7 @@ var express = require("express");
 var router = express.Router();
 var common = require("./common");
 var bcrypt = require('bcrypt');
+var util = require('util');
 
 var usersModel = require("../models/users");
 
@@ -23,18 +24,33 @@ router.post('/create', function(req, res){
             req.checkBody('password', 'Password is required').notEmpty();
             req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
 
+            req.getValidationResult().then(function(result){
+                if (!result.isEmpty()) {
+                    res.status(400).send('Errores de validadcion: ' + util.inspect(result.array()));
+                }
+                else{
+                    var saltRounds = 8;
+                    var salt = bcrypt.genSaltSync(saltRounds);
+                    var hash = bcrypt.hashSync(password, salt);
+                    usersModel.createUser(req, res, username, hash, usertype);
+                }
+            });
+
+            /*
             if(password === password2){
                 // TODO: input verifications
+
 
                 var saltRounds = 8;
                 var salt = bcrypt.genSaltSync(saltRounds);
                 var hash = bcrypt.hashSync(password, salt);
                 usersModel.createUser(req, res, username, hash, usertype);
+
             }
             else{
                 //TODO: Mostrar error
                 res.redirect("/users");
-            }
+            }*/
         }
         /*if(errors){
               //TODO: Mostrar error

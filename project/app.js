@@ -55,6 +55,8 @@ app.use(function(err, req, res, _next) {
 });
 
 
+var expressValidator = require("express-validator");
+app.use(expressValidator());
 
 
 var index = require('./routes/index');
