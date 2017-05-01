@@ -5,6 +5,7 @@
 var express = require("express");
 var router = express.Router();
 var common = require("./common");
+var bcrypt = require('bcrypt');
 
 var usersModel = require("../models/users");
 
@@ -24,7 +25,9 @@ router.post('/create', function(req, res){
 
             if(password === password2){
                 // TODO: input verifications
-                usersModel.createUser(req, res, username, password, usertype);
+                var hash = password;
+                //var hash = bcrypt.hashSync(password);
+                usersModel.createUser(req, res, username, hash, usertype);
             }
             else{
                 //TODO: Mostrar error
