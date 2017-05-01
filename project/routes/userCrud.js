@@ -17,6 +17,11 @@ router.post('/create', function(req, res){
             var password2 = req.body.password2;
             var usertype = req.body.usertype;
 
+            req.checkBody('username', 'Name is required').notEmpty();
+            req.checkBody('usertype', 'Usertype is not valid').notEmpty(); // REVISAR ESTA PARTE CON EL FORMULARIO
+            req.checkBody('password', 'Password is required').notEmpty();
+            req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
+
             if(password === password2){
                 // TODO: input verifications
                 usersModel.createUser(req, res, username, password, usertype);
@@ -26,6 +31,21 @@ router.post('/create', function(req, res){
                 res.redirect("/users");
             }
         }
+        /*if(errors){
+              //TODO: Mostrar error
+            }
+            else{
+              if(password === password2){ // SACAR ESTO
+                // TODO: input verifications
+                //usersModel.createUser(req, res, username, hash, usertype);
+                usersModel.createUser(req, res, username, password, usertype);
+              }
+              else{ // SACAR ESTO TAMBIEN CON LO ANTERIOR
+                  //TODO: Mostrar error
+                  res.redirect("/users");
+              }
+            }*/
+
         else{
             res.render('noPermissionsError', {title: 'No tienes permisos', username: req.session.userData.userName, accion: "Crear usuario"});
         }

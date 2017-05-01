@@ -11,9 +11,9 @@ var User = Db.extend({
 });
 exports.User = User;
 
-exports.getUser = function(req, res, username, password){
+exports.getUser = function(req, res, username, hash){
     var userVar = new User();
-    var where = "LCASE(username)='" + username.toLowerCase() + "' AND password='" + password + "' AND deleted='0'";
+    var where = "LCASE(username)='" + username.toLowerCase() + "' AND password='" + hash + "' AND deleted='0'";
 
     userVar.find('all', {fields: ["id", "usertype"], where: where}, function (err, rows){
         if(err){
