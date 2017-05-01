@@ -3,6 +3,9 @@ extends layout_index
 
 block content
     #wrapper
+        //sidebar
+        include sidebarInclude
+
         // Page Content
         #page-content-wrapper
             .container-fluid
@@ -34,8 +37,4 @@ block content
     // /#wrapper
 
     // Menu Toggle Script
-    script.
-        $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-        });
+    script(src="js/toggleMenu.js")

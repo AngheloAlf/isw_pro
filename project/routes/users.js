@@ -3,6 +3,8 @@ var router = express.Router();
 
 var common = require("./common");
 
+var tiposDeUsuario = {0: "Operador", 1: "Supervisor", 2: "Jefe", 3: "Administrador"};
+
 /* Pagina principal */
 router.all('/', function(req, res){
     common.verificateLogin(req, res, function(req, res){
@@ -71,7 +73,7 @@ router.all("/createUser", function(req, res){
         var usertype = req.session.userData.usertype;
 
         if(usertype === 3){
-            res.render('createUser', {title: 'Admin', username: username});
+            res.render('createUser', {title: 'Admin', username: username, usertype: usertype});
         }
         else{
             res.render('noPermissionsError', {title: 'No tienes permisos', username: username, accion: "Crear usuario"});
@@ -100,14 +102,21 @@ router.all("/viewTickets/:ticketId", function(req, res){
     });
 });
 
+
+
 router.all("*/stylesheets/:sheets", function(req, res){
     res.redirect("/stylesheets/" + req.params.sheets);
 });
-router.all("*/javascript/:js", function(req, res){
-    res.redirect("/stylesheets/" + req.params.js);
+router.all("*/js/:js", function(req, res){
+    res.redirect("/js/" + req.params.js);
 });
 router.all("*/angular/:angularjs", function(req, res){
-    res.redirect("/stylesheets/" + req.params.angularjs);
+    res.redirect("/angular/" + req.params.angularjs);
 });
+router.all("*/static/:static", function(req, res){
+    res.redirect("/static/" + req.params.static);
+});
+
+
 
 module.exports = router;

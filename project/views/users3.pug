@@ -1,44 +1,10 @@
 extends layout_index
 
-
 block content
     #wrapper
         // Sidebar
-        #sidebar-wrapper
-            ul.sidebar-nav
-                li.sidebar-brand
-                    a(href='/users')
-                        | Redirect index user
-                li
-                    a(href="/users/createUser") Crear usuario
-                li
-                    a(href='#') Accion 2
-                li
-                    a(href='#') Accion 3
-                li
-                    a(href='#') Accion 4
-                li
-                    a(href='#') Accion 5
-                li
-                    a(href='#') Accion 6
-                li
-                    br
-                li
-                    br
-                li
-                    br
-                li
-                    br
-                li
-                    br
-                li
-                    br
-                li
-                    br
-                li
-                    form(action="/logout", method="POST")
-                        button.button(name='submitButton', value='log_out') Cerrar sesion
-        // /#sidebar-wrapper
+        include sidebar3
+
         // Page Content
         #page-content-wrapper
             .container-fluid
@@ -57,8 +23,4 @@ block content
     // /#wrapper
 
     // Menu Toggle Script
-    script.
-        $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-        });
+    script(src="js/toggleMenu.js")

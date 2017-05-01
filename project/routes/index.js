@@ -11,4 +11,19 @@ router.get('/', function(req, res){
     }
 });
 
+
+
+router.all("*/stylesheets/:sheets", function(req, res){
+    res.redirect("/stylesheets/" + req.params.sheets);
+});
+router.all("*/js/:js", function(req, res){
+    res.redirect("/js/" + req.params.js);
+});
+router.all("*/angular/:angularjs", function(req, res){
+    res.redirect("/angular/" + req.params.angularjs);
+});
+router.all("*/static/:static", function(req, res){
+    res.redirect("/static/" + req.params.static);
+});
+
 module.exports = router;

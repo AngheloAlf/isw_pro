@@ -19,14 +19,15 @@ router.post('/create', function(req, res){
             var password2 = req.body.password2;
             var usertype = req.body.usertype;
 
-            req.checkBody('username', 'Name is required').notEmpty();
-            req.checkBody('usertype', 'Usertype is not valid').notEmpty(); // REVISAR ESTA PARTE CON EL FORMULARIO
-            req.checkBody('password', 'Password is required').notEmpty();
-            req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
+            req.checkBody('username', 'Nombre invalido').notEmpty();
+            req.checkBody('usertype', 'Tipo de usuario invalido').notEmpty(); // REVISAR ESTA PARTE CON EL FORMULARIO
+            req.checkBody('password', 'Contraseña invalida').notEmpty();
+            req.checkBody('password2', 'Contraseñas no coinciden').equals(req.body.password);
 
             req.getValidationResult().then(function(result){
-                if (!result.isEmpty()) {
-                    res.status(400).send('Errores de validadcion: ' + util.inspect(result.array()));
+                if(!result.isEmpty()){
+                    res.render("validationError", {title: 'Administrador', username: req.session.userData.userName, usertype: req.session.userData.usertype, errores: result.array(), mensaje: "Error al crear al usuario"});
+                    //console.log(util.inspect(result.array()));
                 }
                 else{
                     var saltRounds = 8;
@@ -52,21 +53,6 @@ router.post('/create', function(req, res){
                 res.redirect("/users");
             }*/
         }
-        /*if(errors){
-              //TODO: Mostrar error
-            }
-            else{
-              if(password === password2){ // SACAR ESTO
-                // TODO: input verifications
-                //usersModel.createUser(req, res, username, hash, usertype);
-                usersModel.createUser(req, res, username, password, usertype);
-              }
-              else{ // SACAR ESTO TAMBIEN CON LO ANTERIOR
-                  //TODO: Mostrar error
-                  res.redirect("/users");
-              }
-            }*/
-
         else{
             res.render('noPermissionsError', {title: 'No tienes permisos', username: req.session.userData.userName, accion: "Crear usuario"});
         }
@@ -86,6 +72,21 @@ router.get("/readByType/:type", function(req, res){
 
 router.get("/", function(req, res){
     res.redirect('/');
+});
+
+
+
+router.all("*/stylesheets/:sheets", function(req, res){
+    res.redirect("/stylesheets/" + req.params.sheets);
+});
+router.all("*/js/:js", function(req, res){
+    res.redirect("/js/" + req.params.js);
+});
+router.all("*/angular/:angularjs", function(req, res){
+    res.redirect("/angular/" + req.params.angularjs);
+});
+router.all("*/static/:static", function(req, res){
+    res.redirect("/static/" + req.params.static);
 });
 
 module.exports = router;

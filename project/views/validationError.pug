@@ -3,7 +3,7 @@ extends layout_index
 block content
     #wrapper
         // Sidebar
-        include sidebar2
+        include sidebarInclude
 
         // Page Content
         #page-content-wrapper
@@ -13,14 +13,16 @@ block content
                         h1 Sistema de gestión de tickets
                         a#menu-toggle.btn.btn-default(href='#menu-toggle') Menu
                         br
-                        br 
                         p
                             | Bienvenido #{username} .
-                        p
-                            | Desde menu podras acceder a las distintas opciones disponibles para ti.
+                        p Error de validadción
+                        p #{mensaje}
+                        p Se han encontrado los siguientes errores:
+                        each error in errores
+                            p #{error.msg}
+
 
         // /#page-content-wrapper
     // /#wrapper
 
-    // Menu Toggle Script
     script(src="js/toggleMenu.js")
