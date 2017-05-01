@@ -7,8 +7,8 @@ block content
         #sidebar-wrapper
             ul.sidebar-nav
                 li.sidebar-brand
-                    a(href='/users/')
-                        | Redirec index user
+                    a(href='/users')
+                        | Redirect index user
                 li
                     a(href="/users/createUser") Crear usuario
                 li
@@ -55,10 +55,7 @@ block content
 
         // /#page-content-wrapper
     // /#wrapper
-    // jQuery
-    script(src='js/jquery.js')
-    // Bootstrap Core JavaScript
-    script(src='js/bootstrap.min.js')
+
     // Menu Toggle Script
     script.
         $("#menu-toggle").click(function(e) {
