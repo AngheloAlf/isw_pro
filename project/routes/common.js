@@ -2,6 +2,8 @@
  * Created by Anghelo on 26-04-2017.
  */
 
+exports.tiposDeUsuario = {0: "Operador", 1: "Supervisor", 2: "Jefe", 3: "Administrador"};
+
 //Verifica que el usuario haya iniciado sesion
 exports.verificateLogin = function(req, res, callback){
     if(req.session.userData){ //If user is connected

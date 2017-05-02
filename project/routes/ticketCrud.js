@@ -4,13 +4,16 @@
 
 var express = require("express");
 var router = express.Router();
+
 var common = require("./common");
+var tiposDeUsuario = common.tiposDeUsuario;
 
 var ticketsModel = require("../models/tickets");
 
 /* create ticket */
 router.post('/create', function(req, res){
     common.verificateLogin(req, res, function(req, res){
+        var username = req.session.userData.userName;
         var usertype = req.session.userData.usertype;
         if(usertype < 3){
             var datetime = new Date();
@@ -31,12 +34,28 @@ router.post('/create', function(req, res){
             var correo_origen = req.body.correo_origen;
             var correo_afectado = req.body.correo_afectado;
 
+            req.checkBody('ip_origen', 'IP origen invalida').isIP();
+            req.checkBody('ip_destino', 'IP destino invalida').isIP();
+            req.checkBody('fecha_operacion', "Fecha de operacion invalida").isDate();
+            req.checkBody('correo_origen', 'Correo origen invalido').isMail();
+            req.checkBody('correo_afectado', 'Correo afectado invalido').isMail();
+
+
             // TODO: input verifications
-            ticketsModel.createTicket(req, res, userId, date, fuente, ip_origen, ip_destino, puerto, protocolo, tipo, intencionalidad, subarea, sistema_seguridad, fecha_operacion, comentarios, correo_origen, correo_afectado);
-            res.redirect("/users");
+
+            req.getValidationResult().then(function(result){
+                if(!result.isEmpty()){
+                    res.render("validationError", {title: tiposDeUsuario[usertype], username: username, usertype: req.session.userData.usertype, errores: result.array(), mensaje: "Error al crear el ticket"});
+                    //console.log(util.inspect(result.array()));
+                }
+                else{
+                    ticketsModel.createTicket(req, res, userId, date, fuente, ip_origen, ip_destino, puerto, protocolo, tipo, intencionalidad, subarea, sistema_seguridad, fecha_operacion, comentarios, correo_origen, correo_afectado);
+                    res.redirect("/users");
+                }
+            });
+
         }
         else{
-            var username = req.session.userData.userName;
             res.render('noPermissionsError', {title: 'No tienes permisos', username: username, accion: "Crear ticket", usertype: usertype});
         }
     });

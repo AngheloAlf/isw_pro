@@ -2,8 +2,7 @@ var express = require("express");
 var router = express.Router();
 
 var common = require("./common");
-
-var tiposDeUsuario = {0: "Operador", 1: "Supervisor", 2: "Jefe", 3: "Administrador"};
+var tiposDeUsuario = common.tiposDeUsuario;
 
 /* Pagina principal */
 router.all('/', function(req, res){
