@@ -19,13 +19,15 @@ block content
                     br
                     br
                     div(ng-app='viewLogsLogin', ng-controller='viewLogsLoginCtrl')
+
+
                         table
                             tr
                                 //th id
                                 th username
                                 th Fecha de conexion
                                 th IP desde la cual se conecto
-                                th Proxy
+                                // th Proxy
                                 th ¿Conexión exitosa?
                                 th Tiempo en linea
                             tr(ng-repeat="log in logs_login")
@@ -33,7 +35,7 @@ block content
                                 td {{ log.username }}
                                 td {{ log.date }}
                                 td {{ log.ip }}
-                                td {{ log.ip_proxy }}
+                                // td {{ log.ip_proxy }}
                                 td {{ log.conn_successful }}
                                 td {{ log.timeOnline }}
 
