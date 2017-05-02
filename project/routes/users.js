@@ -112,6 +112,21 @@ router.all("/viewUsers", function(req, res){
     });
 });
 
+router.all("/viewLogs/login", function(req, res){
+    common.verificateLogin(req, res, function(req, res){
+        var username = req.session.userData.userName;
+        var usertype = req.session.userData.usertype;
+
+        if(usertype === 3){
+            res.render('viewLogsLogin', {title: tiposDeUsuario[usertype], usertype: usertype, username: username});
+        }
+        else{
+            res.render('noPermissionsError', {title: 'No tienes permisos', usertype: usertype, username: username, accion: "Ver logs de inicio de sesion"});
+        }
+    });
+});
+
+
 
 
 router.all("*/stylesheets/:sheets", function(req, res){

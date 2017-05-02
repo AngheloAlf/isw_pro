@@ -31,3 +31,15 @@ exports.updateLogLogOut = function(req, res, userId, timeOnline){
         }
     });
 };
+
+exports.sendLogs = function(req, res){
+    var logsVar = new Logs_login();
+    var where = "";
+
+    logsVar.find('all', {where: where}, function (err, rows){
+        if(err){
+            throw err;
+        }
+        res.send(JSON.stringify(rows));
+    });
+};
