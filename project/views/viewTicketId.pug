@@ -30,8 +30,33 @@ block content
 
         br
         br
+        br
 
-        form(action="/ticketCrud/addNewData", method="POST", encType="multipart/form-data")
+        p Datos subidos al ticket
+        table
+            tr
+                //th id
+                th antecedente
+                th usuario
+                th fecha
+                th aceptado
+                th archivo
+            tr(ng-repeat="ticket in ticketsDataData")
+                //td {{ ticket.id }}
+                td {{ ticket.antecedente }}
+                td {{ ticket.userId }}
+                td {{ ticket.fecha }}
+                td {{ ticket.aceptado }}
+                td
+                    a(href='{{ ticket.downloadPath }}', download='') {{ ticket.filename }}
+
+
+
+        br
+        br
+        br
+
+        form(action="/ticketDataCrud/create", method="POST", encType="multipart/form-data")
             input#ticketIdForm(name="ticketId", hidden="")
             br
             label Agregar nueva informacion a este ticket

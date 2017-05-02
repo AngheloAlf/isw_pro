@@ -13,3 +13,15 @@ exports.addData = function(req, res, ticketId, ticketData, userId, date, filenam
     var ticketVar = new TicketData({ticketId: ticketId, antecedente: ticketData, userId: userId, fecha: date, filename: filename});
     ticketVar.save();
 };
+
+exports.sendTicketById = function(req, res, ticketId){
+    var tickectVar = new TicketData();
+    var where = "ticketId='"+ticketId+"' AND eliminado='0'";
+
+    tickectVar.find('all', {where: where}, function (err, rows){
+        if(err){
+            throw err;
+        }
+        res.send(JSON.stringify(rows));
+    });
+};

@@ -39,7 +39,7 @@ var ips = [['192.168.0.0','192.168.255.255'], ['127.0.0.1', '127.0.0.1']];
 var ipfilter = require('express-ipfilter').IpFilter;
 // Create the server
 app.use(ipfilter(ips, {mode: 'allow'}));
-app.use(function(err, req, res, _next) {
+app.use(function(err, req, res, next) {
     console.log('Error handler', err);
     if(err instanceof IpDeniedError){
         res.status(401);
@@ -87,6 +87,8 @@ var login = require('./routes/login');
 var logout = require('./routes/logout');
 var ticketCrud = require("./routes/ticketCrud");
 var userCrud = require("./routes/userCrud");
+var ticketDataCrud = require("./routes/ticketDataCrud");
+var download = require("./routes/download");
 
 app.use('/', index);
 app.use('/users', users);
@@ -94,6 +96,8 @@ app.use('/login', login);
 app.use('/logout', logout);
 app.use('/ticketCrud', ticketCrud);
 app.use('/userCrud', userCrud);
+app.use('/ticketDataCrud', ticketDataCrud);
+app.use('/download/', download);
 
 
 // catch 404 and forward to error handler

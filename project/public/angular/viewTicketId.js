@@ -9,12 +9,17 @@ app.controller('assignTicketCtrl', function ($scope, $http){
     for(i =0; i < names.length; i++){
         names[i].value = ticketId;
     }
-    $http.get("/ticketCrud/read/"+ticketId)
-        .then(function(response){
-            $scope.ticketData = response.data;
+    $http.get("/ticketCrud/read/"+ticketId).then(function(response){
+        $scope.ticketData = response.data;
+    });
+    $http.get("/userCrud/readByType/0").then(function(response){
+        $scope.usersData = response.data;
+    });
+    $http.get("/ticketDataCrud/read/"+ticketId).then(function(response){
+        var ticketsDataData = response.data;
+        ticketsDataData.forEach(function(item){
+            item.downloadPath = "/download/"+ticketId+"/"+item.filename;
         });
-    $http.get("/userCrud/readByType/0")
-        .then(function(response){
-            $scope.usersData = response.data;
-        });
+        $scope.ticketsDataData = ticketsDataData;
+    });
 });
