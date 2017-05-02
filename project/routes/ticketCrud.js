@@ -5,10 +5,15 @@
 var express = require("express");
 var router = express.Router();
 
+var path = require("path");
+var mkdirp = require('mkdirp');
+var fs = require("fs");
+
 var common = require("./common");
 var tiposDeUsuario = common.tiposDeUsuario;
 
 var ticketsModel = require("../models/tickets");
+var ticketData = require("../models/ticketData");
 
 /* create ticket */
 router.post('/create', function(req, res){
@@ -132,6 +137,62 @@ router.get("/readByUser/:userId", function(req, res){
         }
     });
 });
+
+router.post("/addNewData", function(req, res){
+    common.verificateLogin(req, res, function(req, res){
+        var usertype = req.session.userData.usertype;
+        var username = req.session.userData.userName;
+        if(usertype < 3 && usertype >= 0){
+            //TODO: inputs verifications
+            var userId = req.session.userData.userID;
+            var ticketDataText = req.body.ticketData;
+            var ticketId = req.body.ticketId;
+            var datetime = new Date();
+            var date = datetime.getUTCFullYear() + "-" + (datetime.getUTCMonth()+1) + "-" + datetime.getUTCDate() + " " + datetime.getUTCHours()+":" + datetime.getUTCMinutes()+":" + datetime.getUTCSeconds();
+
+            //Upload file
+            var ticketFile = req.files.fileTicket; //TODO: upload file
+            var pathFolder = path.resolve(".", "public", "ticketsFiles", "ticket" + req.body.ticketId);
+
+            var fileName = undefined;
+            if(ticketFile){
+                fileName = ticketFile.name;
+                mkdirp(pathFolder, function (err){
+                    if(err){
+                        // could not create folder
+                        // TODO: show error
+                    }
+                    else{
+                        var fileFolder = path.resolve(".", "public", "ticketsFiles", "ticket" + req.body.ticketId, fileName);
+                        while(fs.existsSync(fileFolder)){
+                            fileName = "new " + fileName;
+                            console.log(fileName);
+                            fileFolder = path.resolve(".", "public", "ticketsFiles", "ticket" + req.body.ticketId, fileName);
+                        }
+                        ticketFile.mv(fileFolder, function (err){
+                            if(err){
+                                // TODO: show error
+                            }
+                            else{
+                                ticketData.addData(req, res, ticketId, ticketDataText, userId, date, fileName);
+                            }
+                        });
+                    }
+                });
+            }
+            else{
+                ticketData.addData(req, res, ticketId, ticketDataText, userId, date, fileName);
+            }
+
+            res.redirect("/users");
+        }
+        else{
+            res.render('noPermissionsError', {title: 'No tienes permisos', username: username, accion: "Añadir datos al ticket", usertype: usertype});
+        }
+    });
+});
+
+
 
 
 

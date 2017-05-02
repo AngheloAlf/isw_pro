@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost
+Source Server         : 127.0.0.1
 Source Server Version : 50714
-Source Host           : localhost:3306
+Source Host           : 127.0.0.1:3306
 Source Database       : isw
 
 Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2017-05-01 16:07:32
+Date: 2017-05-02 12:34:56
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -29,7 +29,7 @@ CREATE TABLE `logs_login` (
   `conn_successful` tinyint(4) DEFAULT NULL,
   `timeOnline` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=104 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=130 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of logs_login
@@ -137,6 +137,57 @@ INSERT INTO `logs_login` VALUES ('100', '5', 'nuevoUsuario', '2017-05-01 19:01:4
 INSERT INTO `logs_login` VALUES ('101', '-1', 'nuevoUsuario', '2017-05-01 19:04:06', '::ffff:127.0.0.1', null, '0', null);
 INSERT INTO `logs_login` VALUES ('102', '5', 'nuevoUsuario', '2017-05-01 19:04:12', '::ffff:127.0.0.1', null, '1', null);
 INSERT INTO `logs_login` VALUES ('103', '5', 'nuevoUsuario', '2017-05-01 19:05:21', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('104', '4', 'admin', '2017-05-02 00:31:22', '::ffff:127.0.0.1', null, '1', '37');
+INSERT INTO `logs_login` VALUES ('105', '2', 'supervisor', '2017-05-02 00:36:59', '::ffff:127.0.0.1', null, '1', '388');
+INSERT INTO `logs_login` VALUES ('106', '-1', 'asd', '2017-05-02 00:59:34', '::ffff:127.0.0.1', null, '0', null);
+INSERT INTO `logs_login` VALUES ('107', '-1', 'asd', '2017-05-02 01:00:38', '::ffff:127.0.0.1', null, '0', null);
+INSERT INTO `logs_login` VALUES ('108', '-1', 'asd', '2017-05-02 01:00:46', '::ffff:127.0.0.1', null, '0', null);
+INSERT INTO `logs_login` VALUES ('109', '-1', 'asd', '2017-05-02 01:01:08', '::ffff:127.0.0.1', null, '0', null);
+INSERT INTO `logs_login` VALUES ('110', '2', 'supervisor', '2017-05-02 01:01:37', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('111', '1', 'operador', '2017-05-02 00:07:43', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('112', '4', 'admin', '2017-05-02 01:08:33', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('113', '4', 'admin', '2017-05-02 01:11:51', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('114', '4', 'admin', '2017-05-02 01:13:00', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('115', '2', 'supervisor', '2017-05-02 13:24:08', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('116', '1', 'operador', '2017-05-02 14:15:58', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('117', '2', 'supervisor', '2017-05-02 14:31:04', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('118', '2', 'supervisor', '2017-05-02 14:32:32', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('119', '2', 'supervisor', '2017-05-02 14:38:18', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('120', '2', 'supervisor', '2017-05-02 14:50:23', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('121', '2', 'supervisor', '2017-05-02 14:52:36', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('122', '2', 'supervisor', '2017-05-02 14:56:18', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('123', '2', 'supervisor', '2017-05-02 15:01:39', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('124', '2', 'supervisor', '2017-05-02 15:03:34', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('125', '2', 'supervisor', '2017-05-02 15:19:34', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('126', '2', 'supervisor', '2017-05-02 15:23:32', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('127', '2', 'supervisor', '2017-05-02 15:28:28', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('128', '2', 'supervisor', '2017-05-02 15:29:28', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('129', '2', 'supervisor', '2017-05-02 15:31:24', '::ffff:127.0.0.1', null, '1', null);
+
+-- ----------------------------
+-- Table structure for ticketdata
+-- ----------------------------
+DROP TABLE IF EXISTS `ticketdata`;
+CREATE TABLE `ticketdata` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ticketId` int(10) unsigned NOT NULL,
+  `userId` int(10) unsigned NOT NULL,
+  `fecha` datetime NOT NULL,
+  `antecedente` varchar(255) DEFAULT NULL,
+  `filename` varchar(255) DEFAULT NULL,
+  `aceptado` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `eliminado` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of ticketdata
+-- ----------------------------
+INSERT INTO `ticketdata` VALUES ('1', '3', '2', '2017-05-02 15:04:00', 'me jakiaron', 'pauta6.pdf', '0', '0');
+INSERT INTO `ticketdata` VALUES ('2', '3', '2', '2017-05-02 15:23:48', 'me jakiaron denuvo :C', null, '0', '0');
+INSERT INTO `ticketdata` VALUES ('3', '3', '2', '2017-05-02 15:25:55', 'asd', 'Requerimientos .pdf', '0', '0');
+INSERT INTO `ticketdata` VALUES ('4', '3', '2', '2017-05-02 15:28:57', 'asdasdasd', 'Requerimientos .pdf', '0', '0');
+INSERT INTO `ticketdata` VALUES ('5', '3', '2', '2017-05-02 15:31:47', 'adsasdadadds', 'new Requerimientos .pdf', '0', '0');
 
 -- ----------------------------
 -- Table structure for tickets
@@ -171,6 +222,21 @@ CREATE TABLE `tickets` (
 -- ----------------------------
 INSERT INTO `tickets` VALUES ('3', '1', '2017-04-30 17:39:12', null, '5', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', '2016-08-05 00:00:00', null, 'asd', 'asd@asd.com', 'asd@asd.com', '0');
 INSERT INTO `tickets` VALUES ('4', '2', '2017-04-30 23:32:39', null, null, 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', '2017-04-18 00:00:00', null, 'asd', 'asd@asd.com', 'asd@asd.com', '0');
+
+-- ----------------------------
+-- Table structure for ticketskeywords
+-- ----------------------------
+DROP TABLE IF EXISTS `ticketskeywords`;
+CREATE TABLE `ticketskeywords` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ticketId` int(10) unsigned NOT NULL,
+  `keyword` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of ticketskeywords
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for users
