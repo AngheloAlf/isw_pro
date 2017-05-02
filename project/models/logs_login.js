@@ -43,3 +43,15 @@ exports.sendLogs = function(req, res){
         res.send(JSON.stringify(rows));
     });
 };
+
+exports.sendLogsByUserId= function(req, res, userId){
+    var logsVar = new Logs_login();
+    var where = "user_id='"+userId+"'";
+
+    logsVar.find('all', {where: where}, function (err, rows){
+        if(err){
+            throw err;
+        }
+        res.send(JSON.stringify(rows));
+    });
+};

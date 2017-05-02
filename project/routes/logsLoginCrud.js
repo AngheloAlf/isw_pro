@@ -13,11 +13,24 @@ router.get("/read", function(req, res){
     common.verificateLogin(req, res, function(req, res){
         var usertype = req.session.userData.usertype;
         var username = req.session.userData.userName;
-        if(usertype ===  3){
+        if(usertype === 3){
             logsLogin.sendLogs(req, res);
         }
         else{
-            res.render('noPermissionsError', {title: 'No tienes permisos', username: username, accion: "Leer tickets", usertype: usertype});
+            res.render('noPermissionsError', {title: 'No tienes permisos', username: username, accion: "Leer logs de tickets", usertype: usertype});
+        }
+    });
+});
+
+router.get("/readByUser/:userId", function(req, res){
+    common.verificateLogin(req, res, function(req, res){
+        var usertype = req.session.userData.usertype;
+        var username = req.session.userData.userName;
+        if(usertype === 3){
+            logsLogin.sendLogsByUserId(req, res, req.params.userId);
+        }
+        else{
+            res.render('noPermissionsError', {title: 'No tienes permisos', username: username, accion: "Leer logs de tickets", usertype: usertype});
         }
     });
 });
