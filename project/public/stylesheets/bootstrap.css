@@ -11,6 +11,7 @@ html {
 }
 body {
   margin: 0;
+  background-color: rgba(198, 198, 198, 0.31);
 }
 article,
 aside,
@@ -43,7 +44,7 @@ template {
   display: none;
 }
 a {
-  background-color: transparent;
+  background-color: lightgray;
 }
 a:active,
 a:hover {

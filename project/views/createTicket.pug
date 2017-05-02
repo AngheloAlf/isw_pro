@@ -12,9 +12,12 @@ block content
                         br
                         br 
                         p
-                            | Bienvenido #{username} .
+                            h4 Bienvenido #{username} .
+
+
                         p
-                            | Crear tickets.
+                            |Crear tickets.
+                            |
 
                             form(action="/ticketCrud/create", method="POST")
                                 input#fuente(name='fuente', placeholder='fuente', type='text')
@@ -43,11 +46,13 @@ block content
                                 br
                                 input#correo_afectado(name='correo_afectado', placeholder='correo_afectado', type='email')
                                 br
-                                button(name='submitButton', value='createTicket') Crear ticket
+                                br
+                                button.buttoncito(name='submitButton', value='createTicket') Crear ticket
                                 br
 
                             form(action="/users", method="GET")
-                                button Volver atras
+                                br
+                                button.buttoncito Volver atras
 
         // /#page-content-wrapper
     // /#wrapper
