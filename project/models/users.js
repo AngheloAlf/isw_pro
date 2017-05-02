@@ -86,3 +86,17 @@ exports.sendUsersByType = function(req, res, type){
 
     });
 };
+
+exports.sendUsers = function(req, res){
+    var userVar = new User();
+    var where = "usertype<>3 AND deleted=0";
+
+    userVar.find("all", {fields: ["id", "username", "usertype"], where: where}, function (err, rows){
+        if(err){
+            throw err;
+        }
+
+        res.send(JSON.stringify(rows));
+
+    });
+};

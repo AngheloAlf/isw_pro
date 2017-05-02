@@ -1,0 +1,26 @@
+extends layout
+
+block content
+    h1= title
+    p Bienvenido #{username}
+
+    div.transgray.segment(ng-app='viewUsers', ng-controller='viewUsersCtrl')
+        table
+            tr
+                th username
+                th Tipo de usuario
+                th Eliminar
+            tr(ng-repeat="user in usersData")
+                td {{ user.username }}
+                td {{ user.usertype }}
+                td
+                    a(href='/userCrud/delete/{{ user.id }}') Eliminar este usuario
+
+
+    form(action="/users", method="GET")
+        button Volver atras
+
+    form(action="/logout", method="POST")
+        button(name='submitButton', value='log_out') Cerrar sesion
+
+    script(src='/angular/viewUsers.js')

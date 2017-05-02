@@ -70,6 +70,18 @@ router.get("/readByType/:type", function(req, res){
     });
 });
 
+router.get("/read", function(req, res){
+    common.verificateLogin(req, res, function(req, res){
+        var usertype = req.session.userData.usertype;
+        if(usertype === 3){
+            usersModel.sendUsers(req, res);
+        }
+        else{
+            res.redirect("/");
+        }
+    });
+});
+
 router.get("/", function(req, res){
     res.redirect('/');
 });

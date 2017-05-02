@@ -98,6 +98,20 @@ router.all("/viewMyTickets", function(req, res){
     });
 });
 
+router.all("/viewUsers", function(req, res){
+    common.verificateLogin(req, res, function(req, res){
+        var username = req.session.userData.userName;
+        var usertype = req.session.userData.usertype;
+
+        if(usertype === 3){
+            res.render('viewUsers', {title: tiposDeUsuario[usertype], usertype: usertype, username: username});
+        }
+        else{
+            res.render('noPermissionsError', {title: 'No tienes permisos', usertype: usertype, username: username, accion: "Ver usuarios"});
+        }
+    });
+});
+
 
 
 router.all("*/stylesheets/:sheets", function(req, res){
