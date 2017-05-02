@@ -29,6 +29,24 @@ block content
             p eliminado: {{ ticketData.eliminado }}
 
         br
+        br
+
+        form(action="/ticketCrud/addNewData", method="POST", encType="multipart/form-data")
+            input#ticketIdForm(name="ticketId", hidden="")
+            br
+            label Agregar nueva informacion a este ticket
+            br
+            textarea#ticketData(name="ticketData", required='')
+            br
+            label Adjuntar archivo
+            br
+            input#fileTicket(type='file', name='fileTicket')
+            br
+            button(name='submitButton', value='assign') Agregar datos al ticket
+
+        br
+
+        br
         if usertype == 1 || usertype == 2
             form(action="/ticketCrud/assign", method="POST")
                 p Asignar este ticket al siguiente operador:
