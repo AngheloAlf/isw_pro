@@ -15,8 +15,7 @@ block content
                         br
                         p
                             | Bienvenido #{username} .
-                        p Error de validadción
-                        p #{mensaje}
+                        p Error de validadción: #{mensaje}
                         p Se han encontrado los siguientes errores:
                         each error in errores
                             p #{error.msg}

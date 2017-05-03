@@ -1,8 +1,8 @@
 extends layout_index
 
-
 block content
     #wrapper
+
         // Page Content
         #page-content-wrapper
             .container-fluid
@@ -10,47 +10,89 @@ block content
                     .col-lg-12
                         h1 Creación de tickets
                         br
-                        br 
                         p
-                            | Bienvenido #{username} .
-                        p
-                            | Crear tickets.
-
-                            form(action="/ticketCrud/create", method="POST")
-                                input#fuente(name='fuente', placeholder='fuente', type='text')
-                                br
-                                input#ip_origen(name='ip_origen', placeholder='ip_origen', type='text')
-                                br
-                                input#ip_destino(name='ip_destino', placeholder='ip_destino', type='text')
-                                br
-                                input#puerto(name='puerto', placeholder='puerto', type='text')
-                                br
-                                input#protocolo(name='protocolo', placeholder='protocolo', type='text')
-                                br
-                                input#tipo(name='tipo', placeholder='tipo', type='text')
-                                br
-                                input#intencionalidad(name='intencionalidad', placeholder='intencionalidad', type='text')
-                                br
-                                input#subarea(name='subarea', placeholder='subarea', type='text')
-                                br
-                                input#sistema_seguridad(name='sistema_seguridad', placeholder='sistema_seguridad', type='text')
-                                br
-                                input#fecha_operacion(name='fecha_operacion', placeholder='fecha_operacion', type='date')
-                                br
-                                input#comentarios(name='comentarios', placeholder='comentarios', type='text')
-                                br
-                                input#correo_origen(name='correo_origen', placeholder='correo_origen', type='email')
-                                br
-                                input#correo_afectado(name='correo_afectado', placeholder='correo_afectado', type='email')
-                                br
-                                button(name='submitButton', value='createTicket') Crear ticket
-                                br
-
                             form(action="/users", method="GET")
-                                button Volver atras
+                                button.btn.btn-primary.btn-lg Volver atrás
+                            br
+                            .container
+                                    .row
+                                        .col-md-12
+                                            .well.well-sm
+                                                form.form-horizontal(action="/ticketCrud/create", method="POST")
+                                                    fieldset
+                                                        legend.text-center.header Creación de Ticket
+                                                        .form-group
+                                                            span.col-md-1.col-md-offset-2.text-center
+                                                            .col-md-8
+                                                                input#fuente.form-control(name='fuente', placeholder='Fuente', type='text')
+
+                                                        .form-group
+                                                            span.col-md-1.col-md-offset-2.text-center
+                                                            .col-md-8
+                                                                input#ip_origen.form-control(name='ip_origen', placeholder='IP Origen', type='text')
+
+                                                        .form-group
+                                                            span.col-md-1.col-md-offset-2.text-center
+                                                            .col-md-8
+                                                                input#ip_destino.form-control(name='ip_destino', placeholder='IP Destino', type='text')
+
+                                                        .form-group
+                                                            span.col-md-1.col-md-offset-2.text-center
+                                                            .col-md-8
+                                                                input#puerto.form-control(name='puerto', placeholder='Puerto', type='text')
+
+                                                        .form-group
+                                                            span.col-md-1.col-md-offset-2.text-center
+                                                            .col-md-8
+                                                                input#protocolo.form-control(name='protocolo', placeholder='Protocolo', type='text')
+
+                                                        .form-group
+                                                            span.col-md-1.col-md-offset-2.text-center
+                                                            .col-md-8
+                                                                input#tipo.form-control(name='tipo', placeholder='Tipo', type='text')
+
+                                                        .form-group
+                                                            span.col-md-1.col-md-offset-2.text-center
+                                                            .col-md-8
+                                                                input#intencionalidad.form-control(name='intencionalidad', placeholder='Intencionalidad', type='text')
+
+                                                        .form-group
+                                                            span.col-md-1.col-md-offset-2.text-center
+                                                            .col-md-8
+                                                                input#subarea.form-control(name='subarea', placeholder='Subarea', type='text')
+                                                        
+                                                        .form-group
+                                                            span.col-md-1.col-md-offset-2.text-center
+                                                            .col-md-8
+                                                                input#sistema_seguridad.form-control(name='sistema_seguridad', placeholder='Sistema Seguridad', type='text')
+
+                                                        .form-group
+                                                            span.col-md-1.col-md-offset-2.text-center
+                                                            .col-md-8
+                                                                input#fecha_operacion.form-control(name='fecha_operacion', placeholder='Fecha Operación', type='date')
+
+                                                        .form-group
+                                                            span.col-md-1.col-md-offset-2.text-center
+                                                            .col-md-8
+                                                                input#correo_origen.form-control(name='correo_origen', placeholder='Correo Origen', type='email')                                    
+
+                                                        .form-group
+                                                            span.col-md-1.col-md-offset-2.text-center
+                                                            .col-md-8
+                                                                input#correo_afectado.form-control(name='correo_afectado', placeholder='Correo Afectado', type='email')
+
+                                                        .form-group
+                                                            span.col-md-1.col-md-offset-2.text-center
+                                                            .col-md-8
+                                                                input#comentarios.form-control(name='comentarios', placeholder='Comentarios', type='text')
+                                                        .form-group
+                                                            .col-md-12.text-center
+                                                                button.btn.btn-primary.btn-lg(name='submitButton', value='createTicket') Crear ticket
+
 
         // /#page-content-wrapper
     // /#wrapper
+
 
 
     // Menu Toggle Script
