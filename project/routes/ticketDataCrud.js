@@ -9,6 +9,8 @@ var common = require("./common");
 
 var ticketData = require("../models/ticketData");
 
+var path = require("path");
+
 router.post("/create", function(req, res){
     common.verificateLogin(req, res, function(req, res){
         var usertype = req.session.userData.usertype;
