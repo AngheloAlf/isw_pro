@@ -80,10 +80,9 @@ block content
                     option(ng-repeat="user in usersData", value="{{ user.id }}") {{ user.username }}
                 button(name='submitButton', value='assign') Asignar ticket
 
-        br
-        br
-        if usertype == 1
-            form(action="/ticketCrud/delete", method="POST")
+            br
+            br
+            form(action="/ticketCrud/delete", method="POST", onsubmit="return window.confirm('¿Esta seguro que desea eliminar este ticket?')")
                 input(name="ticketId", hidden="")
                 button(name='submitButton', value='delete') Eliminar este ticket
 

@@ -2,18 +2,20 @@
 extends layout_index
 
 block content
-    link(rel='stylesheet', href='stylesheets/table.css')
     #wrapper
+        //sidebar
+        include sidebarInclude
+
         // Page Content
         #page-content-wrapper
             .container-fluid
                 .row.col-lg-12
                     h1 Sistema de gestión de tickets
-                    //a#menu-toggle.btn.btn-default(href='#menu-toggle') Menu
+                    a#menu-toggle.btn.btn-default(href='#menu-toggle') Menu
                     br
                     p
-                    form(action="/users", method="GET")
-                                button.btn.btn-primary.btn-lg Volver atrás
+                    //form(action="/users", method="GET")
+                    //            button.btn.btn-primary.btn-lg Volver atrás
                     br
                     p#userId(hidden) #{userId}
                     br
@@ -23,26 +25,26 @@ block content
                                 thead
                                     tr
                                         
-                                       th Propietario
+                                        th Propietario
                                         th Fecha creación
-                                        th Encargado
+                                        //th Encargado
                                         th Fuente
                                         th Tipo
                                         th Intencionalidad
                                         th Subarea
                                         th Fecha operacion
-                                        th Correo afectado
+                                        //th Correo afectado
                                 tbody
                                     tr(ng-repeat="ticket in ticketsData")
                                         td {{ ticket.propietario }}
                                         td {{ ticket.fecha_creacion }}
-                                        td {{ ticket.encargado }}
+                                        // td {{ ticket.encargado }}
                                         td {{ ticket.fuente }}
                                         td {{ ticket.tipo }}
                                         td {{ ticket.intencionalidad }}
                                         td {{ ticket.subarea }}
                                         td {{ ticket.fecha_operacion }}
-                                        td {{ ticket.correo_afectado }}
+                                        //td {{ ticket.correo_afectado }}
 
 
 
