@@ -23,10 +23,17 @@ function ipv6ToIpv4(ip){
     return stripado[stripado.length - 1];
 }
 
+function invertFecha(fecha){
+    var separado = fecha.split(" ");
+    var separadito = separado[0].split("-").reverse().join("/");
+    return separadito + " " + separado[1];
+}
+
 function parseLog(log){
     log.ip = ipv6ToIpv4(log.ip);
     log.conn_successful = connToText(log.conn_successful);
     log.timeOnline = timeToText(log.timeOnline);
+    log.date = invertFecha(log.date);
     return log;
 }
 
