@@ -86,6 +86,25 @@ router.get("/", function(req, res){
     res.redirect('/');
 });
 
+router.post("/delete", function(req, res){
+    common.verificateLogin(req, res, function(req, res){
+        var usertype = req.session.userData.usertype;
+        if(usertype === 3){
+            usersModel.deleteUser(req, res, req.body.userId);
+            res.redirect("/users/viewUsers");
+        }
+        else{
+            res.redirect("/");
+        }
+    });
+});
+
+router.get("/read/:userId", function(req, res){
+    common.verificateLogin(req, res, function(req, res){
+        usersModel.sendUserByID(req, res, req.params.userId);
+    });
+});
+
 
 
 router.all("*/stylesheets/:sheets", function(req, res){

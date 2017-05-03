@@ -100,3 +100,35 @@ exports.sendUsers = function(req, res){
 
     });
 };
+
+exports.deleteUser = function(req, res, userId){
+    var userVar = new User();
+    var where = "id='" + userId + "'";
+    var query = "UPDATE users SET deleted='1' WHERE " + where;
+
+    userVar.query(query, function(err, rows){
+        if(err){
+            throw err;
+        }
+
+        if(rows.changedRows === 1){
+            // Updated !
+        }
+        else{
+            // Not found
+        }
+    });
+};
+
+exports.sendUserByID = function(req, res, userId){
+    var userVar = new User();
+    var where = "id='" + userId + "'";
+
+    userVar.find("all", {fields: ["id", "username"], where: where}, function (err, rows){
+        if(err){
+            throw err;
+        }
+
+        res.send(JSON.stringify(rows[0]));
+    });
+};
