@@ -24,7 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 var http = require('http');
 
-app.set('port', 1234);
+app.set('port', 443);
 
 var expressSession = require('express-session');
 var fileUpload = require('express-fileupload'); // To handle files uploads

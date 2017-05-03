@@ -15,44 +15,44 @@ block content
                         a#menu-toggle.btn.btn-default(href='#menu-toggle') Menu
                         br 
                         p
-                            form(action="/users", method="GET")
-                                button.btn.btn-primary.btn-lg Volver atrás
-                            br
-                            .container
-                                        .row
-                                            .col-md-12
-                                                .well.well-sm
-                                                    form.form-horizontal(action="/userCrud/create", method="POST")
-                                                        fieldset
-                                                            legend.text-center.header Creación de Usuarios
-                                                            .form-group
-                                                                span.col-md-1.col-md-offset-2.text-center
-                                                                .col-md-8
-                                                                    input#username.form-control(name='username', placeholder='Nombre de usuario', type='text')
+                        //form(action="/users", method="GET")
+                        //    button.btn.btn-primary.btn-lg Volver atrás
+                        br
+                        .container
+                            .row
+                                .col-md-12
+                                    .well.well-sm
+                                        form.form-horizontal(action="/userCrud/create", method="POST")
+                                            fieldset
+                                                legend.text-center.header Creación de Usuarios
+                                                .form-group
+                                                    span.col-md-1.col-md-offset-2.text-center
+                                                    .col-md-8
+                                                        input#username.form-control(name='username', placeholder='Nombre de usuario', type='text')
 
-                                                            .form-group
-                                                                span.col-md-1.col-md-offset-2.text-center
-                                                                .col-md-8
-                                                                    input#password.form-control(name='password', placeholder='Contraseña', type='password')
+                                                .form-group
+                                                    span.col-md-1.col-md-offset-2.text-center
+                                                    .col-md-8
+                                                        input#password.form-control(name='password', placeholder='Contraseña', type='password')
 
-                                                            .form-group
-                                                                span.col-md-1.col-md-offset-2.text-center
-                                                                .col-md-8
-                                                                    input#password2.form-control(name='password2', placeholder='Verificar contraseña', type='password')
+                                                .form-group
+                                                    span.col-md-1.col-md-offset-2.text-center
+                                                    .col-md-8
+                                                        input#password2.form-control(name='password2', placeholder='Verificar contraseña', type='password')
 
-                                                            .form-group
-                                                                span.col-md-1.col-md-offset-2.text-center
-                                                                .col-md-8
-                                                                    select#usertype.form-control(name='usertype')
-                                                                        option(value='0') Operador
-                                                                        option(value='1') Supervisor
-                                                                        option(value='2') Jefe
+                                                .form-group
+                                                    span.col-md-1.col-md-offset-2.text-center
+                                                    .col-md-8
+                                                        select#usertype.form-control(name='usertype')
+                                                            option(value='0') Operador
+                                                            option(value='1') Supervisor
+                                                            option(value='2') Jefe
 
-                                                            .form-group
-                                                                .col-md-12.text-center
-                                                                    button.btn.btn-primary.btn-lg(name='submitButton', value='createTicket') Crear Usuario
+                                                .form-group
+                                                    .col-md-12.text-center
+                                                        button.btn.btn-primary.btn-lg(name='submitButton', value='createTicket') Crear Usuario
 
-        // /#page-content-wrapper
+    // /#page-content-wrapper
     // /#wrapper
 
     // Menu Toggle Script
