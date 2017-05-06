@@ -1,100 +1,101 @@
-extends layout
+extends layout_index
 
 block content
-    h1= title
-    p Bienvenido #{username}
+    #wrapper
+        //sidebar
+        include sidebarInclude
 
-    p#ticketId(hidden="") #{ticketId}
-
-    div(ng-app='assignTicket', ng-controller='assignTicketCtrl')
-        div
-            p id: {{ ticketData.id }}
-            p propietario: {{ ticketData.propietario }}
-            p fecha_creacion: {{ ticketData.fecha_creacion }}
-            p encargado: {{ ticketData.encargado }}
-            p fuente: {{ ticketData.fuente }}
-            p ip_origen: {{ ticketData.ip_origen }}
-            p ip_destino: {{ ticketData.ip_destino }}
-            p puerto: {{ ticketData.puerto }}
-            p protocolo: {{ ticketData.protocolo }}
-            p tipo: {{ ticketData.tipo }}
-            p intencionalidad: {{ ticketData.intencionalidad }}
-            p subarea: {{ ticketData.subarea }}
-            p sistema_seguridad: {{ ticketData.sistema_seguridad }}
-            p fecha_operacion: {{ ticketData.fecha_operacion }}
-            p dias_transcurridos: {{ ticketData.dias_transcurridos }}
-            p comentarios: {{ ticketData.comentarios }}
-            p correo_origen: {{ ticketData.correo_origen }}
-            p correo_afectado: {{ ticketData.correo_afectado }}
-            p eliminado: {{ ticketData.eliminado }}
-
-        br
-        br
-        br
-
-        p Datos subidos al ticket
-        table
-            tr
-                //th id
-                th antecedente
-                th usuario
-                th fecha
-                th aceptado
-                th archivo
-            tr(ng-repeat="ticket in ticketsDataData")
-                //td {{ ticket.id }}
-                td {{ ticket.antecedente }}
-                td {{ ticket.userId }}
-                td {{ ticket.fecha }}
-                td {{ ticket.aceptado }}
-                td
-                    a(href='{{ ticket.downloadPath }}', download='') {{ ticket.filename }}
-
-
-
-        br
-        br
-        br
-
-        form(action="/ticketDataCrud/create", method="POST", encType="multipart/form-data")
-            input#ticketIdForm(name="ticketId", hidden="")
-            br
-            label Agregar nueva informacion a este ticket
-            br
-            textarea#ticketData(name="ticketData", required='')
-            br
-            label Adjuntar archivo
-            br
-            input#fileTicket(type='file', name='fileTicket')
-            br
-            button(name='submitButton', value='assign') Agregar datos al ticket
-
-        br
-
-        br
-        if usertype == 1 || usertype == 2
-            form(action="/ticketCrud/assign", method="POST")
-                p Asignar este ticket al siguiente operador:
-                input#ticketIdForm(name="ticketId", hidden="")
-                select#operadorId(name="operadorId", required="")
-                    option(ng-repeat="user in usersData", value="{{ user.id }}") {{ user.username }}
-                button(name='submitButton', value='assign') Asignar ticket
-
-        br
-        br
-        if usertype == 1
-            form(action="/ticketCrud/delete", method="POST")
-                input(name="ticketId", hidden="")
-                button(name='submitButton', value='delete') Eliminar este ticket
-
-    br
-    br
-
-    form(action="/users/viewTickets", method="GET")
-        button Volver atras
+        // Page Content
+        #page-content-wrapper
+            .container-fluid
+                .row.col-lg-12
+                    h1 Sistema de gestión de tickets
+                    a#menu-toggle.btn.btn-default(href='#menu-toggle') Menu
+                    br
+                    p
+                    //form(action="/users", method="GET")
+                    //            button.btn.btn-primary.btn-lg Volver atrás
+                    br
+                    p#ticketId(hidden="") #{ticketId}
+                    br
+                    div(ng-app='assignTicket', ng-controller='assignTicketCtrl')
+                        div
+                            p id: {{ ticketData.id }}
+                            p propietario: {{ ticketData.propietario }}
+                            p fecha_creacion: {{ ticketData.fecha_creacion }}
+                            p encargado: {{ ticketData.encargado }}
+                            p fuente: {{ ticketData.fuente }}
+                            p ip_origen: {{ ticketData.ip_origen }}
+                            p ip_destino: {{ ticketData.ip_destino }}
+                            p puerto: {{ ticketData.puerto }}
+                            p protocolo: {{ ticketData.protocolo }}
+                            p tipo: {{ ticketData.tipo }}
+                            p intencionalidad: {{ ticketData.intencionalidad }}
+                            p subarea: {{ ticketData.subarea }}
+                            p sistema_seguridad: {{ ticketData.sistema_seguridad }}
+                            p fecha_operacion: {{ ticketData.fecha_operacion }}
+                            p dias_transcurridos: {{ ticketData.dias_transcurridos }}
+                            p comentarios: {{ ticketData.comentarios }}
+                            p correo_origen: {{ ticketData.correo_origen }}
+                            p correo_afectado: {{ ticketData.correo_afectado }}
+                            p eliminado: {{ ticketData.eliminado }}
+                        .rwd
+                            table.rwd_auto
+                                thead
+                                    tr
+                                        th antecedente
+                                        th usuario
+                                        th fecha
+                                        th aceptado
+                                        th archivo
+                                tbody
+                                    tr(ng-repeat="ticket in ticketsDataData")
+                                        td {{ ticket.antecedente }}
+                                        td {{ ticket.userId }}
+                                        td {{ ticket.fecha }}
+                                        td {{ ticket.aceptado }}
+                                        td
+                                            a(href='{{ ticket.downloadPath }}', download='') {{ ticket.filename }}
 
 
-    form(action="/logout", method="POST")
-        button(name='submitButton', value='log_out') Cerrar sesion
 
-    script(src='/angular/viewTicketId.js')
+                        form(action="/ticketDataCrud/create", method="POST", encType="multipart/form-data")
+                            input#ticketIdForm(name="ticketId", hidden="")
+                            br
+                            label Agregar nueva informacion a este ticket
+                            br
+                            textarea#ticketData(name="ticketData", required='')
+                            br
+                            label Adjuntar archivo
+                            br
+                            input#fileTicket(type='file', name='fileTicket')
+                            br
+                            button(name='submitButton', value='assign') Agregar datos al ticket
+
+                        br
+
+                        br
+                        if usertype == 1 || usertype == 2
+                            form(action="/ticketCrud/assign", method="POST")
+                                p Asignar este ticket al siguiente operador:
+                                input#ticketIdForm(name="ticketId", hidden="")
+                                select#operadorId(name="operadorId", required="")
+                                    option(ng-repeat="user in usersData", value="{{ user.id }}") {{ user.username }}
+                                button(name='submitButton', value='assign') Asignar ticket
+
+                            br
+                            br
+                            form(action="/ticketCrud/delete", method="POST", onsubmit="return window.confirm('¿Esta seguro que desea eliminar este ticket?')")
+                                input(name="ticketId", hidden="")
+                                button(name='submitButton', value='delete') Eliminar este ticket
+
+                        br
+                        br
+
+                        form(action="/users/viewTickets", method="GET")
+                            button.btn.btn-primary.btn-lg Volver atrás
+
+
+
+                        script(src="/js/toggleMenu.js")
+                        script(src='/angular/viewTicketId.js')
