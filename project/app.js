@@ -59,7 +59,7 @@ var expressValidator = require("express-validator");
 app.use(expressValidator({
     customValidators: {
         isIP: function(value){
-            if(/^([0-9]{3}\.){3}[0-9]{3}$/.test(value)){
+            if(/^([0-9]{1,3}\.){3}[0-9]{1,3}$/.test(value)){
                 var splitado = value.split(".");
                 for(var i = 0; i < splitado.length; i++){
                     var numb = parseInt(splitado[i]);
