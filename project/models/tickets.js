@@ -18,8 +18,7 @@ exports.sendAllTickets = function(req, res){
     var tickectVar = new Tickets();
     var datetime = new Date();
     var fecha = datetime.getUTCFullYear() + "-" + (datetime.getUTCMonth()+1) + "-" + datetime.getUTCDate();
-    //var where = "eliminado='0' AND fecha_aplazado IS NULL OR fecha_aplazado BETWEEN '2017-04-30' AND '" + fecha +"'";
-    var where = "eliminado='0'";
+    var where = "eliminado='0' AND fecha_aplazado IS NULL OR fecha_aplazado BETWEEN '2017-04-30' AND '" + fecha +"'";
 
     tickectVar.find('all', {where: where}, function (err, rows){
         if(err){
@@ -94,25 +93,5 @@ exports.sendTicketsByUser = function(req, res, userId){
             throw err;
         }
         res.send(JSON.stringify(rows));
-    });
-};
-
-exports.aplazarTicket = function(req, res, ticketId, fechaAplazar){
-    var ticketVar = new Tickets();
-    var where = "id='" + ticketId + "'";
-    var query = "UPDATE tickets SET fecha_aplazado='" + fechaAplazar + "' WHERE " + where;
-
-    ticketVar.query(query, function(err, rows){
-        if(err){
-            throw err;
-        }
-
-        if(rows.changedRows === 1){
-            // Updated !
-        }
-        else{
-            // Not found
-        }
-        //res.redirect("/users");
     });
 };

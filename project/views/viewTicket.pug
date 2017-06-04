@@ -1,6 +1,7 @@
 extends layout_index
 
 block content
+    link(rel='stylesheet', href='stylesheets/table.css')
     #wrapper
         //sidebar
         include sidebarInclude
@@ -22,15 +23,15 @@ block content
                             table.rwd_auto
                                 thead
                                     tr
+                                        
                                         th Propietario
                                         th Fecha creación
                                         th Encargado
                                         th Fuente
                                         th Tipo
-                                        //th Intencionalidad
-                                        //th Subarea
+                                        th Intencionalidad
+                                        th Subarea
                                         th Fecha operacion
-                                        th Aplazado
                                         th Ver ticket
                                 tbody
                                     tr(ng-repeat="ticket in ticketsData")
@@ -39,12 +40,12 @@ block content
                                         td {{ ticket.encargado }}
                                         td {{ ticket.fuente }}
                                         td {{ ticket.tipo }}
-                                        //td {{ ticket.intencionalidad }}
-                                        //td {{ ticket.subarea }}
+                                        td {{ ticket.intencionalidad }}
+                                        td {{ ticket.subarea }}
                                         td {{ ticket.fecha_operacion }}
-                                        td {{ ticket.aplazado }}
                                         td
                                             a(href='/users/viewTickets/{{ ticket.id }}') Ver este ticket
+
 
 
     // Menu Toggle Script

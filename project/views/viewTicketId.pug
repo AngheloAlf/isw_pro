@@ -75,18 +75,6 @@ block content
                         br
 
                         br
-                        div
-                            if usertype == 1
-                                form(action="/ticketCrud/aplazar", method="POST")
-                                    p Aplazar este ticket a la siguiente fecha:
-                                    input(name="ticketId", hidden="")
-                                    input#fechaAplazo(type='date', name='fechaAplazo')
-                                    br
-                                    button(name='submitButton', value='assign') Aplazar ticket
-
-                        br
-
-                        br
                         if usertype == 1 || usertype == 2
                             form(action="/ticketCrud/assign", method="POST")
                                 p Asignar este ticket al siguiente operador:
@@ -109,5 +97,5 @@ block content
 
 
 
-    script(src="/js/toggleMenu.js")
-    script(src='/angular/viewTicketId.js')
+                        script(src="/js/toggleMenu.js")
+                        script(src='/angular/viewTicketId.js')
