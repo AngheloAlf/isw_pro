@@ -105,7 +105,6 @@ router.post("/assign", function(req, res){
     });
 });
 
-
 router.post("/delete", function(req, res){
     common.verificateLogin(req, res, function(req, res){
         var usertype = req.session.userData.usertype;
@@ -115,6 +114,29 @@ router.post("/delete", function(req, res){
         else{
             var username = req.session.userData.userName;
             res.render('noPermissionsError', {title: 'No tienes permisos', username: username, accion: "Eliminar ticket", usertype: usertype});
+        }
+    });
+});
+
+router.post("/aplazar", function(req, res){
+    common.verificateLogin(req, res, function(req, res){
+        var usertype = req.session.userData.usertype;
+        if(usertype === 1){
+            req.checkBody('fechaAplazo', 'Fecha ingresada es invalida').isDate();
+            req.getValidationResult().then(function(result){
+                if(!result.isEmpty()){
+                    res.render("validationError", {title: tiposDeUsuario[usertype], username: username, usertype: req.session.userData.usertype, errores: result.array(), mensaje: "Error al aplazar el ticket"});
+                    //console.log(util.inspect(result.array()));
+                }
+                else{
+                    ticketsModel.aplazarTicket(req, res, req.body.ticketId, req.body.fechaAplazo);
+                    res.redirect("/users");
+                }
+            });
+        }
+        else{
+            var username = req.session.userData.userName;
+            res.render('noPermissionsError', {title: 'No tienes permisos', username: username, accion: "Aplazar ticket", usertype: usertype});
         }
     });
 });
