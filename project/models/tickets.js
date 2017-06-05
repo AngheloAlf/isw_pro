@@ -82,6 +82,26 @@ exports.deleteTicket = function(req, res, ticketId){
     });
 };
 
+exports.changeDateTicket = function(req, res, ticketId, newDate){
+    var ticketVar = new Tickets();
+    var where = "id='" + ticketId + "'";
+    var query = "UPDATE tickets SET fecha_aplazado='"+newDate+"' WHERE " + where;
+
+    ticketVar.query(query, function(err, rows){
+        if(err){
+            throw err;
+        }
+
+        if(rows.changedRows === 1){
+            // Updated !
+        }
+        else{
+            // Not found
+        }
+        res.redirect("/users");
+    });
+};
+
 exports.sendTicketsByUser = function(req, res, userId){
     var tickectVar = new Tickets();
     var datetime = new Date();

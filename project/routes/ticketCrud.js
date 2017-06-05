@@ -119,6 +119,21 @@ router.post("/delete", function(req, res){
     });
 });
 
+router.post("/changeDate", function(req, res){
+    common.verificateLogin(req, res, function(req, res){
+        var usertype = req.session.userData.usertype;
+        if(usertype === 1){
+            var newDate = req.body.newDate; // AGREGAR ESTE BOTON EN LAS VISTA
+            req.checkBody('newDate', "Fecha ingresada es invalida").isDate();
+            ticketsModel.changeDateTicket(req, res, req.body.ticketId, newDate);
+        }
+        else{
+            var username = req.session.userData.userName;
+            res.render('noPermissionsError', {title: 'No tienes permisos', username: username, accion: "Aplazar ticket", usertype: usertype});
+        }
+    });
+});
+
 router.all("/", function(req, res){
     /* Si la direccion es localhost/ticketCrud/ se redirecciona a localhost/ */
     res.redirect('/');

@@ -88,12 +88,18 @@ block content
                             form(action="/ticketCrud/delete", method="POST", onsubmit="return window.confirm('¿Esta seguro que desea eliminar este ticket?')")
                                 input(name="ticketId", hidden="")
                                 button(name='submitButton', value='delete') Eliminar este ticket
-
+                            br
+                            br
+                            form(action="/ticketCrud/changeDate", method="POST")
+                                input#newDate(name='newDate', placeholder='Fecha a aplazar', type='date')
+                                input#ticketIdForm(name="ticketId", hidden="")
+                                button(name='submitButton', value='postpone') Aplazar Ticket
                         br
                         br
 
                         form(action="/users/viewTickets", method="GET")
                             button.btn.btn-primary.btn-lg Volver atrás
+
 
 
 
