@@ -14,11 +14,15 @@ exports.createTicket = function(req, res, userId, date, fuente, ip_origen, ip_de
     ticketVar.save()
 };
 
-exports.sendAllTickets = function(req, res){
+exports.sendAllTickets = function(req, res, usertype){
     var tickectVar = new Tickets();
-    var datetime = new Date();
-    var fecha = datetime.getUTCFullYear() + "-" + (datetime.getUTCMonth()+1) + "-" + datetime.getUTCDate();
-    var where = "eliminado='0' AND fecha_aplazado IS NULL OR fecha_aplazado BETWEEN '2017-04-30' AND '" + fecha +"'";
+    //var datetime = new Date();
+    //var fecha = datetime.getUTCFullYear() + "-" + (datetime.getUTCMonth()+1) + "-" + datetime.getUTCDate();
+    //var where = "eliminado='0' AND fecha_aplazado IS NULL OR fecha_aplazado BETWEEN '2017-04-30' AND '" + fecha +"'";
+    var where = "eliminado='0'";
+    if(usertype === 2){
+        where = "";
+    }
 
     tickectVar.find('all', {where: where}, function (err, rows){
         if(err){
@@ -30,9 +34,10 @@ exports.sendAllTickets = function(req, res){
 
 exports.sendTicketById = function(req, res, ticketId){
     var tickectVar = new Tickets();
-    var datetime = new Date();
-    var fecha = datetime.getUTCFullYear() + "-" + (datetime.getUTCMonth()+1) + "-" + datetime.getUTCDate();
-    var where = "id='"+ticketId+"' AND (fecha_aplazado IS NULL OR fecha_aplazado BETWEEN '2017-04-30' AND '" + fecha +"')";
+    //var datetime = new Date();
+    //var fecha = datetime.getUTCFullYear() + "-" + (datetime.getUTCMonth()+1) + "-" + datetime.getUTCDate();
+    //var where = "id='"+ticketId+"' AND (fecha_aplazado IS NULL OR fecha_aplazado BETWEEN '2017-04-30' AND '" + fecha +"')";
+    var where = "id='"+ticketId+"'";
 
     tickectVar.find('all', {where: where}, function (err, rows){
         if(err){
@@ -62,10 +67,10 @@ exports.assignTicket = function(req, res, ticketId, userId){
     });
 };
 
-exports.deleteTicket = function(req, res, ticketId){
+exports.deleteTicket = function(req, res, ticketId, userId){
     var ticketVar = new Tickets();
     var where = "id='" + ticketId + "'";
-    var query = "UPDATE tickets SET eliminado='1' WHERE " + where;
+    var query = "UPDATE tickets SET eliminado='1', eliminado_por='" + userId + "' WHERE " + where;
 
     ticketVar.query(query, function(err, rows){
         if(err){
@@ -87,15 +92,15 @@ exports.changeDateTicket = function(req, res, ticketId, newDate){
     var where = "id='" + ticketId + "'";
     var query = "UPDATE tickets SET fecha_aplazado='"+newDate+"' WHERE " + where;
 
-    ticketVar.query(query, function(err, rows){
-        if(err){
+    ticketVar.query(query, function(err, rows) {
+        if (err) {
             throw err;
         }
 
-        if(rows.changedRows === 1){
+        if (rows.changedRows === 1) {
             // Updated !
         }
-        else{
+        else {
             // Not found
         }
         res.redirect("/users");
@@ -113,5 +118,24 @@ exports.sendTicketsByUser = function(req, res, userId){
             throw err;
         }
         res.send(JSON.stringify(rows));
+    });
+};
+
+exports.de_deleteTicket = function(req, res, ticketId){
+    var ticketVar = new Tickets();
+    var where = "id='" + ticketId + "'";
+    var query = "UPDATE tickets SET eliminado='0' WHERE " + where;
+
+    ticketVar.query(query, function(err, rows){
+        if(err){
+            throw err;
+        }
+
+        if(rows.changedRows === 1){
+            // Updated !
+        }
+        else{
+            // Not found
+        }
     });
 };

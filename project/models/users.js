@@ -132,3 +132,17 @@ exports.sendUserByID = function(req, res, userId){
         res.send(JSON.stringify(rows[0]));
     });
 };
+
+exports.allUsersByType = function(req, res, type, callback){
+    var userVar = new User();
+    var where = "deleted='0' and usertype='" + type + "'";
+
+    userVar.find("all", {fields: ["id"], where: where}, function (err, rows){
+        if(err){
+            throw err;
+        }
+        rows.forEach(function(value){
+            callback(value.id)
+        });
+    });
+};

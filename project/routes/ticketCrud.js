@@ -13,6 +13,8 @@ var common = require("./common");
 var tiposDeUsuario = common.tiposDeUsuario;
 
 var ticketsModel = require("../models/tickets");
+var notificationsModel = require("../models/notifications");
+var usersModel = require("../models/users");
 
 /* create ticket */
 router.post('/create', function(req, res){
@@ -70,7 +72,7 @@ router.get("/read", function(req, res){
     common.verificateLogin(req, res, function(req, res){
         var usertype = req.session.userData.usertype;
         if(usertype < 3){
-            ticketsModel.sendAllTickets(req, res);
+            ticketsModel.sendAllTickets(req, res, usertype);
         }
         else{
             var username = req.session.userData.userName;
@@ -95,8 +97,10 @@ router.get("/read/:ticketId", function(req, res){
 router.post("/assign", function(req, res){
     common.verificateLogin(req, res, function(req, res){
         var usertype = req.session.userData.usertype;
+        var userId = req.session.userData.userID;
         if(usertype < 3 && usertype > 0){
             ticketsModel.assignTicket(req, res, req.body.ticketId, req.body.operadorId);
+            notificationsModel.addNotification(req, res, req.body.operadorId, "Te han asignado un ticket.", userId);
         }
         else{
             var username = req.session.userData.userName;
@@ -109,8 +113,12 @@ router.post("/assign", function(req, res){
 router.post("/delete", function(req, res){
     common.verificateLogin(req, res, function(req, res){
         var usertype = req.session.userData.usertype;
+        var userId = req.session.userData.userID;
         if(usertype === 1){
-            ticketsModel.deleteTicket(req, res, req.body.ticketId);
+            ticketsModel.deleteTicket(req, res, req.body.ticketId, userId);
+            usersModel.allUsersByType(req, res, 2, function(jefeId){
+                notificationsModel.addNotification(req, res, jefeId, "Un supervisor ha eliminado un ticket.", userId);
+            });
         }
         else{
             var username = req.session.userData.userName;
@@ -125,11 +133,35 @@ router.post("/changeDate", function(req, res){
         if(usertype === 1){
             var newDate = req.body.newDate; // AGREGAR ESTE BOTON EN LAS VISTA
             req.checkBody('newDate', "Fecha ingresada es invalida").isDate();
-            ticketsModel.changeDateTicket(req, res, req.body.ticketId, newDate);
+            req.getValidationResult().then(function(result){
+                if(!result.isEmpty()){
+                    res.render("validationError", {title: tiposDeUsuario[usertype], username: username, usertype: req.session.userData.usertype, errores: result.array(), mensaje: "Error al aplazar el ticket"});
+                    //console.log(util.inspect(result.array()));
+                }
+                else{
+                    ticketsModel.changeDateTicket(req, res, req.body.ticketId, newDate);
+                    res.redirect("/users");
+                }
+            });
         }
         else{
             var username = req.session.userData.userName;
             res.render('noPermissionsError', {title: 'No tienes permisos', username: username, accion: "Aplazar ticket", usertype: usertype});
+        }
+    });
+});
+
+router.post("/de-delete", function(req, res){
+    common.verificateLogin(req, res, function(req, res){
+        var usertype = req.session.userData.usertype;
+        if(usertype === 2){
+            ticketsModel.de_deleteTicket(req, res, req.body.ticketId);
+            res.redirect("/users");
+        }
+        else{
+            var username = req.session.userData.userName;
+            res.render('noPermissionsError', {title: 'No tienes permisos', username: username, accion: "Des-eliminar ticket", usertype: usertype});
+
         }
     });
 });

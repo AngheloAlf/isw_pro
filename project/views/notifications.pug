@@ -1,0 +1,42 @@
+extends layout_index
+
+block content
+    #wrapper
+        //sidebar
+        include sidebarInclude
+
+        // Page Content
+        #page-content-wrapper
+            .container-fluid
+                .row.col-lg-12
+                    h1 Notificaciones
+                    a#menu-toggle.btn.btn-default(href='#menu-toggle') Menu
+                    br
+                    p
+                    //form(action="/users", method="GET")
+                    //  button.btn.btn-primary.btn-lg Volver atrás
+                    br
+
+                    div(ng-app='viewNotifications', ng-controller='viewNotificationsCtrl')
+                        .rwd
+                            table.rwd_auto
+                                thead
+                                    tr
+                                        th Notificacion
+                                        th Fecha
+                                        th Usuario
+                                        th Aceptar
+                                tbody
+                                    tr(ng-repeat="noti in notificationsData")
+                                        td {{ noti.tipo }}
+                                        td {{ noti.fecha }}
+                                        td {{ noti.userCreator }}
+                                        td(id='show{{ noti.id }}')
+                                            button(name='submitButton', id='{{ noti.id }}', ng-click="acceptNotification($event)") Aceptar notificacion
+
+
+
+    // Menu Toggle Script
+    script(src="/js/toggleMenu.js")
+
+    script(src='/angular/viewNotifications.js')

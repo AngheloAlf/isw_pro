@@ -19,89 +19,181 @@ block content
                     p#ticketId(hidden="") #{ticketId}
                     br
                     div(ng-app='assignTicket', ng-controller='assignTicketCtrl')
-                        div
-                            p id: {{ ticketData.id }}
-                            p propietario: {{ ticketData.propietario }}
-                            p fecha_creacion: {{ ticketData.fecha_creacion }}
-                            p encargado: {{ ticketData.encargado }}
-                            p fuente: {{ ticketData.fuente }}
-                            p ip_origen: {{ ticketData.ip_origen }}
-                            p ip_destino: {{ ticketData.ip_destino }}
-                            p puerto: {{ ticketData.puerto }}
-                            p protocolo: {{ ticketData.protocolo }}
-                            p tipo: {{ ticketData.tipo }}
-                            p intencionalidad: {{ ticketData.intencionalidad }}
-                            p subarea: {{ ticketData.subarea }}
-                            p sistema_seguridad: {{ ticketData.sistema_seguridad }}
-                            p fecha_operacion: {{ ticketData.fecha_operacion }}
-                            p dias_transcurridos: {{ ticketData.dias_transcurridos }}
-                            p comentarios: {{ ticketData.comentarios }}
-                            p correo_origen: {{ ticketData.correo_origen }}
-                            p correo_afectado: {{ ticketData.correo_afectado }}
-                            p eliminado: {{ ticketData.eliminado }}
-                        .rwd
-                            table.rwd_auto
-                                thead
-                                    tr
-                                        th antecedente
-                                        th usuario
-                                        th fecha
-                                        th aceptado
-                                        th archivo
-                                tbody
-                                    tr(ng-repeat="ticket in ticketsDataData")
-                                        td {{ ticket.antecedente }}
-                                        td {{ ticket.userId }}
-                                        td {{ ticket.fecha }}
-                                        td {{ ticket.aceptado }}
-                                        td
-                                            a(href='{{ ticket.downloadPath }}', download='') {{ ticket.filename }}
+                        .container
+                            .row
+                                .col-md-12
+                                    .well.well-sm
+                                        fieldset
+                                            legend.text-center.header Informacion del ticket
+                                            .form-group
+                                                span.col-md-1.col-md-offset-2.text-center
+                                                .col-md-8
+                                                    p id: {{ ticketData.id }}
+
+                                            .form-group
+                                                span.col-md-1.col-md-offset-2.text-center
+                                                .col-md-8
+                                                    p propietario: {{ ticketData.propietario }}
+                                            .form-group
+                                                span.col-md-1.col-md-offset-2.text-center
+                                                .col-md-8
+                                                    p fecha_creacion: {{ ticketData.fecha_creacion }}
+                                            .form-group
+                                                span.col-md-1.col-md-offset-2.text-center
+                                                .col-md-8
+                                                    p encargado: {{ ticketData.encargado }}
+                                            .form-group
+                                                span.col-md-1.col-md-offset-2.text-center
+                                                .col-md-8
+                                                    p fuente: {{ ticketData.fuente }}
+                                            .form-group
+                                                span.col-md-1.col-md-offset-2.text-center
+                                                .col-md-8
+                                                    p ip_origen: {{ ticketData.ip_origen }}
+                                            .form-group
+                                                span.col-md-1.col-md-offset-2.text-center
+                                                .col-md-8
+                                                    p ip_destino: {{ ticketData.ip_destino }}
+                                            .form-group
+                                                span.col-md-1.col-md-offset-2.text-center
+                                                .col-md-8
+                                                    p puerto: {{ ticketData.puerto }}
+                                            .form-group
+                                                span.col-md-1.col-md-offset-2.text-center
+                                                .col-md-8
+                                                    p protocolo: {{ ticketData.protocolo }}
+                                            .form-group
+                                                span.col-md-1.col-md-offset-2.text-center
+                                                .col-md-8
+                                                    p tipo: {{ ticketData.tipo }}
+                                            .form-group
+                                                span.col-md-1.col-md-offset-2.text-center
+                                                .col-md-8
+                                                    p intencionalidad: {{ ticketData.intencionalidad }}
+                                            .form-group
+                                                span.col-md-1.col-md-offset-2.text-center
+                                                .col-md-8
+                                                    p subarea: {{ ticketData.subarea }}
+                                            .form-group
+                                                span.col-md-1.col-md-offset-2.text-center
+                                                .col-md-8
+                                                    p sistema_seguridad: {{ ticketData.sistema_seguridad }}
+                                            .form-group
+                                                span.col-md-1.col-md-offset-2.text-center
+                                                .col-md-8
+                                                    p fecha_operacion: {{ ticketData.fecha_operacion }}
+                                            .form-group
+                                                span.col-md-1.col-md-offset-2.text-center
+                                                .col-md-8
+                                                    p dias_transcurridos: {{ ticketData.dias_transcurridos }}
+                                            .form-group
+                                                span.col-md-1.col-md-offset-2.text-center
+                                                .col-md-8
+                                                    p comentarios: {{ ticketData.comentarios }}
+                                            .form-group
+                                                span.col-md-1.col-md-offset-2.text-center
+                                                .col-md-8
+                                                    p correo_origen: {{ ticketData.correo_origen }}
+                                            .form-group
+                                                span.col-md-1.col-md-offset-2.text-center
+                                                .col-md-8
+                                                    p correo_afectado: {{ ticketData.correo_afectado }}
+                                            .form-group
+                                                span.col-md-1.col-md-offset-2.text-center
+                                                .col-md-8
+                                                    p eliminado: {{ ticketData.eliminado }}
+                                            .form-group
+                                                span.col-md-1.col-md-offset-2.text-center
+                                                .col-md-8
+                                                    p eliminado por: {{ ticketData.eliminado_por }}
+
+
+                        .container
+                            .row
+                                .rwd
+                                    table.rwd_auto
+                                        thead
+                                            tr
+                                                th Antecedente
+                                                th Usuario
+                                                th Fecha
+                                                th Visado
+                                                th Archivo adjunto
+                                        tbody
+                                            tr(ng-repeat="ticket in ticketsDataData")
+                                                td {{ ticket.antecedente }}
+                                                td {{ ticket.userId }}
+                                                td {{ ticket.fecha }}
+                                                td {{ ticket.aceptado }}
+                                                td
+                                                    a(href='{{ ticket.downloadPath }}', download='') {{ ticket.filename }}
+
+                                .col-md-4
+                                    .well.well-sm
+                                        h3 Agregar nueva informacion a este ticket
+                                        form(action="/ticketDataCrud/create", method="POST", encType="multipart/form-data")
+                                            center
+                                                input#ticketIdForm(name="ticketId", hidden="")
+                                                textarea#ticketData(name="ticketData", required='')
+                                                br
+                                                h4 Adjuntar archivo
+                                                input#fileTicket.btn.btn-lg(type='file', name='fileTicket')
+                                                br
+                                                button.btn.btn-success.btn-lg(name='submitButton', value='assign') Agregar datos al ticket
+                                if usertype == 1
+                                    .col-md-4
+                                        .well.well-sm
+                                            h3 Aplazar este ticket a la siguiente fecha:
+                                            center
+                                                form(action="/ticketCrud/changeDate", method="POST")
+                                                    input#newDate(name='newDate', type='date')
+                                                    br
+                                                    br
+                                                    input(name="ticketId", hidden="")
+                                                    button.btn.btn-warning.btn-lg(name='submitButton', value='postpone') Aplazar Ticket
+
+                                    .col-md-4
+                                        .well.well-sm
+                                            h3 Eliminar ticket
+                                            br
+                                            br
+                                            center
+                                                form(action="/ticketCrud/delete", method="POST", onsubmit="return window.confirm('¿Esta seguro que desea eliminar este ticket?')")
+                                                    input(name="ticketId", hidden="")
+                                                    button.btn.btn-danger.btn-lg(name='submitButton', value='delete') Eliminar este ticket
+                                            br
+
+                                if usertype == 1 || usertype == 2
+                                    .col-md-4
+                                        .well.well-sm
+                                            h3 Asignar este ticket al siguiente operador:
+                                            center
+                                                form(action="/ticketCrud/assign", method="POST")
+                                                    input#ticketIdForm(name="ticketId", hidden="")
+                                                    select#operadorId(name="operadorId", required="")
+                                                        option(ng-repeat="user in usersData", value="{{ user.id }}") {{ user.username }}
+                                                    br
+                                                    br
+                                                    button.btn.btn-info.btn-lg(name='submitButton', value='assign') Asignar ticket
+
+                                if usertype == 2
+                                    .col-md-4
+                                        .well.well-sm
+                                            h3 Des-eliminar este ticket:
+                                            center
+                                                form(action="/ticketCrud/de-delete", method="POST")
+                                                    input(name="ticketId", hidden="")
+                                                    br
+                                                    br
+                                                    button#de-delete.btn.btn-danger.btn-lg(name='submitButton', value='de-delete', disabled="") Des-eliminar ticket
 
 
 
-                        form(action="/ticketDataCrud/create", method="POST", encType="multipart/form-data")
-                            input#ticketIdForm(name="ticketId", hidden="")
-                            br
-                            label Agregar nueva informacion a este ticket
-                            br
-                            textarea#ticketData(name="ticketData", required='')
-                            br
-                            label Adjuntar archivo
-                            br
-                            input#fileTicket(type='file', name='fileTicket')
-                            br
-                            button(name='submitButton', value='assign') Agregar datos al ticket
 
-                        br
-
-                        br
-                        if usertype == 1 || usertype == 2
-                            form(action="/ticketCrud/assign", method="POST")
-                                p Asignar este ticket al siguiente operador:
-                                input#ticketIdForm(name="ticketId", hidden="")
-                                select#operadorId(name="operadorId", required="")
-                                    option(ng-repeat="user in usersData", value="{{ user.id }}") {{ user.username }}
-                                button(name='submitButton', value='assign') Asignar ticket
-
-                            br
-                            br
-                            form(action="/ticketCrud/delete", method="POST", onsubmit="return window.confirm('¿Esta seguro que desea eliminar este ticket?')")
-                                input(name="ticketId", hidden="")
-                                button(name='submitButton', value='delete') Eliminar este ticket
-                            br
-                            br
-                            form(action="/ticketCrud/changeDate", method="POST")
-                                input#newDate(name='newDate', placeholder='Fecha a aplazar', type='date')
-                                input#ticketIdForm(name="ticketId", hidden="")
-                                button(name='submitButton', value='postpone') Aplazar Ticket
-                        br
-                        br
-
-                        form(action="/users/viewTickets", method="GET")
-                            button.btn.btn-primary.btn-lg Volver atrás
+            form(action="/users/viewTickets", method="GET")
+                button.btn.btn-primary.btn-lg Volver atrás
 
 
 
-
-                        script(src="/js/toggleMenu.js")
-                        script(src='/angular/viewTicketId.js')
+    script(src="/js/toggleMenu.js")
+    script(src='/angular/viewTicketId.js')

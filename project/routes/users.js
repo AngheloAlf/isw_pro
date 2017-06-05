@@ -126,7 +126,14 @@ router.all("/viewLogs/login", function(req, res){
     });
 });
 
+router.all("/notifications", function(req, res){
+    common.verificateLogin(req, res, function(req, res){
+        var username = req.session.userData.userName;
+        var usertype = req.session.userData.usertype;
 
+        res.render('notifications', {title: tiposDeUsuario[usertype], usertype: usertype, username: username});
+    });
+});
 
 
 router.all("*/stylesheets/:sheets", function(req, res){

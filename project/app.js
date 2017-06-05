@@ -90,6 +90,7 @@ var userCrud = require("./routes/userCrud");
 var ticketDataCrud = require("./routes/ticketDataCrud");
 var download = require("./routes/download");
 var logsLoginCrud = require("./routes/logsLoginCrud");
+var notifications = require("./routes/notificationsCrud");
 
 app.use('/', index);
 app.use('/users', users);
@@ -100,6 +101,7 @@ app.use('/userCrud', userCrud);
 app.use('/ticketDataCrud', ticketDataCrud);
 app.use('/download/', download);
 app.use('/logsLoginCrud', logsLoginCrud);
+app.use('/notificationsCrud', notifications);
 
 
 // catch 404 and forward to error handler
