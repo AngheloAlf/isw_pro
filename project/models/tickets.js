@@ -9,6 +9,24 @@ var Tickets = Db.extend({
 });
 exports.Tickets = Tickets;
 
+//Returns week of the year
+Date.prototype.getWeekNumber = function(){
+    var d = new Date(+this);
+    d.setHours(0,0,0,0);
+    d.setDate(d.getDate()+4-(d.getDay()||7));
+    return  Math.ceil((((d-new Date(d.getFullYear(),0,1))/8.64e7)+1)/7);
+};
+
+function range(i, j, k){
+    var z = i;
+    var asd = [];
+    while(z < j){
+        asd[z] = 0;
+        z += k;
+    }
+    return asd;
+}
+
 exports.createTicket = function(req, res, userId, date, fuente, ip_origen, ip_destino, puerto, protocolo, tipo, intencionalidad, subarea, sistema_seguridad, fecha_operacion, comentarios, correo_origen, correo_afectado){
     var ticketVar = new Tickets({propietario: userId, fecha_creacion: date, fuente: fuente, ip_origen: ip_origen, ip_destino: ip_destino, puerto: puerto, protocolo: protocolo, tipo: tipo, intencionalidad: intencionalidad, subarea: subarea, sistema_seguridad: sistema_seguridad, fecha_operacion: fecha_operacion, comentarios: comentarios, correo_origen: correo_origen, correo_afectado: correo_afectado});
     ticketVar.save()
@@ -176,5 +194,45 @@ exports.sendAllDelayedTickets = function(req, res, usertype){
             throw err;
         }
         res.send(JSON.stringify(rows));
+    });
+};
+
+exports.sendTicketsAmmountByDay = function(req, res){
+    var ticketVar = new Tickets();
+    var where = "eliminado='0'";
+
+    ticketVar.find('all', {where: where}, function (err, rows){
+        if(err){
+            throw err;
+        }
+        var counter = {};
+        rows.forEach(function(value){
+            var fecha = value.fecha_creacion.split(" ")[0];
+            if(!(fecha in counter)){
+                counter[fecha] = 0;
+            }
+            counter[fecha] += 1;
+        });
+        res.send(JSON.stringify(counter));
+    });
+};
+
+exports.sendTicketsAmmountByWeek = function(req, res, year){
+    var ticketVar = new Tickets();
+    var where = "eliminado='0'";
+
+    ticketVar.find('all', {where: where}, function (err, rows){
+        if(err){
+            throw err;
+        }
+        var counter = range(0, 52, 1);
+        rows.forEach(function(value){
+            var fecha = value.fecha_creacion.split(" ")[0];
+            if(fecha.split("-")[0] === year){
+                fecha = parseInt((new Date(fecha)).getWeekNumber());
+                counter[fecha] += 1;
+            }
+        });
+        res.send(JSON.stringify(counter));
     });
 };

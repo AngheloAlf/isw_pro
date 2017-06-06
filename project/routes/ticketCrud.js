@@ -242,7 +242,6 @@ router.post("/update", function(req, res){
     });
 });
 
-/* view ticket */
 router.get("/readDelayed", function(req, res){
     common.verificateLogin(req, res, function(req, res){
         var usertype = req.session.userData.usertype;
@@ -256,6 +255,31 @@ router.get("/readDelayed", function(req, res){
     });
 });
 
+router.get("/count/day", function(req, res){
+    common.verificateLogin(req, res, function(req, res){
+        var usertype = req.session.userData.usertype;
+        if(usertype < 3){
+            ticketsModel.sendTicketsAmmountByDay(req, res);
+        }
+        else{
+            var username = req.session.userData.userName;
+            res.render('noPermissionsError', {title: 'No tienes permisos', username: username, accion: "Contar tickets por dia", usertype: usertype});
+        }
+    });
+});
+
+router.get("/count/week/:year", function(req, res){
+    common.verificateLogin(req, res, function(req, res){
+        var usertype = req.session.userData.usertype;
+        if(usertype < 3){
+            ticketsModel.sendTicketsAmmountByWeek(req, res, req.params.year);
+        }
+        else{
+            var username = req.session.userData.userName;
+            res.render('noPermissionsError', {title: 'No tienes permisos', username: username, accion: "Contar tickets por dia", usertype: usertype});
+        }
+    });
+});
 
 router.all("*/stylesheets/:sheets", function(req, res){
     res.redirect("/stylesheets/" + req.params.sheets);

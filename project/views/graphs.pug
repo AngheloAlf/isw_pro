@@ -1,0 +1,57 @@
+extends layout_index
+
+block content
+    #wrapper
+        // Sidebar
+        include sidebarInclude
+
+        // Page Content
+        #page-content-wrapper
+            .container-fluid
+                .row
+                    .col-lg-12
+                        h1 Sistema de gestión de tickets
+                        a#menu-toggle.btn.btn-default(href='#menu-toggle') Menu
+                        br
+                        br
+
+                        div(ng-app='app', ng-controller='MixedChartCtrl')
+                            .tab
+                                button#defaultOpen.tablinks(onclick="openCity(event, 'ticket')") Tickets
+                                //button.tablinks(onclick="openCity(event, 'tipo')") Tickets por tipo
+                                //button.tablinks(onclick="openCity(event, 'dirigidos')") Tickets dirigidos
+                                //button.tablinks(onclick="openCity(event, 'vinculados')") Tickets vinculados
+                                //button.tablinks(onclick="openCity(event, 'uurr')") Tickets por UURR
+                            #ticket.tabcontent
+                                span.topright(onclick="this.parentElement.style.display='none'") x
+                                canvas#base.chart-bar(chart-data='data', chart-labels='labels', chart-colors='colors', chart-dataset-override='datasetOverride')
+                            //#tipo.tabcontent
+                                //span.topright(onclick="this.parentElement.style.display='none'") x
+                                //h3 Paris
+                                //p Paris is the capital of France.
+                            //#dirigidos.tabcontent
+                                //span.topright(onclick="this.parentElement.style.display='none'") x
+                                //h3 Tokyo
+                                //p Tokyo is the capital of Japan.
+                            //#vinculados.tabcontent
+                                //span.topright(onclick="this.parentElement.style.display='none'") x
+                                //h3 Paris
+                                //p Paris is the capital of France.
+                            //#uurr.tabcontent
+                                //span.topright(onclick="this.parentElement.style.display='none'") x
+                                //h3 Tokyo
+                                //p Tokyo is the capital of Japan.
+
+
+
+        // /#page-content-wrapper
+    // /#wrapper
+
+    // Menu Toggle Script
+    script(src="/js/toggleMenu.js")
+    script(src="/js/tabs.js")
+    script(src="/angular/graphs.js")
+
+    script.
+        document.getElementById("defaultOpen").click();
+
