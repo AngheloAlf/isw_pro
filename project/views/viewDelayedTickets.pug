@@ -30,8 +30,7 @@ block content
                                         //th Intencionalidad
                                         //th Subarea
                                         th Fecha operacion
-                                        if usertype == 2
-                                            th Estado
+                                        th Estado
                                         th Ver ticket
                                 tbody
                                     tr(ng-repeat="ticket in ticketsData")
@@ -43,8 +42,7 @@ block content
                                         //td {{ ticket.intencionalidad }}
                                         //td {{ ticket.subarea }}
                                         td {{ ticket.fecha_operacion }}
-                                        if usertype == 2
-                                            td {{ ticket.aplazado }}
+                                        td {{ ticket.aplazado }}
                                         td
                                             a(href='/users/viewTickets/{{ ticket.id }}') Ver este ticket
 
@@ -52,4 +50,4 @@ block content
     // Menu Toggle Script
     script(src="/js/toggleMenu.js")
 
-    script(src='/angular/viewTicket.js')
+    script(src='/angular/viewDelayedTickets.js')

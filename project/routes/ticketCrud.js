@@ -56,6 +56,9 @@ router.post('/create', function(req, res){
                 }
                 else{
                     ticketsModel.createTicket(req, res, userId, date, fuente, ip_origen, ip_destino, puerto, protocolo, tipo, intencionalidad, subarea, sistema_seguridad, fecha_operacion, comentarios, correo_origen, correo_afectado);
+                    usersModel.allUsersByType(req, res, 1, function(notificadoId){
+                        notificationsModel.addNotification(req, res, notificadoId, "Hay un ticket nuevo sin encargado.", userId, "/users/viewTickets/");
+                    });
                     res.redirect("/users");
                 }
             });
@@ -178,6 +181,7 @@ router.get("/readByUser/:userId", function(req, res){
     common.verificateLogin(req, res, function(req, res){
         var usertype = req.session.userData.usertype;
         if(usertype === 0){
+            console.log(req.params.userId);
             ticketsModel.sendTicketsByUser(req, res, req.params.userId);
         }
         else{
@@ -238,6 +242,19 @@ router.post("/update", function(req, res){
     });
 });
 
+/* view ticket */
+router.get("/readDelayed", function(req, res){
+    common.verificateLogin(req, res, function(req, res){
+        var usertype = req.session.userData.usertype;
+        if(usertype < 3){
+            ticketsModel.sendAllDelayedTickets(req, res, usertype);
+        }
+        else{
+            var username = req.session.userData.userName;
+            res.render('noPermissionsError', {title: 'No tienes permisos', username: username, accion: "Crear ticket", usertype: usertype});
+        }
+    });
+});
 
 
 router.all("*/stylesheets/:sheets", function(req, res){

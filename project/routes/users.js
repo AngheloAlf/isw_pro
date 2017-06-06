@@ -135,6 +135,20 @@ router.all("/notifications", function(req, res){
     });
 });
 
+router.all("/viewDelayedTickets", function(req, res){
+    common.verificateLogin(req, res, function(req, res){
+        var username = req.session.userData.userName;
+        var usertype = req.session.userData.usertype;
+
+        if(usertype === 0 || usertype === 1 || usertype === 2){
+            res.render('viewDelayedTickets', {title: tiposDeUsuario[usertype], usertype: usertype, username: username});
+        }
+        else{
+            res.render('noPermissionsError', {title: 'No tienes permisos', usertype: usertype, username: username, accion: "Crear ticket"});
+        }
+    });
+});
+
 
 router.all("*/stylesheets/:sheets", function(req, res){
     res.redirect("/stylesheets/" + req.params.sheets);
