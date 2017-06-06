@@ -25,3 +25,22 @@ exports.sendTicketById = function(req, res, ticketId){
         res.send(JSON.stringify(rows));
     });
 };
+
+exports.visarData = function(req, res, ticketId){
+    var tickectVar = new TicketData();
+    var where = "id='" + ticketId + "'";
+    var query = "UPDATE ticketData SET aceptado='1' WHERE " + where;
+
+    tickectVar.query(query, function(err, rows){
+        if(err){
+            throw err;
+        }
+
+        if(rows.changedRows === 1){
+            res.send("OK");
+        }
+        else{
+            res.send("ERROR");
+        }
+    });
+};

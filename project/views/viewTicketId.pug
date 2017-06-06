@@ -182,6 +182,8 @@ block content
                                                 th Fecha
                                                 th Visado
                                                 th Archivo adjunto
+                                                if usertype == 0
+                                                    th Visar
                                         tbody
                                             tr(ng-repeat="ticket in ticketsDataData")
                                                 td {{ ticket.antecedente }}
@@ -190,6 +192,9 @@ block content
                                                 td {{ ticket.aceptado }}
                                                 td
                                                     a(href='{{ ticket.downloadPath }}', download='') {{ ticket.filename }}
+                                                if usertype == 0
+                                                    td(id='show{{ ticket.id }}')
+                                                        button(name='submitButton', id='{{ ticket.id }}', ng-click="visar($event)") Visar antecedente
 
                                 .col-md-4
                                     .well.well-sm

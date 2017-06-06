@@ -91,7 +91,27 @@ app.controller('assignTicketCtrl', function ($scope, $http){
             });
 
             item.fecha = invertFecha(item.fecha);
+
         });
+        setTimeout(function(){
+            ticketsDataData.forEach(function(value){
+                if(value.aceptado === "Si"){
+                    document.getElementById("show"+value.id).innerHTML = "Visado";
+                }
+            });
+        }, 250);
         $scope.ticketsDataData = ticketsDataData;
+
+        $scope.visar = function(event){
+            $http.get("/ticketDataCrud/visar/"+event.target.id).then(function(response){
+                if(response.data === "OK"){
+                    document.getElementById("show"+event.target.id).innerHTML = "Visado";
+                }
+                else{
+                    alert("Ha ocurrido un problema visando el antecedente.\nIntentelo mas tarde");
+                }
+            });
+        };
+
     });
 });

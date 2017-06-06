@@ -78,4 +78,18 @@ router.get("/read/:ticketId", function(req, res){
     });
 });
 
+router.get("/visar/:ticketId", function(req, res){
+    common.verificateLogin(req, res, function(req, res){
+        var usertype = req.session.userData.usertype;
+        var username = req.session.userData.userName;
+        if(usertype === 0){
+            ticketData.visarData(req, res, req.params.ticketId);
+        }
+        else{
+            res.render('noPermissionsError', {title: 'No tienes permisos', username: username, accion: "Leer tickets", usertype: usertype});
+        }
+    });
+});
+
+
 module.exports = router;
