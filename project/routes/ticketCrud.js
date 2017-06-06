@@ -23,7 +23,7 @@ router.post('/create', function(req, res){
         var usertype = req.session.userData.usertype;
         if(usertype < 3){
             var datetime = new Date();
-            var date = datetime.getUTCFullYear() + "-" + (datetime.getUTCMonth()+1) + "-" + datetime.getUTCDate() + " " + datetime.getUTCHours()+":" + datetime.getUTCMinutes()+":" + datetime.getUTCSeconds();
+            var date = datetime.getUTCFullYear() + "-" + (datetime.getUTCMonth()+1) + "-" + datetime.getUTCDate() + " " + (datetime.getUTCHours() - 4)+":" + datetime.getUTCMinutes()+":" + datetime.getUTCSeconds();
 
             var userId = req.session.userData.userID;
             var fuente = req.body.fuente;
