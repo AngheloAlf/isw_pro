@@ -13,30 +13,40 @@ function range(i, j, k){
 }
 
 angular.module("app", ["chart.js"]).controller("MixedChartCtrl", function ($scope, $http){
-    $http.get("/ticketCrud/count/week/2017").then(function(response){
-        $scope.data = [
-            //response.data,
-            response.data
-        ];
-    });
+    $scope.update = function(){
 
+        $http.get("/ticketCrud/count/week/2017").then(function(response){
+            $scope.dataSemana = [
+                //response.data,
+                response.data
+
+            ];
+
+            $scope.labelsSemana = range(0, 53, 1);
+        });
+
+        $http.get("/ticketCrud/count/day/6").then(function(response){
+            $scope.dataDia = [
+                //response.data,
+                response.data
+
+            ];
+
+            $scope.labelsDia = range(0, 31, 1);
+        });
+    };
+
+    $scope.update();
 
     $scope.colors = ['#45b7cd', '#ff6384', '#ff8e72'];
 
-    //$scope.labels = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-    $scope.labels = range(1, 53, 1);
-
-    /*$scope.data = [
-        [65, -59, 80, 81, -56, 55, -40],
-        [28, 48, -40, 19, 86, 27, 90]
-    ];*/
     $scope.datasetOverride = [
         {
             label: "Bar chart",
             borderWidth: 1,
             type: 'bar'
-        }
-        /*{
+        }/*,
+        {
             label: "Line chart",
             borderWidth: 3,
             hoverBackgroundColor: "rgba(255,99,132,0.4)",

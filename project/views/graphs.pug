@@ -17,30 +17,37 @@ block content
 
                         div(ng-app='app', ng-controller='MixedChartCtrl')
                             .tab
-                                button#defaultOpen.tablinks(onclick="openCity(event, 'ticket')") Tickets
-                                //button.tablinks(onclick="openCity(event, 'tipo')") Tickets por tipo
+                                button#defaultOpen.tablinks(onclick="openCity(event, 'dia')", ng-click="update()") Tickets por dia
+                                button.tablinks(onclick="openCity(event, 'semana')", ng-click="update()") Tickets por Mes
                                 //button.tablinks(onclick="openCity(event, 'dirigidos')") Tickets dirigidos
                                 //button.tablinks(onclick="openCity(event, 'vinculados')") Tickets vinculados
                                 //button.tablinks(onclick="openCity(event, 'uurr')") Tickets por UURR
-                            #ticket.tabcontent
-                                span.topright(onclick="this.parentElement.style.display='none'") x
-                                canvas#base.chart-bar(chart-data='data', chart-labels='labels', chart-colors='colors', chart-dataset-override='datasetOverride')
-                            //#tipo.tabcontent
-                                //span.topright(onclick="this.parentElement.style.display='none'") x
-                                //h3 Paris
-                                //p Paris is the capital of France.
-                            //#dirigidos.tabcontent
-                                //span.topright(onclick="this.parentElement.style.display='none'") x
-                                //h3 Tokyo
-                                //p Tokyo is the capital of Japan.
-                            //#vinculados.tabcontent
-                                //span.topright(onclick="this.parentElement.style.display='none'") x
-                                //h3 Paris
-                                //p Paris is the capital of France.
-                            //#uurr.tabcontent
-                                //span.topright(onclick="this.parentElement.style.display='none'") x
-                                //h3 Tokyo
-                                //p Tokyo is the capital of Japan.
+                            .container
+                                .row
+                                    .col-md-8
+                                        #dia.tabcontent
+                                            span.topright(onclick="this.parentElement.style.display='none'") x
+                                            canvas.chart-bar(chart-data='dataDia', chart-labels='labelsDia', chart-colors='colors', chart-dataset-override='datasetOverride')
+
+                                        #semana.tabcontent
+                                            span.topright(onclick="this.parentElement.style.display='none'") x
+                                            canvas.chart-bar(chart-data='dataSemana', chart-labels='labelsSemana', chart-colors='colors', chart-dataset-override='datasetOverride')
+                                    //#tipo.tabcontent
+                                        //span.topright(onclick="this.parentElement.style.display='none'") x
+                                        //h3 Paris
+                                        //p Paris is the capital of France.
+                                    //#dirigidos.tabcontent
+                                        //span.topright(onclick="this.parentElement.style.display='none'") x
+                                        //h3 Tokyo
+                                        //p Tokyo is the capital of Japan.
+                                    //#vinculados.tabcontent
+                                        //span.topright(onclick="this.parentElement.style.display='none'") x
+                                        //h3 Paris
+                                        //p Paris is the capital of France.
+                                    //#uurr.tabcontent
+                                        //span.topright(onclick="this.parentElement.style.display='none'") x
+                                        //h3 Tokyo
+                                        //p Tokyo is the capital of Japan.
 
 
 
