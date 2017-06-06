@@ -121,7 +121,6 @@ exports.changeDateTicket = function(req, res, ticketId, newDate){
         else {
             // Not found
         }
-        res.redirect("/users");
     });
 };
 
