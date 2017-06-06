@@ -183,7 +183,7 @@ exports.sendAllDelayedTickets = function(req, res, usertype){
     var tickectVar = new Tickets();
     var datetime = new Date();
     var fecha = datetime.getUTCFullYear() + "-" + (datetime.getUTCMonth()+1) + "-" + datetime.getUTCDate();
-    var where = "(fecha_aplazado IS NOT NULL OR fecha_aplazado BETWEEN '" + fecha + "' AND '2517-04-30')";
+    var where = "(fecha_aplazado IS NOT NULL AND fecha_aplazado BETWEEN '" + fecha + "' AND '2517-04-30')";
     //var where = "eliminado='0'";
     if(usertype !== 2){
         where += " AND eliminado='0'";
