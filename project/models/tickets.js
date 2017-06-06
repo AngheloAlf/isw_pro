@@ -109,9 +109,10 @@ exports.changeDateTicket = function(req, res, ticketId, newDate){
 
 exports.sendTicketsByUser = function(req, res, userId){
     var tickectVar = new Tickets();
-    var datetime = new Date();
-    var fecha = datetime.getUTCFullYear() + "-" + (datetime.getUTCMonth()+1) + "-" + datetime.getUTCDate();
-    var where = "encargado='"+userId+"' AND (fecha_aplazado IS NULL OR fecha_aplazado BETWEEN '2017-04-30' AND '" + fecha +"')";
+    //var datetime = new Date();
+    //var fecha = datetime.getUTCFullYear() + "-" + (datetime.getUTCMonth()+1) + "-" + datetime.getUTCDate();
+    //var where = "encargado='"+userId+"' AND (fecha_aplazado IS NULL OR fecha_aplazado BETWEEN '2017-04-30' AND '" + fecha +"')";
+    var where = "encargado='"+userId+"'";
 
     tickectVar.find('all', {where: where}, function (err, rows){
         if(err){
@@ -137,5 +138,26 @@ exports.de_deleteTicket = function(req, res, ticketId){
         else{
             // Not found
         }
+    });
+};
+
+exports.updateTicket = function(req, res, ticketId, fuente, ip_origen, ip_destino, puerto, protocolo, tipo, intencionalidad, subarea, sistema_seguridad, fecha_operacion, comentarios, correo_origen, correo_afectado){
+
+    var ticketVar = new Tickets();
+    var where = "id='" + ticketId + "'";
+    var query = "UPDATE tickets SET fuente='"+fuente+"', ip_origen='"+ip_origen+"',ip_destino='"+ip_destino+"',puerto='"+puerto+"',protocolo='"+protocolo+"',tipo='"+tipo+"',intencionalidad='"+intencionalidad+"',subarea='"+fuente+"',sistema_seguridad='"+sistema_seguridad+"',fecha_operacion='"+fecha_operacion+"',comentarios='"+comentarios+"',correo_origen='"+correo_origen+"',correo_afectado='"+correo_afectado+"' WHERE " + where;
+
+    ticketVar.query(query, function(err, rows){
+        if(err){
+            throw err;
+        }
+
+        if(rows.changedRows === 1){
+            // Updated !
+        }
+        else{
+            // Not found
+        }
+        res.redirect("/users");
     });
 };

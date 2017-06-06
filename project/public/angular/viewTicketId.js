@@ -12,6 +12,18 @@ function invertFecha(fecha){
     return reverseOnlyDate(separado[0]) + " " + separado[1];
 }
 
+function todayLessDate(fecha){
+    // fecha como AAAA-MM-DD
+    fecha = fecha.split("-").join("/");
+    today = new Date();
+    fechaDay = new Date(fecha);
+
+    console.log(today.getYear()+"/"+(today.getMonth()+1)+"/"+today.getDate());
+    console.log(fecha);
+
+    return Date.parse(today.getYear()+"/"+(today.getMonth()+1)+"/"+today.getDate()) - Date.parse(fecha);
+}
+
 var app = angular.module('assignTicket', []);
 app.controller('assignTicketCtrl', function ($scope, $http){
     var ticketId = document.getElementById("ticketId").innerHTML;
@@ -26,6 +38,8 @@ app.controller('assignTicketCtrl', function ($scope, $http){
             document.getElementById("de-delete").removeAttribute("disabled");
         }
 
+        ticketData.dias_transcurridos = todayLessDate(ticketData.fecha_creacion);
+
         ticketData.fecha_creacion = invertFecha(ticketData.fecha_creacion);
         ticketData.fecha_operacion = invertFecha(ticketData.fecha_operacion);
 
@@ -35,9 +49,22 @@ app.controller('assignTicketCtrl', function ($scope, $http){
         $http.get("/userCrud/read/"+ticketData.encargado).then(function(response){
             ticketData.encargado = response.data.username;
         });
-        $http.get("/userCrud/read/"+ticketData.eliminado_por).then(function(response){
-            ticketData.eliminado_por = response.data.username;
-        });
+
+        if(ticketData.eliminado == 0){
+            ticketData.eliminado = "No";
+        }
+        else{
+            ticketData.eliminado = "Si";
+        }
+
+        if(ticketData.eliminado_por != undefined){
+            $http.get("/userCrud/read/"+ticketData.eliminado_por).then(function(response){
+                ticketData.eliminado_por = response.data.username;
+            });
+        }
+        else{
+            ticketData.eliminado_por = "El ticket no ha sido eliminado.";
+        }
 
         $scope.ticketData = ticketData;
     });

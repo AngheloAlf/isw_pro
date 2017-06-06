@@ -20,6 +20,17 @@ app.controller('viewMyTicketsCtrl', function ($scope, $http){
 
             value.fecha_creacion = invertFecha(value.fecha_creacion);
             value.fecha_operacion = invertFecha(value.fecha_operacion).split(" ")[0];
+
+
+            if(value.fecha_aplazado > getTodayDate()){
+                value.aplazado = "Aplazado hasta " + reverseOnlyDate(value.fecha_aplazado)
+            }
+            else{
+                value.aplazado = "OK";
+            }
+            if(value.eliminado === 1){
+                value.aplazado = "Eliminado";
+            }
         });
         $scope.ticketsData = ticketsData;
     });

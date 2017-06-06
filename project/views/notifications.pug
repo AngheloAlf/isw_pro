@@ -22,13 +22,14 @@ block content
                             table.rwd_auto
                                 thead
                                     tr
-                                        th Notificacion
+                                        th Notificación
                                         th Fecha
                                         th Usuario
                                         th Aceptar
                                 tbody
                                     tr(ng-repeat="noti in notificationsData")
-                                        td {{ noti.tipo }}
+                                        td
+                                            a(href="{{ noti.link }}") {{ noti.tipo }}
                                         td {{ noti.fecha }}
                                         td {{ noti.userCreator }}
                                         td(id='show{{ noti.id }}')

@@ -39,9 +39,9 @@ exports.acceptNotification = function(req, res, notiId){
     });
 };
 
-exports.addNotification = function(req, res, userId, notiData, userCreator){
+exports.addNotification = function(req, res, userId, notiData, userCreator, link){
     var datetime = new Date();
     var fecha = datetime.getUTCFullYear() + "-" + (datetime.getUTCMonth()+1) + "-" + datetime.getUTCDate();
     var hora = datetime.getHours() + ":" + datetime.getMinutes() + ":" + datetime.getSeconds();
-    (new notifications({userId: userId, tipo: notiData, userCreator: userCreator, fecha: fecha + " " + hora, accepted: '0'})).save();
+    (new notifications({userId: userId, tipo: notiData, userCreator: userCreator, fecha: fecha + " " + hora, accepted: '0', link: link})).save();
 };

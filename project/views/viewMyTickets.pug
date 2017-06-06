@@ -24,27 +24,27 @@ block content
                             table.rwd_auto
                                 thead
                                     tr
-                                        
                                         th Propietario
                                         th Fecha creación
-                                        //th Encargado
                                         th Fuente
                                         th Tipo
-                                        th Intencionalidad
-                                        th Subarea
+                                        //th Intencionalidad
+                                        //th Subarea
                                         th Fecha operacion
-                                        //th Correo afectado
+                                        th Estado
+                                        th Ver ticket
                                 tbody
                                     tr(ng-repeat="ticket in ticketsData")
                                         td {{ ticket.propietario }}
                                         td {{ ticket.fecha_creacion }}
-                                        // td {{ ticket.encargado }}
                                         td {{ ticket.fuente }}
                                         td {{ ticket.tipo }}
-                                        td {{ ticket.intencionalidad }}
-                                        td {{ ticket.subarea }}
+                                        //td {{ ticket.intencionalidad }}
+                                        //td {{ ticket.subarea }}
                                         td {{ ticket.fecha_operacion }}
-                                        //td {{ ticket.correo_afectado }}
+                                        td {{ ticket.aplazado }}
+                                        td
+                                            a(href='/users/viewTickets/{{ ticket.id }}') Ver este ticket
 
 
 

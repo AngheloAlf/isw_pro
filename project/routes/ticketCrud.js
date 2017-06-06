@@ -99,8 +99,10 @@ router.post("/assign", function(req, res){
         var usertype = req.session.userData.usertype;
         var userId = req.session.userData.userID;
         if(usertype < 3 && usertype > 0){
-            ticketsModel.assignTicket(req, res, req.body.ticketId, req.body.operadorId);
-            notificationsModel.addNotification(req, res, req.body.operadorId, "Te han asignado un ticket.", userId);
+            var ticketId = req.body.ticketId;
+            var operadorId = req.body.operadorId;
+            ticketsModel.assignTicket(req, res, ticketId, operadorId);
+            notificationsModel.addNotification(req, res, operadorId, "Te han asignado un ticket.", userId, "/users/viewTickets/"+ticketId);
         }
         else{
             var username = req.session.userData.userName;
@@ -115,9 +117,10 @@ router.post("/delete", function(req, res){
         var usertype = req.session.userData.usertype;
         var userId = req.session.userData.userID;
         if(usertype === 1){
-            ticketsModel.deleteTicket(req, res, req.body.ticketId, userId);
+            var ticketId = req.body.ticketId;
+            ticketsModel.deleteTicket(req, res, ticketId, userId);
             usersModel.allUsersByType(req, res, 2, function(jefeId){
-                notificationsModel.addNotification(req, res, jefeId, "Un supervisor ha eliminado un ticket.", userId);
+                notificationsModel.addNotification(req, res, jefeId, "Un supervisor ha eliminado un ticket.", userId, "/users/viewTickets/"+ticketId);
             });
         }
         else{
@@ -185,7 +188,38 @@ router.get("/readByUser/:userId", function(req, res){
 });
 
 
+router.post("/update", function(req, res){
+    common.verificateLogin(req, res, function(req, res){
+        var userId = req.session.userData.userID;
+        var usertype = req.session.userData.usertype;
+        if(usertype === 1 || usertype === 2){
+            var ticketId = req.body.ticketId;
 
+            var fuente = req.body.fuente;
+            var ip_origen = req.body.ip_origen;
+            var ip_destino = req.body.ip_destino;
+            var puerto = req.body.puerto;
+            var protocolo = req.body.protocolo;
+            var tipo = req.body.tipo;
+            var intencionalidad = req.body.intencionalidad;
+            var subarea = req.body.subarea;
+            var sistema_seguridad = req.body.sistema_seguridad;
+            var fecha_operacion = req.body.fecha_operacion;
+            var comentarios = req.body.comentarios;
+            var correo_origen = req.body.correo_origen;
+            var correo_afectado = req.body.correo_afectado;
+
+            ticketsModel.updateTicket(req, res, ticketId, fuente, ip_origen, ip_destino, puerto, protocolo, tipo, intencionalidad, subarea, sistema_seguridad, fecha_operacion, comentarios, correo_origen, correo_afectado);
+            usersModel.allUsersByType(req, res, 2, function(jefeId){
+                notificationsModel.addNotification(req, res, jefeId, "Un supervisor ha modificado un ticket.", userId, "/users/viewTickets/"+ticketId);
+            });
+        }
+        else{
+            var username = req.session.userData.userName;
+            res.render('noPermissionsError', {title: 'No tienes permisos', username: username, accion: "Ver tus tickets asignados", usertype: usertype});
+        }
+    });
+});
 
 
 

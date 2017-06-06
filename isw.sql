@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost
+Source Server         : 127.0.0.1
 Source Server Version : 50714
-Source Host           : localhost:3306
+Source Host           : 127.0.0.1:3306
 Source Database       : isw
 
 Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2017-06-05 11:32:19
+Date: 2017-06-05 20:21:29
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -29,7 +29,7 @@ CREATE TABLE `logs_login` (
   `conn_successful` tinyint(4) DEFAULT NULL,
   `timeOnline` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=183 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=190 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of logs_login
@@ -216,6 +216,13 @@ INSERT INTO `logs_login` VALUES ('179', '3', 'jefe', '2017-06-05 02:30:01', '::f
 INSERT INTO `logs_login` VALUES ('180', '3', 'jefe', '2017-06-05 02:30:56', '::ffff:127.0.0.1', null, '1', null);
 INSERT INTO `logs_login` VALUES ('181', '1', 'operador', '2017-06-05 15:28:47', '::ffff:127.0.0.1', null, '1', '32');
 INSERT INTO `logs_login` VALUES ('182', '2', 'supervisor', '2017-06-05 15:29:23', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('183', '2', 'supervisor', '2017-06-05 21:19:28', '::ffff:127.0.0.1', null, '1', '4965');
+INSERT INTO `logs_login` VALUES ('184', '1', 'operador', '2017-06-05 22:42:18', '::ffff:127.0.0.1', null, '1', '2322');
+INSERT INTO `logs_login` VALUES ('185', '2', 'supervisor', '2017-06-05 23:21:06', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('186', '1', 'operador', '2017-06-05 23:48:09', '::ffff:127.0.0.1', null, '1', '105');
+INSERT INTO `logs_login` VALUES ('187', '2', 'supervisor', '2017-06-05 23:49:58', '::ffff:127.0.0.1', null, '1', '22');
+INSERT INTO `logs_login` VALUES ('188', '1', 'operador', '2017-06-05 23:50:24', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('189', '1', 'operador', '2017-06-05 23:51:41', '::ffff:127.0.0.1', null, '1', null);
 
 -- ----------------------------
 -- Table structure for notifications
@@ -228,17 +235,14 @@ CREATE TABLE `notifications` (
   `userCreator` int(11) DEFAULT NULL,
   `accepted` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `fecha` datetime DEFAULT NULL,
+  `link` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of notifications
 -- ----------------------------
-INSERT INTO `notifications` VALUES ('1', '1', 'Te asignaron un ticket', '2', '1', '2017-06-04 19:46:53');
-INSERT INTO `notifications` VALUES ('2', '1', 'Otro', '1', '1', '2017-06-03 21:03:39');
-INSERT INTO `notifications` VALUES ('3', '1', 'Te han asignado un ticket', '2', '1', '2017-06-05 00:00:00');
-INSERT INTO `notifications` VALUES ('4', '1', 'Te han asignado un ticket', '2', '1', '2017-06-05 21:06:58');
-INSERT INTO `notifications` VALUES ('5', '3', 'Un supervisor ha eliminado un ticket.', '2', '1', '2017-06-05 21:25:22');
+INSERT INTO `notifications` VALUES ('6', '1', 'Te han asignado un ticket.', '2', '0', '2017-06-05 19:50:15', '/users/viewTickets/3');
 
 -- ----------------------------
 -- Table structure for ticketdata
