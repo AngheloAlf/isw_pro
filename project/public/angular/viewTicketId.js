@@ -40,8 +40,9 @@ app.controller('assignTicketCtrl', function ($scope, $http){
 
         ticketData.dias_transcurridos = todayLessDate(ticketData.fecha_creacion);
 
+        ticketData.fecha_operacion = ticketData.fecha_operacion.split(" ")[0];
+
         ticketData.fecha_creacion = invertFecha(ticketData.fecha_creacion);
-        ticketData.fecha_operacion = invertFecha(ticketData.fecha_operacion);
 
         $http.get("/userCrud/read/"+ticketData.propietario).then(function(response){
             ticketData.propietario = response.data.username;
@@ -50,14 +51,14 @@ app.controller('assignTicketCtrl', function ($scope, $http){
             ticketData.encargado = response.data.username;
         });
 
-        if(ticketData.eliminado == 0){
+        if(ticketData.eliminado === 0){
             ticketData.eliminado = "No";
         }
         else{
             ticketData.eliminado = "Si";
         }
 
-        if(ticketData.eliminado_por != undefined){
+        if(ticketData.eliminado_por !== null){
             $http.get("/userCrud/read/"+ticketData.eliminado_por).then(function(response){
                 ticketData.eliminado_por = response.data.username;
             });

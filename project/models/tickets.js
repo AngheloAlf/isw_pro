@@ -142,22 +142,21 @@ exports.de_deleteTicket = function(req, res, ticketId){
 };
 
 exports.updateTicket = function(req, res, ticketId, fuente, ip_origen, ip_destino, puerto, protocolo, tipo, intencionalidad, subarea, sistema_seguridad, fecha_operacion, comentarios, correo_origen, correo_afectado){
-
     var ticketVar = new Tickets();
     var where = "id='" + ticketId + "'";
     var query = "UPDATE tickets SET fuente='"+fuente+"', ip_origen='"+ip_origen+"',ip_destino='"+ip_destino+"',puerto='"+puerto+"',protocolo='"+protocolo+"',tipo='"+tipo+"',intencionalidad='"+intencionalidad+"',subarea='"+fuente+"',sistema_seguridad='"+sistema_seguridad+"',fecha_operacion='"+fecha_operacion+"',comentarios='"+comentarios+"',correo_origen='"+correo_origen+"',correo_afectado='"+correo_afectado+"' WHERE " + where;
-
     ticketVar.query(query, function(err, rows){
         if(err){
             throw err;
         }
-
         if(rows.changedRows === 1){
-            // Updated !
+            //Updated
+        }
+        else if (rows.changedRows > 1){
+            //ERROR
         }
         else{
-            // Not found
+            //not_found
         }
-        res.redirect("/users");
     });
 };

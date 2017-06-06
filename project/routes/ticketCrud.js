@@ -209,14 +209,31 @@ router.post("/update", function(req, res){
             var correo_origen = req.body.correo_origen;
             var correo_afectado = req.body.correo_afectado;
 
-            ticketsModel.updateTicket(req, res, ticketId, fuente, ip_origen, ip_destino, puerto, protocolo, tipo, intencionalidad, subarea, sistema_seguridad, fecha_operacion, comentarios, correo_origen, correo_afectado);
-            usersModel.allUsersByType(req, res, 2, function(jefeId){
-                notificationsModel.addNotification(req, res, jefeId, "Un supervisor ha modificado un ticket.", userId, "/users/viewTickets/"+ticketId);
+            req.checkBody('ip_origen', 'IP origen invalida').isIP();
+            req.checkBody('ip_destino', 'IP destino invalida').isIP();
+            req.checkBody('fecha_operacion', "Fecha de operacion invalida").isDate();
+            req.checkBody('correo_origen', 'Correo origen invalido').isMail();
+            req.checkBody('correo_afectado', 'Correo afectado invalido').isMail();
+
+            req.getValidationResult().then(function(result){
+                if(!result.isEmpty()){
+                    res.render("validationError", {title: tiposDeUsuario[usertype], username: username, usertype: req.session.userData.usertype, errores: result.array(), mensaje: "Error al modificar el ticket"});
+                    //console.log(util.inspect(result.array()));
+                }
+                else{
+                    ticketsModel.updateTicket(req, res, ticketId, fuente, ip_origen, ip_destino, puerto, protocolo, tipo, intencionalidad, subarea, sistema_seguridad, fecha_operacion, comentarios, correo_origen, correo_afectado);
+                    usersModel.allUsersByType(req, res, 2, function(jefeId){
+                        notificationsModel.addNotification(req, res, jefeId, "Un supervisor ha modificado un ticket.", userId, "/users/viewTickets/"+ticketId);
+                    });
+                    res.redirect("/users/viewTickets");
+                }
             });
+
+
         }
         else{
             var username = req.session.userData.userName;
-            res.render('noPermissionsError', {title: 'No tienes permisos', username: username, accion: "Ver tus tickets asignados", usertype: usertype});
+            res.render('noPermissionsError', {title: 'No tienes permisos', username: username, accion: "Modificar un ticket", usertype: usertype});
         }
     });
 });
