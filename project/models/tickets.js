@@ -197,7 +197,7 @@ exports.sendAllDelayedTickets = function(req, res, usertype){
     });
 };
 
-exports.sendTicketsAmmountByDay = function(req, res){
+exports.sendTicketsAmmountByDay = function(req, res, month){
     var ticketVar = new Tickets();
     var where = "eliminado='0'";
 
@@ -205,13 +205,17 @@ exports.sendTicketsAmmountByDay = function(req, res){
         if(err){
             throw err;
         }
-        var counter = {};
+        var counter = range(0, 31, 1);
         rows.forEach(function(value){
             var fecha = value.fecha_creacion.split(" ")[0];
-            if(!(fecha in counter)){
-                counter[fecha] = 0;
+            if(parseInt(fecha.split("-")[1]) == parseInt(month)){
+                fecha = parseInt(fecha.split("-")[2]);
+                console.log(fecha);
+                if (!(fecha in counter)) {
+                    counter[fecha] = 0;
+                }
+                counter[fecha] += 1;
             }
-            counter[fecha] += 1;
         });
         res.send(JSON.stringify(counter));
     });

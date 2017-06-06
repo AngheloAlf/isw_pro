@@ -112,8 +112,8 @@ app.use(function(req, res, next) {
     next(err);
     */
     //TODO: Make a 404 view
-    res.redirect("https://matias.ma/nsfw/");
-    //res.send("404");
+    //res.redirect("https://matias.ma/nsfw/");
+    res.send("404");
 });
 
 

@@ -255,11 +255,11 @@ router.get("/readDelayed", function(req, res){
     });
 });
 
-router.get("/count/day", function(req, res){
+router.get("/count/day/:month", function(req, res){
     common.verificateLogin(req, res, function(req, res){
         var usertype = req.session.userData.usertype;
         if(usertype < 3){
-            ticketsModel.sendTicketsAmmountByDay(req, res);
+            ticketsModel.sendTicketsAmmountByDay(req, res, req.params.month);
         }
         else{
             var username = req.session.userData.userName;
