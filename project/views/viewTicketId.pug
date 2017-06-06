@@ -21,181 +21,6 @@ block content
                     div(ng-app='assignTicket', ng-controller='assignTicketCtrl')
                         .container
                             .row
-                                .col-md-12
-                                    .well.well-sm
-                                        fieldset
-                                            legend.text-center.header Información del ticket
-                                            form(action="/ticketCrud/update", method="POST", onsubmit="return window.confirm('¿Esta seguro que desea modificar este ticket?')")
-                                                .form-group
-                                                    span.col-md-1.col-md-offset-2.text-center
-                                                    .col-md-8
-                                                        //label ID:
-                                                        input(value="{{ ticketData.id }}", name="ticketId", hidden)
-
-                                                .form-group
-                                                    span.col-md-1.col-md-offset-2.text-center
-                                                    .col-md-8
-                                                        label Propietario:
-                                                        input.form-control(value="{{ ticketData.propietario }}", disabled)
-                                                        //p propietario: {{ ticketData.propietario }}
-                                                .form-group
-                                                    span.col-md-1.col-md-offset-2.text-center
-                                                    .col-md-8
-                                                        label Encargado:
-                                                        input.form-control(value="{{ ticketData.encargado }}", disabled)
-                                                        //p encargado: {{ ticketData.encargado }}
-                                                .form-group
-                                                    span.col-md-1.col-md-offset-2.text-center
-                                                    .col-md-8
-                                                        label Fecha de creación:
-                                                        input.form-control(value="{{ ticketData.fecha_creacion }}", disabled)
-                                                        //p fecha_creacion: {{ ticketData.fecha_creacion }}
-                                                .form-group
-                                                    span.col-md-1.col-md-offset-2.text-center
-                                                    .col-md-8
-                                                        label Fuente:
-                                                        input#fuente.form-control(value="{{ ticketData.fuente }}", disabled, name="fuente", required)
-                                                        //p fuente: {{ ticketData.fuente }}
-                                                .form-group
-                                                    span.col-md-1.col-md-offset-2.text-center
-                                                    .col-md-8
-                                                        label IP de origen:
-                                                        input#ip_origen.form-control(value="{{ ticketData.ip_origen }}", disabled, name="ip_origen", required)
-                                                        //p ip_origen: {{ ticketData.ip_origen }}
-                                                .form-group
-                                                    span.col-md-1.col-md-offset-2.text-center
-                                                    .col-md-8
-                                                        label IP de destino:
-                                                        input#ip_destino.form-control(value="{{ ticketData.ip_destino }}", disabled, name="ip_destino", required)
-                                                        //p ip_destino: {{ ticketData.ip_destino }}
-                                                .form-group
-                                                    span.col-md-1.col-md-offset-2.text-center
-                                                    .col-md-8
-                                                        label Puerto:
-                                                        input#puerto.form-control(value="{{ ticketData.puerto }}", disabled, name="puerto", required)
-                                                        //p puerto: {{ ticketData.puerto }}
-                                                .form-group
-                                                    span.col-md-1.col-md-offset-2.text-center
-                                                    .col-md-8
-                                                        label Protocolo:
-                                                        input#protocolo.form-control(value="{{ ticketData.protocolo }}", disabled, name="protocolo", required)
-                                                        //p protocolo: {{ ticketData.protocolo }}
-                                                .form-group
-                                                    span.col-md-1.col-md-offset-2.text-center
-                                                    .col-md-8
-                                                        label Tipo:
-                                                        input#tipo.form-control(value="{{ ticketData.tipo }}", disabled, name="tipo", required)
-                                                        //p tipo: {{ ticketData.tipo }}
-                                                .form-group
-                                                    span.col-md-1.col-md-offset-2.text-center
-                                                    .col-md-8
-                                                        label Intencionalidad:
-                                                        input#intencionalidad.form-control(value="{{ ticketData.intencionalidad }}", disabled, name="intencionalidad", required)
-                                                        //p intencionalidad: {{ ticketData.intencionalidad }}
-                                                .form-group
-                                                    span.col-md-1.col-md-offset-2.text-center
-                                                    .col-md-8
-                                                        label Sub area:
-                                                        input#subarea.form-control(value="{{ ticketData.subarea }}", disabled, name="subarea", required)
-                                                        //p subarea: {{ ticketData.subarea }}
-                                                .form-group
-                                                    span.col-md-1.col-md-offset-2.text-center
-                                                    .col-md-8
-                                                        label Sistema de seguridad:
-                                                        input#sistema_seguridad.form-control(value="{{ ticketData.sistema_seguridad }}", disabled, name="sistema_seguridad", required)
-                                                        //p sistema_seguridad: {{ ticketData.sistema_seguridad }}
-                                                .form-group
-                                                    span.col-md-1.col-md-offset-2.text-center
-                                                    .col-md-8
-                                                        label Fecha de operación:
-                                                        input#fecha_operacion.form-control(value="{{ ticketData.fecha_operacion }}", disabled, name="fecha_operacion", type="date", required)
-                                                        //p fecha_operacion: {{ ticketData.fecha_operacion }}
-                                                //.form-group
-                                                //    span.col-md-1.col-md-offset-2.text-center
-                                                //    .col-md-8
-                                                //        label Dias transcurridos:
-                                                //        input.form-control(value="{{ ticketData.dias_transcurridos }}", disabled, name="dias_transcurridos", required)
-                                                //        //p dias_transcurridos: {{ ticketData.dias_transcurridos }}
-                                                .form-group
-                                                    span.col-md-1.col-md-offset-2.text-center
-                                                    .col-md-8
-                                                        label Comentarios:
-                                                        input#comentarios.form-control(value="{{ ticketData.comentarios }}", disabled, name="comentarios", required)
-                                                        //p comentarios: {{ ticketData.comentarios }}
-                                                .form-group
-                                                    span.col-md-1.col-md-offset-2.text-center
-                                                    .col-md-8
-                                                        label Correo de origen:
-                                                        input#correo_origen.form-control(value="{{ ticketData.correo_origen }}", disabled, name="correo_origen", required)
-                                                        //p correo_origen: {{ ticketData.correo_origen }}
-                                                .form-group
-                                                    span.col-md-1.col-md-offset-2.text-center
-                                                    .col-md-8
-                                                        label Correo afectado:
-                                                        input#correo_afectado.form-control(value="{{ ticketData.correo_afectado }}", disabled, name="correo_afectado", required)
-                                                        //p correo_afectado: {{ ticketData.correo_afectado }}
-                                                .form-group
-                                                    span.col-md-1.col-md-offset-2.text-center
-                                                    .col-md-8
-                                                        label Eliminado:
-                                                        input.form-control(value="{{ ticketData.eliminado }}", disabled)
-                                                        //p eliminado: {{ ticketData.eliminado }}
-                                                .form-group
-                                                    span.col-md-1.col-md-offset-2.text-center
-                                                    .col-md-8
-                                                        label Eliminado por:
-                                                        input.form-control(value="{{ ticketData.eliminado_por }}", disabled)
-                                                        //p eliminado por: {{ ticketData.eliminado_por }}
-
-                                                if usertype == 1 | usertype == 2
-                                                    br
-                                                    br
-                                                    center
-                                                        br
-                                                        button#update.btn.btn-danger.btn-lg(name='submitButton', value='update') Modificar ticket
-                                                    script(type='text/javascript').
-                                                        document.getElementById("fuente").removeAttribute("disabled");
-                                                        document.getElementById("ip_origen").removeAttribute("disabled");
-                                                        document.getElementById("ip_destino").removeAttribute("disabled");
-                                                        document.getElementById("puerto").removeAttribute("disabled");
-                                                        document.getElementById("protocolo").removeAttribute("disabled");
-                                                        document.getElementById("tipo").removeAttribute("disabled");
-                                                        document.getElementById("intencionalidad").removeAttribute("disabled");
-                                                        document.getElementById("subarea").removeAttribute("disabled");
-                                                        document.getElementById("sistema_seguridad").removeAttribute("disabled");
-                                                        document.getElementById("fecha_operacion").removeAttribute("disabled");
-                                                        document.getElementById("comentarios").removeAttribute("disabled");
-                                                        document.getElementById("correo_origen").removeAttribute("disabled");
-                                                        document.getElementById("correo_afectado").removeAttribute("disabled");
-
-
-
-
-                        .container
-                            .row
-                                .rwd
-                                    table.rwd_auto
-                                        thead
-                                            tr
-                                                th Antecedente
-                                                th Usuario
-                                                th Fecha
-                                                th Visado
-                                                th Archivo adjunto
-                                                if usertype == 0
-                                                    th Visar
-                                        tbody
-                                            tr(ng-repeat="ticket in ticketsDataData")
-                                                td {{ ticket.antecedente }}
-                                                td {{ ticket.userId }}
-                                                td {{ ticket.fecha }}
-                                                td {{ ticket.aceptado }}
-                                                td
-                                                    a(href='{{ ticket.downloadPath }}', download='') {{ ticket.filename }}
-                                                if usertype == 0
-                                                    td(id='show{{ ticket.id }}')
-                                                        button(name='submitButton', id='{{ ticket.id }}', ng-click="visar($event)") Visar antecedente
-
                                 .col-md-4
                                     .well.well-sm
                                         h3 Agregar nueva informacion a este ticket
@@ -255,6 +80,185 @@ block content
                                                     br
                                                     button#de-delete.btn.btn-danger.btn-lg(name='submitButton', value='de-delete', disabled="") Des-eliminar ticket
 
+
+
+                                .col-md-12
+                                    .well.well-sm
+                                        fieldset
+
+                                            legend.text-center.header
+                                                span#mostrarMasData.topright(onclick="$('.collapse').collapse('toggle');if(document.getElementById('mostrarMasData').innerHTML=='Mostrar mas'){document.getElementById('mostrarMasData').innerHTML='Mostrar menos'}else{document.getElementById('mostrarMasData').innerHTML='Mostrar mas'}") Mostrar mas
+                                                | Información del ticket
+                                            form(action="/ticketCrud/update", method="POST", onsubmit="return window.confirm('¿Esta seguro que desea modificar este ticket?')")
+                                                .form-group
+                                                    span.col-md-1.col-md-offset-2.text-center
+                                                    .col-md-8
+                                                        //label ID:
+                                                        input(value="{{ ticketData.id }}", name="ticketId", hidden)
+
+                                                .form-group
+                                                    span.col-md-1.col-md-offset-2.text-center
+                                                    .col-md-8
+                                                        label Propietario:
+                                                        input.form-control(value="{{ ticketData.propietario }}", disabled)
+                                                        //p propietario: {{ ticketData.propietario }}
+                                                .form-group
+                                                    span.col-md-1.col-md-offset-2.text-center
+                                                    .col-md-8
+                                                        label Encargado:
+                                                        input.form-control(value="{{ ticketData.encargado }}", disabled)
+                                                        //p encargado: {{ ticketData.encargado }}
+                                                .form-group
+                                                    span.col-md-1.col-md-offset-2.text-center
+                                                    .col-md-8
+                                                        label Fecha de creación:
+                                                        input.form-control(value="{{ ticketData.fecha_creacion }}", disabled)
+                                                        //p fecha_creacion: {{ ticketData.fecha_creacion }}
+                                                #showMoreTicket.collapse
+                                                    .form-group
+                                                        span.col-md-1.col-md-offset-2.text-center
+                                                        .col-md-8
+                                                            label Fuente:
+                                                            input#fuente.form-control(value="{{ ticketData.fuente }}", disabled, name="fuente", required)
+                                                            //p fuente: {{ ticketData.fuente }}
+                                                    .form-group
+                                                        span.col-md-1.col-md-offset-2.text-center
+                                                        .col-md-8
+                                                            label IP de origen:
+                                                            input#ip_origen.form-control(value="{{ ticketData.ip_origen }}", disabled, name="ip_origen", required)
+                                                            //p ip_origen: {{ ticketData.ip_origen }}
+                                                    .form-group
+                                                        span.col-md-1.col-md-offset-2.text-center
+                                                        .col-md-8
+                                                            label IP de destino:
+                                                            input#ip_destino.form-control(value="{{ ticketData.ip_destino }}", disabled, name="ip_destino", required)
+                                                            //p ip_destino: {{ ticketData.ip_destino }}
+                                                    .form-group
+                                                        span.col-md-1.col-md-offset-2.text-center
+                                                        .col-md-8
+                                                            label Puerto:
+                                                            input#puerto.form-control(value="{{ ticketData.puerto }}", disabled, name="puerto", required)
+                                                            //p puerto: {{ ticketData.puerto }}
+                                                    .form-group
+                                                        span.col-md-1.col-md-offset-2.text-center
+                                                        .col-md-8
+                                                            label Protocolo:
+                                                            input#protocolo.form-control(value="{{ ticketData.protocolo }}", disabled, name="protocolo", required)
+                                                            //p protocolo: {{ ticketData.protocolo }}
+                                                    .form-group
+                                                        span.col-md-1.col-md-offset-2.text-center
+                                                        .col-md-8
+                                                            label Tipo:
+                                                            input#tipo.form-control(value="{{ ticketData.tipo }}", disabled, name="tipo", required)
+                                                            //p tipo: {{ ticketData.tipo }}
+                                                    .form-group
+                                                        span.col-md-1.col-md-offset-2.text-center
+                                                        .col-md-8
+                                                            label Intencionalidad:
+                                                            input#intencionalidad.form-control(value="{{ ticketData.intencionalidad }}", disabled, name="intencionalidad", required)
+                                                            //p intencionalidad: {{ ticketData.intencionalidad }}
+                                                    .form-group
+                                                        span.col-md-1.col-md-offset-2.text-center
+                                                        .col-md-8
+                                                            label Sub area:
+                                                            input#subarea.form-control(value="{{ ticketData.subarea }}", disabled, name="subarea", required)
+                                                            //p subarea: {{ ticketData.subarea }}
+                                                    .form-group
+                                                        span.col-md-1.col-md-offset-2.text-center
+                                                        .col-md-8
+                                                            label Sistema de seguridad:
+                                                            input#sistema_seguridad.form-control(value="{{ ticketData.sistema_seguridad }}", disabled, name="sistema_seguridad", required)
+                                                            //p sistema_seguridad: {{ ticketData.sistema_seguridad }}
+                                                    .form-group
+                                                        span.col-md-1.col-md-offset-2.text-center
+                                                        .col-md-8
+                                                            label Fecha de operación:
+                                                            input#fecha_operacion.form-control(value="{{ ticketData.fecha_operacion }}", disabled, name="fecha_operacion", type="date", required)
+                                                            //p fecha_operacion: {{ ticketData.fecha_operacion }}
+                                                    //.form-group
+                                                    //    span.col-md-1.col-md-offset-2.text-center
+                                                    //    .col-md-8
+                                                    //        label Dias transcurridos:
+                                                    //        input.form-control(value="{{ ticketData.dias_transcurridos }}", disabled, name="dias_transcurridos", required)
+                                                    //        //p dias_transcurridos: {{ ticketData.dias_transcurridos }}
+                                                    .form-group
+                                                        span.col-md-1.col-md-offset-2.text-center
+                                                        .col-md-8
+                                                            label Comentarios:
+                                                            input#comentarios.form-control(value="{{ ticketData.comentarios }}", disabled, name="comentarios", required)
+                                                            //p comentarios: {{ ticketData.comentarios }}
+                                                    .form-group
+                                                        span.col-md-1.col-md-offset-2.text-center
+                                                        .col-md-8
+                                                            label Correo de origen:
+                                                            input#correo_origen.form-control(value="{{ ticketData.correo_origen }}", disabled, name="correo_origen", required)
+                                                            //p correo_origen: {{ ticketData.correo_origen }}
+                                                    .form-group
+                                                        span.col-md-1.col-md-offset-2.text-center
+                                                        .col-md-8
+                                                            label Correo afectado:
+                                                            input#correo_afectado.form-control(value="{{ ticketData.correo_afectado }}", disabled, name="correo_afectado", required)
+                                                            //p correo_afectado: {{ ticketData.correo_afectado }}
+                                                .form-group
+                                                    span.col-md-1.col-md-offset-2.text-center
+                                                    .col-md-8
+                                                        label Eliminado:
+                                                        input.form-control(value="{{ ticketData.eliminado }}", disabled)
+                                                        //p eliminado: {{ ticketData.eliminado }}
+                                                .form-group
+                                                    span.col-md-1.col-md-offset-2.text-center
+                                                    .col-md-8
+                                                        label Eliminado por:
+                                                        input.form-control(value="{{ ticketData.eliminado_por }}", disabled)
+                                                        //p eliminado por: {{ ticketData.eliminado_por }}
+
+                                                if usertype == 1 | usertype == 2
+                                                    br
+                                                    br
+                                                    center
+                                                        br
+                                                        button#update.btn.btn-danger.btn-lg(name='submitButton', value='update') Modificar ticket
+                                                    script(type='text/javascript').
+                                                        document.getElementById("fuente").removeAttribute("disabled");
+                                                        document.getElementById("ip_origen").removeAttribute("disabled");
+                                                        document.getElementById("ip_destino").removeAttribute("disabled");
+                                                        document.getElementById("puerto").removeAttribute("disabled");
+                                                        document.getElementById("protocolo").removeAttribute("disabled");
+                                                        document.getElementById("tipo").removeAttribute("disabled");
+                                                        document.getElementById("intencionalidad").removeAttribute("disabled");
+                                                        document.getElementById("subarea").removeAttribute("disabled");
+                                                        document.getElementById("sistema_seguridad").removeAttribute("disabled");
+                                                        document.getElementById("fecha_operacion").removeAttribute("disabled");
+                                                        document.getElementById("comentarios").removeAttribute("disabled");
+                                                        document.getElementById("correo_origen").removeAttribute("disabled");
+                                                        document.getElementById("correo_afectado").removeAttribute("disabled");
+
+
+
+
+
+                                .rwd
+                                    table.rwd_auto
+                                        thead
+                                            tr
+                                                th Antecedente
+                                                th Usuario
+                                                th Fecha
+                                                th Visado
+                                                th Archivo adjunto
+                                                if usertype == 0
+                                                    th Visar
+                                        tbody
+                                            tr(ng-repeat="ticket in ticketsDataData")
+                                                td {{ ticket.antecedente }}
+                                                td {{ ticket.userId }}
+                                                td {{ ticket.fecha }}
+                                                td {{ ticket.aceptado }}
+                                                td
+                                                    a(href='{{ ticket.downloadPath }}', download='') {{ ticket.filename }}
+                                                if usertype == 0
+                                                    td(id='show{{ ticket.id }}')
+                                                        button(name='submitButton', id='{{ ticket.id }}', ng-click="visar($event)") Visar antecedente
 
 
 
