@@ -10,6 +10,8 @@ var common = require("./common");
 var ticketData = require("../models/ticketData");
 
 var path = require("path");
+var mkdirp = require('mkdirp');
+var fs = require('fs');
 
 router.post("/create", function(req, res){
     common.verificateLogin(req, res, function(req, res){
