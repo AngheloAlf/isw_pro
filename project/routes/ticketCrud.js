@@ -146,7 +146,7 @@ router.post("/changeDate", function(req, res){
                 }
                 else{
                     ticketsModel.changeDateTicket(req, res, req.body.ticketId, newDate);
-                    res.redirect("/users");
+                    res.redirect("/users/viewTickets");
                 }
             });
         }
