@@ -39,7 +39,7 @@ exports.sendAllTickets = function(req, res, usertype){
     var where = "(fecha_aplazado IS NULL OR fecha_aplazado BETWEEN '2017-04-30' AND '" + fecha +"')";
     //var where = "eliminado='0'";
     if(usertype !== 2){
-        where += " AND eliminado='0'";
+        where += " AND eliminado='0' AND estado='0'";
     }
 
     tickectVar.find('all', {where: where}, function (err, rows){
@@ -85,10 +85,10 @@ exports.assignTicket = function(req, res, ticketId, userId){
     });
 };
 
-exports.deleteTicket = function(req, res, ticketId, userId){
+exports.deleteTicket = function(req, res, ticketId, userId, ticketReason){
     var ticketVar = new Tickets();
     var where = "id='" + ticketId + "'";
-    var query = "UPDATE tickets SET eliminado='1', eliminado_por='" + userId + "' WHERE " + where;
+    var query = "UPDATE tickets SET eliminado='1', eliminado_por='" + userId + "', eliminado_razon='" + ticketReason + "' WHERE " + where;
 
     ticketVar.query(query, function(err, rows){
         if(err){
@@ -229,7 +229,7 @@ exports.sendAllDelayedTickets = function(req, res, usertype){
     });
 };
 
-exports.sendTicketsAmmountByDay = function(req, res, month){
+exports.sendTicketsAmountByDay = function(req, res, year, month){
     var ticketVar = new Tickets();
     var where = "eliminado='0'";
 
@@ -237,10 +237,10 @@ exports.sendTicketsAmmountByDay = function(req, res, month){
         if(err){
             throw err;
         }
-        var counter = range(0, 31, 1);
+        var counter = range(1, 32, 1);
         rows.forEach(function(value){
             var fecha = value.fecha_creacion.split(" ")[0];
-            if(parseInt(fecha.split("-")[1]) == parseInt(month)){
+            if(parseInt(fecha.split("-")[0]) == parseInt(year) && parseInt(fecha.split("-")[1]) == parseInt(month)){
                 fecha = parseInt(fecha.split("-")[2]);
                 console.log(fecha);
                 if (!(fecha in counter)) {
@@ -270,5 +270,25 @@ exports.sendTicketsAmmountByWeek = function(req, res, year){
             }
         });
         res.send(JSON.stringify(counter));
+    });
+};
+
+exports.closeTicket = function(req, res, ticketId, userId, ticketReason){
+    var ticketVar = new Tickets();
+    var where = "id='" + ticketId + "'";
+    var query = "UPDATE tickets SET estado='1', cerrado_por='" + userId + "', cerrado_razon='" + ticketReason + "' WHERE " + where;
+
+    ticketVar.query(query, function(err, rows){
+        if(err){
+            throw err;
+        }
+
+        if(rows.changedRows === 1){
+            // Updated !
+        }
+        else{
+            // Not found
+        }
+        res.redirect("/users");
     });
 };

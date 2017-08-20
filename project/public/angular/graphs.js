@@ -30,18 +30,20 @@ angular.module("app", ["chart.js"]).controller("MixedChartCtrl", function ($scop
 
         var annoDia = document.getElementById("annoDia").value;
         var mesDia = document.getElementById("mesDia").value;
-        console.log(mesDia);
         if(!mesDia){
             mesDia = 1;
         }
-        $http.get("/ticketCrud/count/day/"+mesDia).then(function(response){
+        if(!annoDia){
+            annoDia = 2017;
+        }
+        $http.get("/ticketCrud/count/day/"+annoDia+"/"+mesDia).then(function(response){
             $scope.dataDia = [
                 //response.data,
                 response.data
 
             ];
 
-            $scope.labelsDia = range(0, 31, 1);
+            $scope.labelsDia = range(1, 32, 1);
         });
     };
 

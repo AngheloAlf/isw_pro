@@ -137,7 +137,8 @@ router.post("/delete", function(req, res){
         var userId = req.session.userData.userID;
         if(usertype === 1){
             var ticketId = req.body.ticketId;
-            ticketsModel.deleteTicket(req, res, ticketId, userId);
+            var ticketReason = req.body.ticketReason;
+            ticketsModel.deleteTicket(req, res, ticketId, userId, ticketReason);
             usersModel.allUsersByType(req, res, 2, function(jefeId){
                 notificationsModel.addNotification(req, res, jefeId, "Un supervisor ha eliminado un ticket.", userId, "/users/viewTickets/"+ticketId);
             });
@@ -273,11 +274,11 @@ router.get("/readDelayed", function(req, res){
     });
 });
 
-router.get("/count/day/:month", function(req, res){
+router.get("/count/day/:year/:month", function(req, res){
     common.verificateLogin(req, res, function(req, res){
         var usertype = req.session.userData.usertype;
         if(usertype < 3){
-            ticketsModel.sendTicketsAmmountByDay(req, res, req.params.month);
+            ticketsModel.sendTicketsAmountByDay(req, res, req.params.year, req.params.month);
         }
         else{
             var username = req.session.userData.userName;
@@ -295,6 +296,25 @@ router.get("/count/week/:year", function(req, res){
         else{
             var username = req.session.userData.userName;
             res.render('noPermissionsError', {title: 'No tienes permisos', username: username, accion: "Contar tickets por dia", usertype: usertype});
+        }
+    });
+});
+
+router.post("/close", function(req, res){
+    common.verificateLogin(req, res, function(req, res){
+        var usertype = req.session.userData.usertype;
+        var userId = req.session.userData.userID;
+        if(usertype === 1 || usertype === 0 || usertype === 2){
+            var ticketId = req.body.ticketId;
+            var ticketReason = req.body.ticketDataClose;
+            ticketsModel.closeTicket(req, res, ticketId, userId, ticketReason);
+            usersModel.allUsersByType(req, res, 2, function(jefeId){
+                notificationsModel.addNotification(req, res, jefeId, "Un usuario ha cerrado un ticket.", userId, "/users/viewTickets/"+ticketId);
+            });
+        }
+        else{
+            var username = req.session.userData.userName;
+            res.render('noPermissionsError', {title: 'No tienes permisos', username: username, accion: "Cerrar ticket", usertype: usertype});
         }
     });
 });

@@ -19,7 +19,7 @@ block content
                     p#ticketId(hidden="") #{ticketId}
                     br
                     div(ng-app='assignTicket', ng-controller='assignTicketCtrl')
-                      .container
+                        .container
                             .row
                                 .col-md-4
                                     .well.well-sm
@@ -33,6 +33,17 @@ block content
                                                 input#fileTicket.btn.btn-lg(type='file', name='fileTicket')
                                                 br
                                                 button.btn.btn-success.btn-lg(name='submitButton', value='assign') Agregar datos al ticket
+                                    .well.well-sm
+                                        h3 Cerrar ticket
+                                        form(action="/ticketCrud/close", method="POST", encType="multipart/form-data")
+                                            center
+                                                input#ticketIdClose(name="ticketId", hidden="")
+                                                h4 Ingrese el motivo del cierre del ticket
+                                                textarea#ticketDataClose(name="ticketDataClose", required='')
+                                                br
+                                                br
+                                                button.btn.btn-danger.btn-lg(name='submitButton', value='assign') Cerrar ticket
+
                                 if usertype == 1
                                     .col-md-4
                                         .well.well-sm
@@ -48,12 +59,12 @@ block content
                                     .col-md-4
                                         .well.well-sm
                                             h3 Eliminar ticket
-                                            br
-                                            br
                                             center
                                                 form(action="/ticketCrud/delete", method="POST", onsubmit="return window.confirm('¿Esta seguro que desea eliminar este ticket?')")
-                                                    input(name="ticketId", hidden="")
+                                                    h4 Ingrese el motivo de la eliminación del ticket.
+                                                    textarea#ticketReason(name="ticketReason", required='')
                                                     button.btn.btn-danger.btn-lg(name='submitButton', value='delete') Eliminar este ticket
+                                                    input(name="ticketId", hidden="")
                                             br
 
                                 if usertype == 1 || usertype == 2
