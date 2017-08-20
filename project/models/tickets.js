@@ -27,8 +27,8 @@ function range(i, j, k){
     return asd;
 }
 
-exports.createTicket = function(req, res, userId, date, fuente, ip_origen, ip_destino, puerto, protocolo, tipo, intencionalidad, subarea, sistema_seguridad, fecha_operacion, comentarios, correo_origen, correo_afectado){
-    var ticketVar = new Tickets({propietario: userId, fecha_creacion: date, fuente: fuente, ip_origen: ip_origen, ip_destino: ip_destino, puerto: puerto, protocolo: protocolo, tipo: tipo, intencionalidad: intencionalidad, subarea: subarea, sistema_seguridad: sistema_seguridad, fecha_operacion: fecha_operacion, comentarios: comentarios, correo_origen: correo_origen, correo_afectado: correo_afectado});
+exports.createTicket = function(req, res, userId, date, fuente, ip_origen, ip_destino, puerto, protocolo, tipo, intencionalidad, subarea, sistema_seguridad, fecha_operacion, comentarios, correo_origen, correo_afectado, vinculo){
+    var ticketVar = new Tickets({propietario: userId, fecha_creacion: date, fuente: fuente, ip_origen: ip_origen, ip_destino: ip_destino, puerto: puerto, protocolo: protocolo, tipo: tipo, intencionalidad: intencionalidad, subarea: subarea, sistema_seguridad: sistema_seguridad, fecha_operacion: fecha_operacion, comentarios: comentarios, correo_origen: correo_origen, correo_afectado: correo_afectado, vinculo: vinculo});
     ticketVar.save()
 };
 
@@ -124,6 +124,25 @@ exports.changeDateTicket = function(req, res, ticketId, newDate){
     });
 };
 
+exports.updateVinculoTicket = function(req, res, ticketId, vinculo){
+    var ticketVar = new Tickets();
+    var where = "id='" + vinculo + "'";
+    var query = "UPDATE tickets SET vinculo='"+ticketId+"' WHERE " + where;
+
+    ticketVar.query(query, function(err, rows) {
+        if (err) {
+            throw err;
+        }
+
+        if (rows.changedRows === 1) {
+            // Updated !
+        }
+        else {
+            // Not found
+        }
+    });
+};
+
 exports.sendTicketsByUser = function(req, res, userId){
     var tickectVar = new Tickets();
     //var datetime = new Date();
@@ -136,6 +155,20 @@ exports.sendTicketsByUser = function(req, res, userId){
             throw err;
         }
         res.send(JSON.stringify(rows));
+    });
+};
+
+exports.getLastTicketsByUser = function(req, res, userId, vinculo){
+    var tickectVar = new Tickets();
+    var where = "propietario='"+userId+"'";
+
+    tickectVar.find('all', {where: where}, function (err, rows){
+        if(err){
+            throw err;
+        }
+        console.log(rows[rows.length -1].id + 'hola');
+        req.session.lastTicket = rows[rows.length -1].id;
+        res.redirect("/ticketCrud/getLink/"+ vinculo);
     });
 };
 

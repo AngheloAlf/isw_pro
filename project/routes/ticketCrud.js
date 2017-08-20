@@ -36,6 +36,7 @@ router.post('/create', function(req, res){
             var subarea = req.body.subarea;
             var sistema_seguridad = req.body.sistema_seguridad;
             var fecha_operacion = req.body.fecha_operacion;
+            var vinculo =  req.body.vinculo;
             var comentarios = req.body.comentarios;
             var correo_origen = req.body.correo_origen;
             var correo_afectado = req.body.correo_afectado;
@@ -55,11 +56,17 @@ router.post('/create', function(req, res){
                     //console.log(util.inspect(result.array()));
                 }
                 else{
-                    ticketsModel.createTicket(req, res, userId, date, fuente, ip_origen, ip_destino, puerto, protocolo, tipo, intencionalidad, subarea, sistema_seguridad, fecha_operacion, comentarios, correo_origen, correo_afectado);
+                    ticketsModel.createTicket(req, res, userId, date, fuente, ip_origen, ip_destino, puerto, protocolo, tipo, intencionalidad, subarea, sistema_seguridad, fecha_operacion, comentarios, correo_origen, correo_afectado, vinculo);
                     usersModel.allUsersByType(req, res, 1, function(notificadoId){
                         notificationsModel.addNotification(req, res, notificadoId, "Hay un ticket nuevo sin encargado.", userId, "/users/viewTickets/");
                     });
-                    res.redirect("/users");
+                    if (vinculo != "NULL") {
+                      ticketsModel.getLastTicketsByUser(req, res, userId, vinculo);
+                    }
+                    else {
+                      res.redirect("/users");
+
+                    }
                 }
             });
 
@@ -69,6 +76,13 @@ router.post('/create', function(req, res){
         }
     });
 });
+
+router.get("/getLink/:vinculo", function(req, res){
+    console.log(req.session.lastTicket);
+    ticketsModel.updateVinculoTicket(req, res, req.session.lastTicket, req.params.vinculo)
+    res.redirect("/users");
+  }
+);
 
 /* view ticket */
 router.get("/read", function(req, res){
@@ -96,6 +110,8 @@ router.get("/read/:ticketId", function(req, res){
         }
     });
 });
+
+// TODO: a new post in case of the change the link
 
 router.post("/assign", function(req, res){
     common.verificateLogin(req, res, function(req, res){
