@@ -199,6 +199,12 @@ block content
                                                             label Correo afectado:
                                                             input#correo_afectado.form-control(value="{{ ticketData.correo_afectado }}", disabled, name="correo_afectado", required)
                                                             //p correo_afectado: {{ ticketData.correo_afectado }}
+                                                    .form-group
+                                                        span.col-md-1.col-md-offset-2.text-center
+                                                        .col-md-8
+                                                            label vinculo:
+                                                            input.form-control(value="{{ ticketData.vinculo }}", disabled)
+                                                            //p eliminado por: {{ ticketData.eliminado_por }}
                                                 .form-group
                                                     span.col-md-1.col-md-offset-2.text-center
                                                     .col-md-8

@@ -17,8 +17,8 @@ block content
 
                         div(ng-app='app', ng-controller='MixedChartCtrl')
                             .tab
-                                button#defaultOpen.tablinks(onclick="openCity(event, 'dia')", ng-click="update()") Tickets por dia
-                                button.tablinks(onclick="openCity(event, 'semana')", ng-click="update()") Tickets por Mes
+                                button#defaultOpen.tablinks(onclick="openCity(event, 'dia')", ng-click="update()") Tickets por dia del mes
+                                button.tablinks(onclick="openCity(event, 'semana')", ng-click="update()") Tickets semanales por año
                                 //button.tablinks(onclick="openCity(event, 'dirigidos')") Tickets dirigidos
                                 //button.tablinks(onclick="openCity(event, 'vinculados')") Tickets vinculados
                                 //button.tablinks(onclick="openCity(event, 'uurr')") Tickets por UURR
@@ -28,6 +28,11 @@ block content
                                         #dia.tabcontent
                                             span.topright(onclick="this.parentElement.style.display='none'") x
                                             canvas.chart-bar(chart-data='dataDia', chart-labels='labelsDia', chart-colors='colors', chart-dataset-override='datasetOverride')
+
+                                            select#annoDia(name="annoDia")
+                                                option(ng-repeat="year in [2017, 2018, 2019, 2020, 2021]", value="{{ year }}") {{ year }}
+                                            select#mesDia(name="mesDia")
+                                                option(ng-repeat="year in yearsMonth", value="{{ year[0] }}") {{ year[1] }}
 
                                         #semana.tabcontent
                                             span.topright(onclick="this.parentElement.style.display='none'") x
