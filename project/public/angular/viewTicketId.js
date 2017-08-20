@@ -25,7 +25,7 @@ function todayLessDate(fecha){
 }
 
 var app = angular.module('assignTicket', []);
-app.controller('assignTicketCtrl', function ($scope, $http){
+app.controller('assignTicketCtrl', function ($scope, $http, $location){
     var ticketId = document.getElementById("ticketId").innerHTML;
     var names = document.getElementsByName("ticketId");
     for(i =0; i < names.length; i++){
@@ -101,6 +101,10 @@ app.controller('assignTicketCtrl', function ($scope, $http){
             });
         }, 250);
         $scope.ticketsDataData = ticketsDataData;
+
+        $scope.goVinculo = function(){
+          $location.url("/users/viewTickets/"+ticketData.vinculo);
+        }
 
         $scope.visar = function(event){
             $http.get("/ticketDataCrud/visar/"+event.target.id).then(function(response){

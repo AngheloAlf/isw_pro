@@ -19,7 +19,7 @@ block content
                     p#ticketId(hidden="") #{ticketId}
                     br
                     div(ng-app='assignTicket', ng-controller='assignTicketCtrl')
-                        .container
+                      .container
                             .row
                                 .col-md-4
                                     .well.well-sm
@@ -205,6 +205,7 @@ block content
                                                             label vinculo:
                                                             input.form-control(value="{{ ticketData.vinculo }}", disabled)
                                                             //p eliminado por: {{ ticketData.eliminado_por }}
+                                                            a.btn.btn-danger.btn-lg(href='/users/viewTickets/{{ticketData.vinculo}}') Ver ticket vinculado
                                                 .form-group
                                                     span.col-md-1.col-md-offset-2.text-center
                                                     .col-md-8
@@ -216,8 +217,6 @@ block content
                                                     .col-md-8
                                                         label Eliminado por:
                                                         input.form-control(value="{{ ticketData.eliminado_por }}", disabled)
-                                                        //p eliminado por: {{ ticketData.eliminado_por }}
-
                                                 if usertype == 1 | usertype == 2
                                                     br
                                                     br
@@ -238,8 +237,6 @@ block content
                                                         document.getElementById("comentarios").removeAttribute("disabled");
                                                         document.getElementById("correo_origen").removeAttribute("disabled");
                                                         document.getElementById("correo_afectado").removeAttribute("disabled");
-
-
 
 
 
@@ -265,8 +262,6 @@ block content
                                                 if usertype == 0
                                                     td(id='show{{ ticket.id }}')
                                                         button(name='submitButton', id='{{ ticket.id }}', ng-click="visar($event)") Visar antecedente
-
-
 
             form(action="/users/viewTickets", method="GET")
                 button.btn.btn-primary.btn-lg Volver atrás
