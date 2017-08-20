@@ -28,7 +28,13 @@ angular.module("app", ["chart.js"]).controller("MixedChartCtrl", function ($scop
             $scope.labelsSemana = range(0, 53, 1);
         });
 
-        $http.get("/ticketCrud/count/day/6").then(function(response){
+        var annoDia = document.getElementById("annoDia").value;
+        var mesDia = document.getElementById("mesDia").value;
+        console.log(mesDia);
+        if(!mesDia){
+            mesDia = 1;
+        }
+        $http.get("/ticketCrud/count/day/"+mesDia).then(function(response){
             $scope.dataDia = [
                 //response.data,
                 response.data

@@ -228,6 +228,7 @@ router.post("/update", function(req, res){
             var comentarios = req.body.comentarios;
             var correo_origen = req.body.correo_origen;
             var correo_afectado = req.body.correo_afectado;
+            var vinculo = req.body.vinculo;
 
             req.checkBody('ip_origen', 'IP origen invalida').isIP();
             req.checkBody('ip_destino', 'IP destino invalida').isIP();
@@ -241,7 +242,8 @@ router.post("/update", function(req, res){
                     //console.log(util.inspect(result.array()));
                 }
                 else{
-                    ticketsModel.updateTicket(req, res, ticketId, fuente, ip_origen, ip_destino, puerto, protocolo, tipo, intencionalidad, subarea, sistema_seguridad, fecha_operacion, comentarios, correo_origen, correo_afectado);
+                    ticketsModel.updateTicket(req, res, ticketId, fuente, ip_origen, ip_destino, puerto, protocolo, tipo, intencionalidad, subarea, sistema_seguridad, fecha_operacion, comentarios, correo_origen, correo_afectado, vinculo);
+                    ticketsModel.updateVinculoTicket(req, res, ticketId, vinculo);
                     usersModel.allUsersByType(req, res, 2, function(jefeId){
                         notificationsModel.addNotification(req, res, jefeId, "Un supervisor ha modificado un ticket.", userId, "/users/viewTickets/"+ticketId);
                     });

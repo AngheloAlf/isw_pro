@@ -29,9 +29,9 @@ block content
                                             span.topright(onclick="this.parentElement.style.display='none'") x
                                             canvas.chart-bar(chart-data='dataDia', chart-labels='labelsDia', chart-colors='colors', chart-dataset-override='datasetOverride')
 
-                                            select#annoDia(name="annoDia")
+                                            select.form-control#annoDia(name="annoDia", ng-click="update()")
                                                 option(ng-repeat="year in [2017, 2018, 2019, 2020, 2021]", value="{{ year }}") {{ year }}
-                                            select#mesDia(name="mesDia")
+                                            select.form-control#mesDia(name="mesDia", ng-click="update()")
                                                 option(ng-repeat="year in yearsMonth", value="{{ year[0] }}") {{ year[1] }}
 
                                         #semana.tabcontent

@@ -202,8 +202,8 @@ block content
                                                     .form-group
                                                         span.col-md-1.col-md-offset-2.text-center
                                                         .col-md-8
-                                                            label vinculo:
-                                                            input.form-control(value="{{ ticketData.vinculo }}", disabled)
+                                                            label Ticket vinculado:
+                                                            input#vinculo.form-control(name="vinculo", value="{{ ticketData.vinculo }}", disabled)
                                                             //p eliminado por: {{ ticketData.eliminado_por }}
                                                             a.btn.btn-danger.btn-lg(href='/users/viewTickets/{{ticketData.vinculo}}') Ver ticket vinculado
                                                 .form-group
@@ -237,6 +237,7 @@ block content
                                                         document.getElementById("comentarios").removeAttribute("disabled");
                                                         document.getElementById("correo_origen").removeAttribute("disabled");
                                                         document.getElementById("correo_afectado").removeAttribute("disabled");
+                                                        document.getElementById("vinculo").removeAttribute("disabled");
 
 
 
