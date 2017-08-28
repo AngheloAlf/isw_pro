@@ -28,7 +28,7 @@ var app = angular.module('assignTicket', []);
 app.controller('assignTicketCtrl', function ($scope, $http, $location){
     var ticketId = document.getElementById("ticketId").innerHTML;
     var names = document.getElementsByName("ticketId");
-    for(i =0; i < names.length; i++){
+    for(var i =0; i < names.length; i++) {
         names[i].value = ticketId;
     }
 
@@ -36,6 +36,11 @@ app.controller('assignTicketCtrl', function ($scope, $http, $location){
         var ticketData = response.data;
         if(ticketData.eliminado === 1){
             document.getElementById("de-delete").removeAttribute("disabled");
+        }
+
+        if(ticketData.estado === 1){
+            document.getElementById("close").setAttribute("disabled", "");
+            document.getElementById("re-open").removeAttribute("disabled");
         }
 
         ticketData.dias_transcurridos = todayLessDate(ticketData.fecha_creacion);
@@ -104,7 +109,7 @@ app.controller('assignTicketCtrl', function ($scope, $http, $location){
 
         $scope.goVinculo = function(){
           $location.url("/users/viewTickets/"+ticketData.vinculo);
-        }
+        };
 
         $scope.visar = function(event){
             $http.get("/ticketDataCrud/visar/"+event.target.id).then(function(response){

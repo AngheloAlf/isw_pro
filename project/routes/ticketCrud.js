@@ -60,7 +60,7 @@ router.post('/create', function(req, res){
                     usersModel.allUsersByType(req, res, 1, function(notificadoId){
                         notificationsModel.addNotification(req, res, notificadoId, "Hay un ticket nuevo sin encargado.", userId, "/users/viewTickets/");
                     });
-                    if (vinculo != "NULL") {
+                    if (vinculo !== "NULL") {
                       ticketsModel.getLastTicketsByUser(req, res, userId, vinculo);
                     }
                     else {
@@ -79,7 +79,7 @@ router.post('/create', function(req, res){
 
 router.get("/getLink/:vinculo", function(req, res){
     console.log(req.session.lastTicket);
-    ticketsModel.updateVinculoTicket(req, res, req.session.lastTicket, req.params.vinculo)
+    ticketsModel.updateVinculoTicket(req, res, req.session.lastTicket, req.params.vinculo);
     res.redirect("/users");
   }
 );
@@ -315,6 +315,24 @@ router.post("/close", function(req, res){
         else{
             var username = req.session.userData.userName;
             res.render('noPermissionsError', {title: 'No tienes permisos', username: username, accion: "Cerrar ticket", usertype: usertype});
+        }
+    });
+});
+
+router.post("/re-open", function(req, res){
+    common.verificateLogin(req, res, function(req, res){
+        var usertype = req.session.userData.usertype;
+        var userId = req.session.userData.userID;
+        if(usertype === 2){
+            var ticketId = req.body.ticketId;
+            ticketsModel.reopenTicket(req, res, ticketId);
+            usersModel.allUsersByType(req, res, 2, function(jefeId){
+                notificationsModel.addNotification(req, res, jefeId, "Un jefe ha re-abierto un ticket.", userId, "/users/viewTickets/"+ticketId);
+            });
+        }
+        else{
+            var username = req.session.userData.userName;
+            res.render('noPermissionsError', {title: 'No tienes permisos', username: username, accion: "Re abrir ticket", usertype: usertype});
         }
     });
 });

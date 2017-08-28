@@ -59,6 +59,9 @@ app.controller('viewTicketsCtrl', function ($scope, $http) {
             else{
                 value.aplazado = "OK";
             }
+            if(value.estado === 1){
+                value.aplazado = "Cerrado";
+            }
             if(value.eliminado === 1){
                 value.aplazado = "Eliminado";
             }

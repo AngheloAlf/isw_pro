@@ -42,7 +42,7 @@ block content
                                                 textarea#ticketDataClose(name="ticketDataClose", required='')
                                                 br
                                                 br
-                                                button.btn.btn-danger.btn-lg(name='submitButton', value='assign') Cerrar ticket
+                                                button#close.btn.btn-danger.btn-lg(name='submitButton', value='close') Cerrar ticket
 
                                 if usertype == 1
                                     .col-md-4
@@ -85,11 +85,20 @@ block content
                                         .well.well-sm
                                             h3 Des-eliminar este ticket:
                                             center
-                                                form(action="/ticketCrud/de-delete", method="POST")
+                                                form(action="/ticketCrud/de-delete", method="POST", onsubmit="return window.confirm('¿Esta seguro que desea des-eliminar este ticket?')")
                                                     input(name="ticketId", hidden="")
                                                     br
                                                     br
                                                     button#de-delete.btn.btn-danger.btn-lg(name='submitButton', value='de-delete', disabled="") Des-eliminar ticket
+                                        .well.well-sm
+                                            h3 Re abrir ticket:
+                                            center
+                                                form(action="/ticketCrud/re-open", method="POST", onsubmit="return window.confirm('¿Esta seguro que desea re abrir este ticket?')")
+                                                    input(name="ticketId", hidden="")
+                                                    br
+                                                    br
+                                                    button#re-open.btn.btn-danger.btn-lg(name='submitButton', value='re-open', disabled="") Re abrir ticket
+
 
 
 

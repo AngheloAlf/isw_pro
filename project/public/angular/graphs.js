@@ -43,7 +43,7 @@ angular.module("app", ["chart.js"]).controller("MixedChartCtrl", function ($scop
 
             ];
 
-            $scope.labelsDia = range(1, 32, 1);
+            $scope.labelsDia = range(0, 32, 1);
         });
     };
 

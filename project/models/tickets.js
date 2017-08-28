@@ -240,7 +240,7 @@ exports.sendTicketsAmountByDay = function(req, res, year, month){
         var counter = range(1, 32, 1);
         rows.forEach(function(value){
             var fecha = value.fecha_creacion.split(" ")[0];
-            if(parseInt(fecha.split("-")[0]) == parseInt(year) && parseInt(fecha.split("-")[1]) == parseInt(month)){
+            if(parseInt(fecha.split("-")[0]) === parseInt(year) && parseInt(fecha.split("-")[1]) === parseInt(month)){
                 fecha = parseInt(fecha.split("-")[2]);
                 console.log(fecha);
                 if (!(fecha in counter)) {
@@ -277,6 +277,26 @@ exports.closeTicket = function(req, res, ticketId, userId, ticketReason){
     var ticketVar = new Tickets();
     var where = "id='" + ticketId + "'";
     var query = "UPDATE tickets SET estado='1', cerrado_por='" + userId + "', cerrado_razon='" + ticketReason + "' WHERE " + where;
+
+    ticketVar.query(query, function(err, rows){
+        if(err){
+            throw err;
+        }
+
+        if(rows.changedRows === 1){
+            // Updated !
+        }
+        else{
+            // Not found
+        }
+        res.redirect("/users");
+    });
+};
+
+exports.reopenTicket = function(req, res, ticketId){
+    var ticketVar = new Tickets();
+    var where = "id='" + ticketId + "'";
+    var query = "UPDATE tickets SET estado='0' WHERE " + where;
 
     ticketVar.query(query, function(err, rows){
         if(err){
