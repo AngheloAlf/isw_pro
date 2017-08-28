@@ -17,8 +17,8 @@ block content
 
                         div(ng-app='app', ng-controller='MixedChartCtrl')
                             .tab
-                                button#defaultOpen.tablinks(onclick="openCity(event, 'dia')", ng-click="update()") Cantidad de tickets creados al dia segun mes
-                                button.tablinks(onclick="openCity(event, 'semana')", ng-click="update()") Cantidad de tickets creados a la semana segun año
+                                button#defaultOpen.tablinks(onclick="openCity(event, 'dia')", ng-click="update()") Cantidad de tickets por dia
+                                button.tablinks(onclick="openCity(event, 'semana')", ng-click="update()") Cantidad de tickets por semana
                                 //button.tablinks(onclick="openCity(event, 'dirigidos')") Tickets dirigidos
                                 //button.tablinks(onclick="openCity(event, 'vinculados')") Tickets vinculados
                                 //button.tablinks(onclick="openCity(event, 'uurr')") Tickets por UURR
@@ -37,6 +37,9 @@ block content
                                         #semana.tabcontent
                                             span.topright(onclick="this.parentElement.style.display='none'") x
                                             canvas.chart-bar(chart-data='dataSemana', chart-labels='labelsSemana', chart-colors='colors', chart-dataset-override='datasetOverride')
+                                            select.form-control#annoMes(name="annoMes", ng-click="update()")
+                                                option(ng-repeat="year in [2017, 2018, 2019, 2020, 2021]", value="{{ year }}") {{ year }}
+
                                     //#tipo.tabcontent
                                         //span.topright(onclick="this.parentElement.style.display='none'") x
                                         //h3 Paris

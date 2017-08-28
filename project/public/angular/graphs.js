@@ -18,15 +18,6 @@ angular.module("app", ["chart.js"]).controller("MixedChartCtrl", function ($scop
 
     $scope.update = function(){
 
-        $http.get("/ticketCrud/count/week/2017").then(function(response){
-            $scope.dataSemana = [
-                //response.data,
-                response.data
-
-            ];
-
-            $scope.labelsSemana = range(0, 53, 1);
-        });
 
         var annoDia = document.getElementById("annoDia").value;
         var mesDia = document.getElementById("mesDia").value;
@@ -36,6 +27,7 @@ angular.module("app", ["chart.js"]).controller("MixedChartCtrl", function ($scop
         if(!annoDia){
             annoDia = 2017;
         }
+
         $http.get("/ticketCrud/count/day/"+annoDia+"/"+mesDia).then(function(response){
             $scope.dataDia = [
                 //response.data,
@@ -44,6 +36,20 @@ angular.module("app", ["chart.js"]).controller("MixedChartCtrl", function ($scop
             ];
 
             $scope.labelsDia = range(0, 32, 1);
+        });
+
+        var annoMes = document.getElementById("annoMes").value;
+        if(!annoMes){
+            annoMes = 2017;
+        }
+        $http.get("/ticketCrud/count/week/"+annoMes).then(function(response){
+            $scope.dataSemana = [
+                //response.data,
+                response.data
+
+            ];
+
+            $scope.labelsSemana = range(0, 53, 1);
         });
     };
 
