@@ -22,77 +22,90 @@ block content
                                                 div(ng-app='createTicket', ng-controller='createTicketCtrl')
                                                     fieldset
                                                         legend.text-center.header Creación de Ticket
-                                                        .form-group
-                                                            span.col-md-1.col-md-offset-2.text-center
-                                                            .col-md-8
-                                                                input#fuente.form-control(name='fuente', placeholder='Fuente', type='text')
+                                                        //.form-group
+                                                        //    span.col-md-1.col-md-offset-2.text-center
+                                                        //    .col-md-6
+                                                        //        label Fuente
+                                                        //        input#fuente.form-control(name='fuente', placeholder='Fuente', type='text')
+
+                                                        //.form-group
+                                                        //    span.col-md-1.col-md-offset-2.text-center
+                                                        //    .col-md-6
+                                                        //        label IP origen
+                                                        //        input#ip_origen.form-control(name='ip_origen', placeholder='IP Origen', type='text')
+
+                                                        //.form-group
+                                                        //    span.col-md-1.col-md-offset-2.text-center
+                                                        //    .col-md-6
+                                                        //        label IP destino
+                                                        //        input#ip_destino.form-control(name='ip_destino', placeholder='IP Destino', type='text')
+
+                                                        //.form-group
+                                                        //    span.col-md-1.col-md-offset-2.text-center
+                                                        //    .col-md-6
+                                                        //        label Puerto
+                                                        //        input#puerto.form-control(name='puerto', placeholder='Puerto', type='text')
+
+                                                        //.form-group
+                                                        //    span.col-md-1.col-md-offset-2.text-center
+                                                        //    .col-md-6
+                                                        //        label Protocolo
+                                                        //        input#protocolo.form-control(name='protocolo', placeholder='Protocolo', type='text')
 
                                                         .form-group
                                                             span.col-md-1.col-md-offset-2.text-center
-                                                            .col-md-8
-                                                                input#ip_origen.form-control(name='ip_origen', placeholder='IP Origen', type='text')
-
-                                                        .form-group
-                                                            span.col-md-1.col-md-offset-2.text-center
-                                                            .col-md-8
-                                                                input#ip_destino.form-control(name='ip_destino', placeholder='IP Destino', type='text')
-
-                                                        .form-group
-                                                            span.col-md-1.col-md-offset-2.text-center
-                                                            .col-md-8
-                                                                input#puerto.form-control(name='puerto', placeholder='Puerto', type='text')
-
-                                                        .form-group
-                                                            span.col-md-1.col-md-offset-2.text-center
-                                                            .col-md-8
-                                                                input#protocolo.form-control(name='protocolo', placeholder='Protocolo', type='text')
-
-                                                        .form-group
-                                                            span.col-md-1.col-md-offset-2.text-center
-                                                            .col-md-8
+                                                            .col-md-6
+                                                                label Clase de incidente
                                                                 select#tipo.form-control(name='tipo', placeholder='Tipo', type='text')
                                                                     option(ng-repeat="tipo in tipos", value="{{ tipo[0] }}") {{ tipo[1] }}
-                                                                // input#tipo.form-control(name='tipo', placeholder='Tipo', type='text')
+
+                                                        //.form-group
+                                                        //    span.col-md-1.col-md-offset-2.text-center
+                                                        //    .col-md-6
+                                                        //        label Intencionalidad
+                                                        //        input#intencionalidad.form-control(name='intencionalidad', placeholder='Intencionalidad', type='text')
+
+                                                        //.form-group
+                                                        //    span.col-md-1.col-md-offset-2.text-center
+                                                        //    .col-md-6
+                                                        //        label Subarea
+                                                        //        input#subarea.form-control(name='subarea', placeholder='Subarea', type='text')
+
+                                                        //.form-group
+                                                        //    span.col-md-1.col-md-offset-2.text-center
+                                                        //    .col-md-6
+                                                        //        label Sistema seguridad
+                                                        //        input#sistema_seguridad.form-control(name='sistema_seguridad', placeholder='Sistema Seguridad', type='text')
+
+                                                        //.form-group
+                                                        //    span.col-md-1.col-md-offset-2.text-center
+                                                        //    .col-md-6
+                                                        //        label Fecha operación
+                                                        //        input#fecha_operacion.form-control(name='fecha_operacion', placeholder='Fecha Operación', type='date')
+
+                                                        //.form-group
+                                                        //    span.col-md-1.col-md-offset-2.text-center
+                                                        //    .col-md-6
+                                                        //        label Correo origen
+                                                        //        input#correo_origen.form-control(name='correo_origen', placeholder='Correo Origen', type='email')
+
+                                                        //.form-group
+                                                        //    span.col-md-1.col-md-offset-2.text-center
+                                                        //    .col-md-6
+                                                        //        label Correo afectado
+                                                        //        input#correo_afectado.form-control(name='correo_afectado', placeholder='Correo Afectado', type='email')
 
                                                         .form-group
                                                             span.col-md-1.col-md-offset-2.text-center
-                                                            .col-md-8
-                                                                input#intencionalidad.form-control(name='intencionalidad', placeholder='Intencionalidad', type='text')
+                                                            .col-md-6
+                                                                label Comentarios
+                                                                textarea#comentarios.form-control(name='comentarios', placeholder='Comentarios')
 
-                                                        .form-group
-                                                            span.col-md-1.col-md-offset-2.text-center
-                                                            .col-md-8
-                                                                input#subarea.form-control(name='subarea', placeholder='Subarea', type='text')
-
-                                                        .form-group
-                                                            span.col-md-1.col-md-offset-2.text-center
-                                                            .col-md-8
-                                                                input#sistema_seguridad.form-control(name='sistema_seguridad', placeholder='Sistema Seguridad', type='text')
-
-                                                        .form-group
-                                                            span.col-md-1.col-md-offset-2.text-center
-                                                            .col-md-8
-                                                                input#fecha_operacion.form-control(name='fecha_operacion', placeholder='Fecha Operación', type='date')
-
-                                                        .form-group
-                                                            span.col-md-1.col-md-offset-2.text-center
-                                                            .col-md-8
-                                                                input#correo_origen.form-control(name='correo_origen', placeholder='Correo Origen', type='email')
-
-                                                        .form-group
-                                                            span.col-md-1.col-md-offset-2.text-center
-                                                            .col-md-8
-                                                                input#correo_afectado.form-control(name='correo_afectado', placeholder='Correo Afectado', type='email')
-
-                                                        .form-group
-                                                            span.col-md-1.col-md-offset-2.text-center
-                                                            .col-md-8
-                                                                input#comentarios.form-control(name='comentarios', placeholder='Comentarios', type='text')
-
-                                                        .form-group
-                                                            span.col-md-1.col-md-offset-2.text-center
-                                                            .col-md-8
-                                                                input#vinculo.form-control(name='vinculo', placeholder='Vinculo', type='text')
+                                                        //.form-group
+                                                        //    span.col-md-1.col-md-offset-2.text-center
+                                                        //    .col-md-6
+                                                        //        label Vinculo
+                                                        //        input#vinculo.form-control(name='vinculo', placeholder='Vinculo', type='text')
 
                                                         .form-group
                                                             .col-md-12.text-center
