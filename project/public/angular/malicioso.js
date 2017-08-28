@@ -8,12 +8,10 @@ function range(i, j, k){
     return asd;
 }
 
-angular.module("app", ["chart.js"]).controller("MixedChartCtrlMalicioso", function ($scope, $http){
+angular.module("MaliciosoApp", ["chart.js"]).controller("MaliciosoCtrl", function ($scope, $http){
     $scope.yearsMonth = [[1, "Enero"], [2, "Febrero"], [3, "Marzo"], [4, "Abril"], [5, "Mayo"], [6, "Junio"], [7, "Julio"], [8, "Agosto"], [9, "Septiembre"], [10, "Octubre"], [11, "Noviembre"], [12, "Diciembre"]];
 
-    var years = [2017, 2018, 2019, 2020, 2021];
-
-    $scope.years = years;
+    $scope.years = [2017, 2018, 2019, 2020, 2021];
 
     $scope.update = function(){
 
@@ -26,22 +24,27 @@ angular.module("app", ["chart.js"]).controller("MixedChartCtrlMalicioso", functi
             annoDia = 2017;
         }
 
-        $http.get("/ticketCrud/count/day/"+annoDia+"/"+mesDia+"/malicioso").then(function(response){
+        $http.get("/ticketCrud/count/day/"+annoDia+"/"+mesDia+"/tipo/malicioso").then(function(response){
             $scope.dataDia = [
                 //response.data,
                 response.data
 
             ];
 
-            if(mesDia===1 || mesDia===3 || mesDia===5 || mesDia===7 || mesDia===8 || mesDia===10 || mesDia===12){
+            if(mesDia==1 || mesDia==3 || mesDia==5 || mesDia==7 || mesDia==8 || mesDia==10 || mesDia==12){
                 $scope.labelsDia = range(1, 32, 1);
             }
-            else if(mesDia===4 || mesDia===6 || mesDia===9 || mesDia===11){
-                $scope.labelsDia = range(1, 32, 1);
-            }
-            else{
-                if(annoDia%4===0){
-
+            else {
+                if (mesDia == 4 || mesDia == 6 || mesDia == 9 || mesDia == 11) {
+                    $scope.labelsDia = range(1, 31, 1);
+                }
+                else {
+                    if (annoDia % 4 != 0) {
+                        $scope.labelsDia = range(1, 29, 1);
+                    }
+                    else {
+                        $scope.labelsDia = range(1, 30, 1);
+                    }
                 }
             }
 
@@ -51,7 +54,7 @@ angular.module("app", ["chart.js"]).controller("MixedChartCtrlMalicioso", functi
         if(!annoSemana){
             annoSemana = 2017;
         }
-        $http.get("/ticketCrud/count/week/"+annoSemana+"/malicioso").then(function(response){
+        $http.get("/ticketCrud/count/week/"+annoSemana+"/tipo/malicioso").then(function(response){
             $scope.dataSemana = [
                 //response.data,
                 response.data
@@ -65,7 +68,7 @@ angular.module("app", ["chart.js"]).controller("MixedChartCtrlMalicioso", functi
         if(!annoMes){
             annoMes = 2017;
         }
-        $http.get("/ticketCrud/count/month/"+annoMes+"/malicioso").then(function(response){
+        $http.get("/ticketCrud/count/month/"+annoMes+"/tipo/malicioso").then(function(response){
             $scope.dataMes = [
                 response.data
             ];
@@ -77,7 +80,7 @@ angular.module("app", ["chart.js"]).controller("MixedChartCtrlMalicioso", functi
         if(!annoTrimestre){
             annoTrimestre = 2017;
         }
-        $http.get("/ticketCrud/count/trimestre/"+annoTrimestre+"/malicioso").then(function(response){
+        $http.get("/ticketCrud/count/trimestre/"+annoTrimestre+"/tipo/malicioso").then(function(response){
             $scope.dataTrimestre = [
                 response.data
             ];
@@ -89,7 +92,7 @@ angular.module("app", ["chart.js"]).controller("MixedChartCtrlMalicioso", functi
         if(!annoSemestre){
             annoSemestre = 2017;
         }
-        $http.get("/ticketCrud/count/semestre/"+annoSemestre+"/malicioso").then(function(response){
+        $http.get("/ticketCrud/count/semestre/"+annoSemestre+"/tipo/malicioso").then(function(response){
             var Data = response.data;
             Data.push(0);
             $scope.dataSemestre = [
@@ -103,7 +106,7 @@ angular.module("app", ["chart.js"]).controller("MixedChartCtrlMalicioso", functi
         if(!annoYear){
             annoYear = 2017;
         }
-        $http.get("/ticketCrud/count/year/"+annoYear+"/malicioso").then(function(response){
+        $http.get("/ticketCrud/count/year/"+annoYear+"/tipo/malicioso").then(function(response){
             var Data = response.data;
             $scope.dataYear = [
                 Data

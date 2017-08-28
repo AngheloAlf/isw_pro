@@ -22,7 +22,7 @@ block content
                                         a(data-toggle='collapse', data-parent='#accordion', href='#collapse1') Correo Malicioso
                                 #collapse1.panel-collapse.collapse
                                   .panel-body
-                                    div(ng-app='app', ng-controller='MixedChartCtrlMalicioso')
+                                    div(ng-app='MaliciosoApp', ng-controller='MaliciosoCtrl')
                                       .tab
                                           button#defaultOpen.tablinks(onclick="openCity(event, 'dia')", ng-click="update()") Tickets por dia
                                           button.tablinks(onclick="openCity(event, 'semana')", ng-click="update()") Tickets por semana
@@ -79,7 +79,7 @@ block content
                             .panel.panel-default
                                 .panel-heading
                                   h4.panel-title
-                                    a(data-toggle='collapse', data-parent='#accordion', href='#collapse2') Explotaciion de vulnerabilidades
+                                    a(data-toggle='collapse', data-parent='#accordion', href='#collapse2') Explotación de vulnerabilidades
                                 #collapse2.panel-collapse.collapse
                                   .panel-body
                                     div(ng-app='app', ng-controller='MixedChartCtrlExplotacion')
@@ -373,4 +373,10 @@ block content
     // Menu Toggle Script
     script(src="/js/toggleMenu.js")
     script(src="/js/tabs.js")
-    script(src="/angular/graphs.js")
+
+    script(src="/angular/malicioso.js")
+    script(src="/angular/almacenamiento.js")
+    script(src="/angular/explotacion.js")
+    script(src="/angular/exposicion.js")
+    script(src="/angular/social.js")
+    script(src="/angular/web.js")

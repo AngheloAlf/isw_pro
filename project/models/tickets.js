@@ -14,7 +14,7 @@ Date.prototype.getWeekNumber = function(){
     var d = new Date(+this);
     d.setHours(0,0,0,0);
     d.setDate(d.getDate()+4-(d.getDay()||7));
-    return  Math.ceil((((d-new Date(d.getFullYear(),0,1))/8.64e7)+1)/7);
+    return Math.ceil((((d-new Date(d.getFullYear(),0,1))/8.64e7)+1)/7);
 };
 
 function range(i, j, k){
@@ -255,7 +255,7 @@ exports.sendTicketsAmountByDay = function(req, res, year, month){
 
 exports.sendTicketsAmountByDayType = function(req, res, year, month, type){
     var ticketVar = new Tickets();
-    var where = "eliminado='0' AND tipo="+typr;
+    var where = "eliminado='0' AND tipo='"+type+"'";
 
     ticketVar.find('all', {where: where}, function (err, rows){
         if(err){
@@ -323,7 +323,7 @@ exports.sendTicketsAmmountByWeek = function(req, res, year){
 
 exports.sendTicketsAmmountByWeekType = function(req, res, year, type){
     var ticketVar = new Tickets();
-    var where = "eliminado='0' AND tipo="+type;
+    var where = "eliminado='0' AND tipo='"+type+"'";
 
     ticketVar.find('all', {where: where}, function (err, rows){
         if(err){
@@ -383,7 +383,7 @@ exports.sendTicketsAmmountByMonth = function(req, res, year){
 
 exports.sendTicketsAmmountByMonthType = function(req, res, year, type){
     var ticketVar = new Tickets();
-    var where = "eliminado='0' AND tipo="+type;
+    var where = "eliminado='0' AND tipo='"+type+"'";
 
     ticketVar.find('all', {where: where}, function (err, rows){
         if(err){
@@ -455,7 +455,7 @@ exports.sendTicketsAmmountByTrimestre = function(req, res, year){
 
 exports.sendTicketsAmmountByTrimestreType = function(req, res, year, type){
     var ticketVar = new Tickets();
-    var where = "eliminado='0' and tipo="+type;
+    var where = "eliminado='0' and tipo='"+type+"'";
 
     ticketVar.find('all', {where: where}, function (err, rows){
         if(err){
@@ -546,7 +546,7 @@ exports.sendTicketsAmmountBySemestre = function(req, res, year){
 
 exports.sendTicketsAmmountBySemestreType = function(req, res, year, type){
     var ticketVar = new Tickets();
-    var where = "eliminado='0' AND tipo="+type;
+    var where = "eliminado='0' AND tipo='"+type+"'";
 
     ticketVar.find('all', {where: where}, function (err, rows){
         if(err){
@@ -618,7 +618,7 @@ exports.sendTicketsAmmountByYear = function(req, res, year){
 
 exports.sendTicketsAmmountByYearType = function(req, res, year, type){
     var ticketVar = new Tickets();
-    var where = "eliminado='0' AND tipo="+type;
+    var where = "eliminado='0' AND tipo='"+type+"'";
 
     ticketVar.find('all', {where: where}, function (err, rows){
         if(err){
