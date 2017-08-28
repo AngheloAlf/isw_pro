@@ -246,7 +246,7 @@ exports.sendTicketsAmountByDay = function(req, res, year, month){
                 if (!(fecha in counter)) {
                     counter[fecha] = 0;
                 }
-                counter[fecha] += 1;
+                counter[fecha-1] += 1;
             }
         });
         res.send(JSON.stringify(counter));
@@ -261,12 +261,110 @@ exports.sendTicketsAmmountByWeek = function(req, res, year){
         if(err){
             throw err;
         }
-        var counter = range(0, 52, 1);
+        var counter = range(1, 53, 1);
         rows.forEach(function(value){
             var fecha = value.fecha_creacion.split(" ")[0];
             if(fecha.split("-")[0] === year){
                 fecha = parseInt((new Date(fecha)).getWeekNumber());
+                counter[fecha-1] += 1;
+            }
+        });
+        res.send(JSON.stringify(counter));
+    });
+};
+
+exports.sendTicketsAmmountByMonth = function(req, res, year){
+    var ticketVar = new Tickets();
+    var where = "eliminado='0'";
+
+    ticketVar.find('all', {where: where}, function (err, rows){
+        if(err){
+            throw err;
+        }
+        var counter = range(1, 13, 1);
+        rows.forEach(function(value){
+            var fecha = value.fecha_creacion.split(" ")[0];
+            if(fecha.split("-")[0] === year){
+                fecha = (new Date(fecha)).getMonth();
                 counter[fecha] += 1;
+            }
+        });
+        res.send(JSON.stringify(counter));
+    });
+};
+
+exports.sendTicketsAmmountByTrimestre = function(req, res, year){
+    var ticketVar = new Tickets();
+    var where = "eliminado='0'";
+
+    ticketVar.find('all', {where: where}, function (err, rows){
+        if(err){
+            throw err;
+        }
+        var counter = range(0, 4, 1);
+        rows.forEach(function(value){
+            var fecha = value.fecha_creacion.split(" ")[0];
+            if(fecha.split("-")[0] === year){
+                var mes = (new Date(fecha)).getMonth();
+
+                if(mes>=0 && mes <=2){
+                    counter[0] += 1;
+                }
+                else if(mes <= 5){
+                    counter[1] += 1;
+                }
+                else if(mes <= 8){
+                    counter[2] += 1;
+                }
+                else if(mes<=11){
+                    counter[3] += 1;
+                }
+            }
+        });
+        res.send(JSON.stringify(counter));
+    });
+};
+
+exports.sendTicketsAmmountBySemestre = function(req, res, year){
+    var ticketVar = new Tickets();
+    var where = "eliminado='0'";
+
+    ticketVar.find('all', {where: where}, function (err, rows){
+        if(err){
+            throw err;
+        }
+        var counter = range(0, 2, 1);
+        rows.forEach(function(value){
+            var fecha = value.fecha_creacion.split(" ")[0];
+            if(fecha.split("-")[0] === year){
+                var mes = (new Date(fecha)).getMonth();
+
+                if(mes>=0 && mes <=5){
+                    counter[0] += 1;
+                }
+                else if(mes <= 11){
+                    counter[1] += 1;
+                }
+            }
+        });
+        res.send(JSON.stringify(counter));
+    });
+};
+
+exports.sendTicketsAmmountByYear = function(req, res, year){
+    var ticketVar = new Tickets();
+    var where = "eliminado='0'";
+
+    ticketVar.find('all', {where: where}, function (err, rows){
+        if(err){
+            throw err;
+        }
+        var counter = range(0, 5, 1);
+        rows.forEach(function(value){
+            var fecha = value.fecha_creacion.split(" ")[0];
+            var annito = fecha.split("-")[0];
+            if(annito >= year && annito<=(parseInt(year)+5)){
+                counter[annito-year] += 1;
             }
         });
         res.send(JSON.stringify(counter));

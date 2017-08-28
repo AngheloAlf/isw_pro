@@ -295,7 +295,61 @@ router.get("/count/week/:year", function(req, res){
         }
         else{
             var username = req.session.userData.userName;
-            res.render('noPermissionsError', {title: 'No tienes permisos', username: username, accion: "Contar tickets por dia", usertype: usertype});
+            res.render('noPermissionsError', {title: 'No tienes permisos', username: username, accion: "Contar tickets por semana", usertype: usertype});
+        }
+    });
+});
+
+router.get("/count/month/:year", function(req, res){
+    common.verificateLogin(req, res, function(req, res){
+        var usertype = req.session.userData.usertype;
+        if(usertype < 3){
+            ticketsModel.sendTicketsAmmountByMonth(req, res, req.params.year);
+        }
+        else{
+            var username = req.session.userData.userName;
+            res.render('noPermissionsError', {title: 'No tienes permisos', username: username, accion: "Contar tickets por mes", usertype: usertype});
+        }
+    });
+});
+
+
+
+router.get("/count/trimestre/:year", function(req, res){
+    common.verificateLogin(req, res, function(req, res){
+        var usertype = req.session.userData.usertype;
+        if(usertype < 3){
+            ticketsModel.sendTicketsAmmountByTrimestre(req, res, req.params.year);
+        }
+        else{
+            var username = req.session.userData.userName;
+            res.render('noPermissionsError', {title: 'No tienes permisos', username: username, accion: "Contar tickets por trimestre", usertype: usertype});
+        }
+    });
+});
+
+router.get("/count/semestre/:year", function(req, res){
+    common.verificateLogin(req, res, function(req, res){
+        var usertype = req.session.userData.usertype;
+        if(usertype < 3){
+            ticketsModel.sendTicketsAmmountBySemestre(req, res, req.params.year);
+        }
+        else{
+            var username = req.session.userData.userName;
+            res.render('noPermissionsError', {title: 'No tienes permisos', username: username, accion: "Contar tickets por semestre", usertype: usertype});
+        }
+    });
+});
+
+router.get("/count/year/:year", function(req, res){
+    common.verificateLogin(req, res, function(req, res){
+        var usertype = req.session.userData.usertype;
+        if(usertype < 3){
+            ticketsModel.sendTicketsAmmountByYear(req, res, req.params.year);
+        }
+        else{
+            var username = req.session.userData.userName;
+            res.render('noPermissionsError', {title: 'No tienes permisos', username: username, accion: "Contar tickets por semestre", usertype: usertype});
         }
     });
 });
