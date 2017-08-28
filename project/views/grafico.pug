@@ -1,0 +1,373 @@
+extends layout_index
+
+block content
+    #wrapper
+        // Sidebar
+        include sidebarInclude
+
+        // Page Content
+        #page-content-wrapper
+            .container-fluid
+                .row
+                    .col-lg-12
+                        h1 Sistema de gestión de tickets
+                        a#menu-toggle.btn.btn-default(href='#menu-toggle') Menu
+                        br
+                        br
+                        h4 Seleccione como desea buscar:
+                        #accordion.panel-group
+                          .panel.panel-default
+                            .panel-heading
+                              h4.panel-title
+                                a(data-toggle='collapse', data-parent='#accordion', href='#collapse1') Correo Malicioso
+                            #collapse1.panel-collapse.collapse
+                              .panel-body
+                                div(ng-app='app', ng-controller='MixedChartCtrlMalicioso')
+                                  .tab
+                                      button#defaultOpen.tablinks(onclick="openCity(event, 'dia')", ng-click="update()") Tickets por dia
+                                      button.tablinks(onclick="openCity(event, 'semana')", ng-click="update()") Tickets por semana
+                                      button.tablinks(onclick="openCity(event, 'mes')", ng-click="update()") Tickets por mes
+                                      button.tablinks(onclick="openCity(event, 'trimestre')", ng-click="update()") Tickets por trimestre
+                                      button.tablinks(onclick="openCity(event, 'semestre')", ng-click="update()") Tickets por semestre
+                                      button.tablinks(onclick="openCity(event, 'year')", ng-click="update()") Tickets por año
+                                      //button.tablinks(onclick="openCity(event, 'dirigidos')") Tickets dirigidos
+                                      //button.tablinks(onclick="openCity(event, 'vinculados')") Tickets vinculados
+                                      //button.tablinks(onclick="openCity(event, 'uurr')") Tickets por UURR
+                                  .container
+                                      .row
+                                          .col-md-8
+                                              #dia.tabcontent
+                                                  span.topright(onclick="this.parentElement.style.display='none'") x
+                                                  canvas.chart-bar(chart-data='dataDia', chart-labels='labelsDia', chart-colors='colors', chart-dataset-override='datasetOverride')
+
+                                                  select.form-control#annoDia(name="annoDia", ng-click="update()")
+                                                      option(ng-repeat="year in [2017, 2018, 2019, 2020, 2021]", value="{{ year }}") {{ year }}
+                                                  select.form-control#mesDia(name="mesDia", ng-click="update()")
+                                                      option(ng-repeat="year in yearsMonth", value="{{ year[0] }}") {{ year[1] }}
+
+                                              #semana.tabcontent
+                                                  span.topright(onclick="this.parentElement.style.display='none'") x
+                                                  canvas.chart-bar(chart-data='dataSemana', chart-labels='labelsSemana', chart-colors='colors', chart-dataset-override='datasetOverride')
+                                                  select.form-control#annoSemana(name="annoSemana", ng-click="update()")
+                                                      option(ng-repeat="year in [2017, 2018, 2019, 2020, 2021]", value="{{ year }}") {{ year }}
+
+                                              #mes.tabcontent
+                                                  span.topright(onclick="this.parentElement.style.display='none'") x
+                                                  canvas.chart-bar(chart-data='dataMes', chart-labels='labelsMes', chart-colors='colors', chart-dataset-override='datasetOverride')
+                                                  select.form-control#annoMes(name="annoMes", ng-click="update()")
+                                                      option(ng-repeat="year in [2017, 2018, 2019, 2020, 2021]", value="{{ year }}") {{ year }}
+
+                                              #trimestre.tabcontent
+                                                  span.topright(onclick="this.parentElement.style.display='none'") x
+                                                  canvas.chart-bar(chart-data='dataTrimestre', chart-labels='labelsTrimestre', chart-colors='colors', chart-dataset-override='datasetOverride')
+                                                  select.form-control#annoTrimestre(name="annoTrimestre", ng-click="update()")
+                                                      option(ng-repeat="year in years", value="{{ year }}") {{ year }}
+
+                                              #semestre.tabcontent
+                                                  span.topright(onclick="this.parentElement.style.display='none'") x
+                                                  canvas.chart-bar(chart-data='dataSemestre', chart-labels='labelsSemestre', chart-colors='colors', chart-dataset-override='datasetOverride')
+                                                  select.form-control#annoSemestre(name="annoSemestre", ng-click="update()")
+                                                      option(ng-repeat="year in years", value="{{ year }}") {{ year }}
+
+                                              #year.tabcontent
+                                                  span.topright(onclick="this.parentElement.style.display='none'") x
+                                                  canvas.chart-bar(chart-data='dataYear', chart-labels='labelsYear', chart-colors='colors', chart-dataset-override='datasetOverride')
+                                                  select.form-control#annoYear(name="annoYear", ng-click="update()")
+                                                      option(ng-repeat="year in years", value="{{ year }}") {{ year }}
+
+                          .panel.panel-default
+                            .panel-heading
+                              h4.panel-title
+                                a(data-toggle='collapse', data-parent='#accordion', href='#collapse2') Explotaciion de vulnerabilidades
+                            #collapse2.panel-collapse.collapse
+                              .panel-body
+                                div(ng-app='app', ng-controller='MixedChartCtrlExplotacion')
+                                  .tab
+                                      button#defaultOpen.tablinks(onclick="openCity(event, 'dia')", ng-click="update()") Tickets por dia
+                                      button.tablinks(onclick="openCity(event, 'semana')", ng-click="update()") Tickets por semana
+                                      button.tablinks(onclick="openCity(event, 'mes')", ng-click="update()") Tickets por mes
+                                      button.tablinks(onclick="openCity(event, 'trimestre')", ng-click="update()") Tickets por trimestre
+                                      button.tablinks(onclick="openCity(event, 'semestre')", ng-click="update()") Tickets por semestre
+                                      button.tablinks(onclick="openCity(event, 'year')", ng-click="update()") Tickets por año
+                                      //button.tablinks(onclick="openCity(event, 'dirigidos')") Tickets dirigidos
+                                      //button.tablinks(onclick="openCity(event, 'vinculados')") Tickets vinculados
+                                      //button.tablinks(onclick="openCity(event, 'uurr')") Tickets por UURR
+                                  .container
+                                      .row
+                                          .col-md-8
+                                              #dia.tabcontent
+                                                  span.topright(onclick="this.parentElement.style.display='none'") x
+                                                  canvas.chart-bar(chart-data='dataDia', chart-labels='labelsDia', chart-colors='colors', chart-dataset-override='datasetOverride')
+
+                                                  select.form-control#annoDia(name="annoDia", ng-click="update()")
+                                                      option(ng-repeat="year in [2017, 2018, 2019, 2020, 2021]", value="{{ year }}") {{ year }}
+                                                  select.form-control#mesDia(name="mesDia", ng-click="update()")
+                                                      option(ng-repeat="year in yearsMonth", value="{{ year[0] }}") {{ year[1] }}
+
+                                              #semana.tabcontent
+                                                  span.topright(onclick="this.parentElement.style.display='none'") x
+                                                  canvas.chart-bar(chart-data='dataSemana', chart-labels='labelsSemana', chart-colors='colors', chart-dataset-override='datasetOverride')
+                                                  select.form-control#annoSemana(name="annoSemana", ng-click="update()")
+                                                      option(ng-repeat="year in [2017, 2018, 2019, 2020, 2021]", value="{{ year }}") {{ year }}
+
+                                              #mes.tabcontent
+                                                  span.topright(onclick="this.parentElement.style.display='none'") x
+                                                  canvas.chart-bar(chart-data='dataMes', chart-labels='labelsMes', chart-colors='colors', chart-dataset-override='datasetOverride')
+                                                  select.form-control#annoMes(name="annoMes", ng-click="update()")
+                                                      option(ng-repeat="year in [2017, 2018, 2019, 2020, 2021]", value="{{ year }}") {{ year }}
+
+                                              #trimestre.tabcontent
+                                                  span.topright(onclick="this.parentElement.style.display='none'") x
+                                                  canvas.chart-bar(chart-data='dataTrimestre', chart-labels='labelsTrimestre', chart-colors='colors', chart-dataset-override='datasetOverride')
+                                                  select.form-control#annoTrimestre(name="annoTrimestre", ng-click="update()")
+                                                      option(ng-repeat="year in years", value="{{ year }}") {{ year }}
+
+                                              #semestre.tabcontent
+                                                  span.topright(onclick="this.parentElement.style.display='none'") x
+                                                  canvas.chart-bar(chart-data='dataSemestre', chart-labels='labelsSemestre', chart-colors='colors', chart-dataset-override='datasetOverride')
+                                                  select.form-control#annoSemestre(name="annoSemestre", ng-click="update()")
+                                                      option(ng-repeat="year in years", value="{{ year }}") {{ year }}
+
+                                              #year.tabcontent
+                                                  span.topright(onclick="this.parentElement.style.display='none'") x
+                                                  canvas.chart-bar(chart-data='dataYear', chart-labels='labelsYear', chart-colors='colors', chart-dataset-override='datasetOverride')
+                                                  select.form-control#annoYear(name="annoYear", ng-click="update()")
+                                                      option(ng-repeat="year in years", value="{{ year }}") {{ year }}
+                          .panel.panel-default
+                            .panel-heading
+                              h4.panel-title
+                                a(data-toggle='collapse', data-parent='#accordion', href='#collapse3') Visita sitios web maliciosos
+                            #collapse3.panel-collapse.collapse
+                              .panel-body
+                                div(ng-app='app', ng-controller='MixedChartCtrlWeb')
+                                  .tab
+                                      button#defaultOpen.tablinks(onclick="openCity(event, 'dia')", ng-click="update()") Tickets por dia
+                                      button.tablinks(onclick="openCity(event, 'semana')", ng-click="update()") Tickets por semana
+                                      button.tablinks(onclick="openCity(event, 'mes')", ng-click="update()") Tickets por mes
+                                      button.tablinks(onclick="openCity(event, 'trimestre')", ng-click="update()") Tickets por trimestre
+                                      button.tablinks(onclick="openCity(event, 'semestre')", ng-click="update()") Tickets por semestre
+                                      button.tablinks(onclick="openCity(event, 'year')", ng-click="update()") Tickets por año
+                                      //button.tablinks(onclick="openCity(event, 'dirigidos')") Tickets dirigidos
+                                      //button.tablinks(onclick="openCity(event, 'vinculados')") Tickets vinculados
+                                      //button.tablinks(onclick="openCity(event, 'uurr')") Tickets por UURR
+                                  .container
+                                      .row
+                                          .col-md-8
+                                              #dia.tabcontent
+                                                  span.topright(onclick="this.parentElement.style.display='none'") x
+                                                  canvas.chart-bar(chart-data='dataDia', chart-labels='labelsDia', chart-colors='colors', chart-dataset-override='datasetOverride')
+
+                                                  select.form-control#annoDia(name="annoDia", ng-click="update()")
+                                                      option(ng-repeat="year in [2017, 2018, 2019, 2020, 2021]", value="{{ year }}") {{ year }}
+                                                  select.form-control#mesDia(name="mesDia", ng-click="update()")
+                                                      option(ng-repeat="year in yearsMonth", value="{{ year[0] }}") {{ year[1] }}
+
+                                              #semana.tabcontent
+                                                  span.topright(onclick="this.parentElement.style.display='none'") x
+                                                  canvas.chart-bar(chart-data='dataSemana', chart-labels='labelsSemana', chart-colors='colors', chart-dataset-override='datasetOverride')
+                                                  select.form-control#annoSemana(name="annoSemana", ng-click="update()")
+                                                      option(ng-repeat="year in [2017, 2018, 2019, 2020, 2021]", value="{{ year }}") {{ year }}
+
+                                              #mes.tabcontent
+                                                  span.topright(onclick="this.parentElement.style.display='none'") x
+                                                  canvas.chart-bar(chart-data='dataMes', chart-labels='labelsMes', chart-colors='colors', chart-dataset-override='datasetOverride')
+                                                  select.form-control#annoMes(name="annoMes", ng-click="update()")
+                                                      option(ng-repeat="year in [2017, 2018, 2019, 2020, 2021]", value="{{ year }}") {{ year }}
+
+                                              #trimestre.tabcontent
+                                                  span.topright(onclick="this.parentElement.style.display='none'") x
+                                                  canvas.chart-bar(chart-data='dataTrimestre', chart-labels='labelsTrimestre', chart-colors='colors', chart-dataset-override='datasetOverride')
+                                                  select.form-control#annoTrimestre(name="annoTrimestre", ng-click="update()")
+                                                      option(ng-repeat="year in years", value="{{ year }}") {{ year }}
+
+                                              #semestre.tabcontent
+                                                  span.topright(onclick="this.parentElement.style.display='none'") x
+                                                  canvas.chart-bar(chart-data='dataSemestre', chart-labels='labelsSemestre', chart-colors='colors', chart-dataset-override='datasetOverride')
+                                                  select.form-control#annoSemestre(name="annoSemestre", ng-click="update()")
+                                                      option(ng-repeat="year in years", value="{{ year }}") {{ year }}
+
+                                              #year.tabcontent
+                                                  span.topright(onclick="this.parentElement.style.display='none'") x
+                                                  canvas.chart-bar(chart-data='dataYear', chart-labels='labelsYear', chart-colors='colors', chart-dataset-override='datasetOverride')
+                                                  select.form-control#annoYear(name="annoYear", ng-click="update()")
+                                                      option(ng-repeat="year in years", value="{{ year }}") {{ year }}
+                          .panel.panel-default
+                            .panel-heading
+                              h4.panel-title
+                                a(data-toggle='collapse', data-parent='#accordion', href='#collapse4') Ingenieria social
+                            #collapse4.panel-collapse.collapse
+                              .panel-body
+                                div(ng-app='app', ng-controller='MixedChartCtrlSocial')
+                                  .tab
+                                      button#defaultOpen.tablinks(onclick="openCity(event, 'dia')", ng-click="update()") Tickets por dia
+                                      button.tablinks(onclick="openCity(event, 'semana')", ng-click="update()") Tickets por semana
+                                      button.tablinks(onclick="openCity(event, 'mes')", ng-click="update()") Tickets por mes
+                                      button.tablinks(onclick="openCity(event, 'trimestre')", ng-click="update()") Tickets por trimestre
+                                      button.tablinks(onclick="openCity(event, 'semestre')", ng-click="update()") Tickets por semestre
+                                      button.tablinks(onclick="openCity(event, 'year')", ng-click="update()") Tickets por año
+                                      //button.tablinks(onclick="openCity(event, 'dirigidos')") Tickets dirigidos
+                                      //button.tablinks(onclick="openCity(event, 'vinculados')") Tickets vinculados
+                                      //button.tablinks(onclick="openCity(event, 'uurr')") Tickets por UURR
+                                  .container
+                                      .row
+                                          .col-md-8
+                                              #dia.tabcontent
+                                                  span.topright(onclick="this.parentElement.style.display='none'") x
+                                                  canvas.chart-bar(chart-data='dataDia', chart-labels='labelsDia', chart-colors='colors', chart-dataset-override='datasetOverride')
+
+                                                  select.form-control#annoDia(name="annoDia", ng-click="update()")
+                                                      option(ng-repeat="year in [2017, 2018, 2019, 2020, 2021]", value="{{ year }}") {{ year }}
+                                                  select.form-control#mesDia(name="mesDia", ng-click="update()")
+                                                      option(ng-repeat="year in yearsMonth", value="{{ year[0] }}") {{ year[1] }}
+
+                                              #semana.tabcontent
+                                                  span.topright(onclick="this.parentElement.style.display='none'") x
+                                                  canvas.chart-bar(chart-data='dataSemana', chart-labels='labelsSemana', chart-colors='colors', chart-dataset-override='datasetOverride')
+                                                  select.form-control#annoSemana(name="annoSemana", ng-click="update()")
+                                                      option(ng-repeat="year in [2017, 2018, 2019, 2020, 2021]", value="{{ year }}") {{ year }}
+
+                                              #mes.tabcontent
+                                                  span.topright(onclick="this.parentElement.style.display='none'") x
+                                                  canvas.chart-bar(chart-data='dataMes', chart-labels='labelsMes', chart-colors='colors', chart-dataset-override='datasetOverride')
+                                                  select.form-control#annoMes(name="annoMes", ng-click="update()")
+                                                      option(ng-repeat="year in [2017, 2018, 2019, 2020, 2021]", value="{{ year }}") {{ year }}
+
+                                              #trimestre.tabcontent
+                                                  span.topright(onclick="this.parentElement.style.display='none'") x
+                                                  canvas.chart-bar(chart-data='dataTrimestre', chart-labels='labelsTrimestre', chart-colors='colors', chart-dataset-override='datasetOverride')
+                                                  select.form-control#annoTrimestre(name="annoTrimestre", ng-click="update()")
+                                                      option(ng-repeat="year in years", value="{{ year }}") {{ year }}
+
+                                              #semestre.tabcontent
+                                                  span.topright(onclick="this.parentElement.style.display='none'") x
+                                                  canvas.chart-bar(chart-data='dataSemestre', chart-labels='labelsSemestre', chart-colors='colors', chart-dataset-override='datasetOverride')
+                                                  select.form-control#annoSemestre(name="annoSemestre", ng-click="update()")
+                                                      option(ng-repeat="year in years", value="{{ year }}") {{ year }}
+
+                                              #year.tabcontent
+                                                  span.topright(onclick="this.parentElement.style.display='none'") x
+                                                  canvas.chart-bar(chart-data='dataYear', chart-labels='labelsYear', chart-colors='colors', chart-dataset-override='datasetOverride')
+                                                  select.form-control#annoYear(name="annoYear", ng-click="update()")
+                                                      option(ng-repeat="year in years", value="{{ year }}") {{ year }}
+                          .panel.panel-default
+                            .panel-heading
+                              h4.panel-title
+                                a(data-toggle='collapse', data-parent='#accordion', href='#collapse5') Dispositivos de almacenamiento
+                            #collapse5.panel-collapse.collapse
+                              .panel-body
+                                div(ng-app='app', ng-controller='MixedChartCtrlExposicion')
+                                  .tab
+                                      button#defaultOpen.tablinks(onclick="openCity(event, 'dia')", ng-click="update()") Tickets por dia
+                                      button.tablinks(onclick="openCity(event, 'semana')", ng-click="update()") Tickets por semana
+                                      button.tablinks(onclick="openCity(event, 'mes')", ng-click="update()") Tickets por mes
+                                      button.tablinks(onclick="openCity(event, 'trimestre')", ng-click="update()") Tickets por trimestre
+                                      button.tablinks(onclick="openCity(event, 'semestre')", ng-click="update()") Tickets por semestre
+                                      button.tablinks(onclick="openCity(event, 'year')", ng-click="update()") Tickets por año
+                                      //button.tablinks(onclick="openCity(event, 'dirigidos')") Tickets dirigidos
+                                      //button.tablinks(onclick="openCity(event, 'vinculados')") Tickets vinculados
+                                      //button.tablinks(onclick="openCity(event, 'uurr')") Tickets por UURR
+                                  .container
+                                      .row
+                                          .col-md-8
+                                              #dia.tabcontent
+                                                  span.topright(onclick="this.parentElement.style.display='none'") x
+                                                  canvas.chart-bar(chart-data='dataDia', chart-labels='labelsDia', chart-colors='colors', chart-dataset-override='datasetOverride')
+
+                                                  select.form-control#annoDia(name="annoDia", ng-click="update()")
+                                                      option(ng-repeat="year in [2017, 2018, 2019, 2020, 2021]", value="{{ year }}") {{ year }}
+                                                  select.form-control#mesDia(name="mesDia", ng-click="update()")
+                                                      option(ng-repeat="year in yearsMonth", value="{{ year[0] }}") {{ year[1] }}
+
+                                              #semana.tabcontent
+                                                  span.topright(onclick="this.parentElement.style.display='none'") x
+                                                  canvas.chart-bar(chart-data='dataSemana', chart-labels='labelsSemana', chart-colors='colors', chart-dataset-override='datasetOverride')
+                                                  select.form-control#annoSemana(name="annoSemana", ng-click="update()")
+                                                      option(ng-repeat="year in [2017, 2018, 2019, 2020, 2021]", value="{{ year }}") {{ year }}
+
+                                              #mes.tabcontent
+                                                  span.topright(onclick="this.parentElement.style.display='none'") x
+                                                  canvas.chart-bar(chart-data='dataMes', chart-labels='labelsMes', chart-colors='colors', chart-dataset-override='datasetOverride')
+                                                  select.form-control#annoMes(name="annoMes", ng-click="update()")
+                                                      option(ng-repeat="year in [2017, 2018, 2019, 2020, 2021]", value="{{ year }}") {{ year }}
+
+                                              #trimestre.tabcontent
+                                                  span.topright(onclick="this.parentElement.style.display='none'") x
+                                                  canvas.chart-bar(chart-data='dataTrimestre', chart-labels='labelsTrimestre', chart-colors='colors', chart-dataset-override='datasetOverride')
+                                                  select.form-control#annoTrimestre(name="annoTrimestre", ng-click="update()")
+                                                      option(ng-repeat="year in years", value="{{ year }}") {{ year }}
+
+                                              #semestre.tabcontent
+                                                  span.topright(onclick="this.parentElement.style.display='none'") x
+                                                  canvas.chart-bar(chart-data='dataSemestre', chart-labels='labelsSemestre', chart-colors='colors', chart-dataset-override='datasetOverride')
+                                                  select.form-control#annoSemestre(name="annoSemestre", ng-click="update()")
+                                                      option(ng-repeat="year in years", value="{{ year }}") {{ year }}
+
+                                              #year.tabcontent
+                                                  span.topright(onclick="this.parentElement.style.display='none'") x
+                                                  canvas.chart-bar(chart-data='dataYear', chart-labels='labelsYear', chart-colors='colors', chart-dataset-override='datasetOverride')
+                                                  select.form-control#annoYear(name="annoYear", ng-click="update()")
+                                                      option(ng-repeat="year in years", value="{{ year }}") {{ year }}
+                          .panel.panel-default
+                            .panel-heading
+                              h4.panel-title
+                                a(data-toggle='collapse', data-parent='#accordion', href='#collapse6') Exposicion
+                            #collapse6.panel-collapse.collapse
+                              .panel-body
+                                div(ng-app='app', ng-controller='MixedChartCtrlAlmacenamiento')
+                                  .tab
+                                      button#defaultOpen.tablinks(onclick="openCity(event, 'dia')", ng-click="update()") Tickets por dia
+                                      button.tablinks(onclick="openCity(event, 'semana')", ng-click="update()") Tickets por semana
+                                      button.tablinks(onclick="openCity(event, 'mes')", ng-click="update()") Tickets por mes
+                                      button.tablinks(onclick="openCity(event, 'trimestre')", ng-click="update()") Tickets por trimestre
+                                      button.tablinks(onclick="openCity(event, 'semestre')", ng-click="update()") Tickets por semestre
+                                      button.tablinks(onclick="openCity(event, 'year')", ng-click="update()") Tickets por año
+                                      //button.tablinks(onclick="openCity(event, 'dirigidos')") Tickets dirigidos
+                                      //button.tablinks(onclick="openCity(event, 'vinculados')") Tickets vinculados
+                                      //button.tablinks(onclick="openCity(event, 'uurr')") Tickets por UURR
+                                  .container
+                                      .row
+                                          .col-md-8
+                                              #dia.tabcontent
+                                                  span.topright(onclick="this.parentElement.style.display='none'") x
+                                                  canvas.chart-bar(chart-data='dataDia', chart-labels='labelsDia', chart-colors='colors', chart-dataset-override='datasetOverride')
+
+                                                  select.form-control#annoDia(name="annoDia", ng-click="update()")
+                                                      option(ng-repeat="year in [2017, 2018, 2019, 2020, 2021]", value="{{ year }}") {{ year }}
+                                                  select.form-control#mesDia(name="mesDia", ng-click="update()")
+                                                      option(ng-repeat="year in yearsMonth", value="{{ year[0] }}") {{ year[1] }}
+
+                                              #semana.tabcontent
+                                                  span.topright(onclick="this.parentElement.style.display='none'") x
+                                                  canvas.chart-bar(chart-data='dataSemana', chart-labels='labelsSemana', chart-colors='colors', chart-dataset-override='datasetOverride')
+                                                  select.form-control#annoSemana(name="annoSemana", ng-click="update()")
+                                                      option(ng-repeat="year in [2017, 2018, 2019, 2020, 2021]", value="{{ year }}") {{ year }}
+
+                                              #mes.tabcontent
+                                                  span.topright(onclick="this.parentElement.style.display='none'") x
+                                                  canvas.chart-bar(chart-data='dataMes', chart-labels='labelsMes', chart-colors='colors', chart-dataset-override='datasetOverride')
+                                                  select.form-control#annoMes(name="annoMes", ng-click="update()")
+                                                      option(ng-repeat="year in [2017, 2018, 2019, 2020, 2021]", value="{{ year }}") {{ year }}
+
+                                              #trimestre.tabcontent
+                                                  span.topright(onclick="this.parentElement.style.display='none'") x
+                                                  canvas.chart-bar(chart-data='dataTrimestre', chart-labels='labelsTrimestre', chart-colors='colors', chart-dataset-override='datasetOverride')
+                                                  select.form-control#annoTrimestre(name="annoTrimestre", ng-click="update()")
+                                                      option(ng-repeat="year in years", value="{{ year }}") {{ year }}
+
+                                              #semestre.tabcontent
+                                                  span.topright(onclick="this.parentElement.style.display='none'") x
+                                                  canvas.chart-bar(chart-data='dataSemestre', chart-labels='labelsSemestre', chart-colors='colors', chart-dataset-override='datasetOverride')
+                                                  select.form-control#annoSemestre(name="annoSemestre", ng-click="update()")
+                                                      option(ng-repeat="year in years", value="{{ year }}") {{ year }}
+
+                                              #year.tabcontent
+                                                  span.topright(onclick="this.parentElement.style.display='none'") x
+                                                  canvas.chart-bar(chart-data='dataYear', chart-labels='labelsYear', chart-colors='colors', chart-dataset-override='datasetOverride')
+                                                  select.form-control#annoYear(name="annoYear", ng-click="update()")
+                                                      option(ng-repeat="year in years", value="{{ year }}") {{ year }}
+
+
+    // Menu Toggle Script
+    script(src="/js/toggleMenu.js")
+    script(src="/js/tabs.js")
+    script(src="/angular/graphs.js")

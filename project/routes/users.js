@@ -159,6 +159,15 @@ router.all("/graphs", function(req, res){
     });
 });
 
+router.all("/detalle", function(req, res){
+    common.verificateLogin(req, res, function(req, res){
+        var username = req.session.userData.userName;
+        var usertype = req.session.userData.usertype;
+
+        res.render('grafico', {title: tiposDeUsuario[usertype], usertype: usertype, username: username});
+    });
+});
+
 
 
 router.all("*/stylesheets/:sheets", function(req, res){
