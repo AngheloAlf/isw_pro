@@ -17,41 +17,41 @@ angular.module("app", ["chart.js"]).controller("MixedChartCtrlSocial", function 
 
     $scope.update = function(){
 
-        var annoDia = document.getElementById("annoDia").value;
-        var mesDia = document.getElementById("mesDia").value;
-        if(!mesDia){
-            mesDia = 1;
+        var annoDia4 = document.getElementById("annoDia4").value;
+        var mesDia4 = document.getElementById("mesDia4").value;
+        if(!mesDia4){
+            mesDia4 = 1;
         }
         if(!annoDia){
-            annoDia = 2017;
+            annoDia4 = 2017;
         }
 
-        $http.get("/ticketCrud/count/day/"+annoDia+"/"+mesDia+"/socail").then(function(response){
+        $http.get("/ticketCrud/count/day/"+annoDia4+"/"+mesDia4+"/tipo/socail").then(function(response){
             $scope.dataDia = [
                 //response.data,
                 response.data
 
             ];
 
-            if(mesDia===1 || mesDia===3 || mesDia===5 || mesDia===7 || mesDia===8 || mesDia===10 || mesDia===12){
+            if(mesDia4===1 || mesDia4===3 || mesDia4===5 || mesDia4===7 || mesDia4===8 || mesDia4===10 || mesDia4===12){
                 $scope.labelsDia = range(1, 32, 1);
             }
-            else if(mesDia===4 || mesDia===6 || mesDia===9 || mesDia===11){
+            else if(mesDia4===4 || mesDia4===6 || mesDia4===9 || mesDia4===11){
                 $scope.labelsDia = range(1, 32, 1);
             }
             else{
-                if(annoDia%4===0){
+                if(annoDia4%4===0){
 
                 }
             }
 
         });
 
-        var annoSemana = document.getElementById("annoSemana").value;
-        if(!annoSemana){
-            annoSemana = 2017;
+        var annoSemana4 = document.getElementById("annoSemana").value;
+        if(!annoSemana4){
+            annoSemana4 = 2017;
         }
-        $http.get("/ticketCrud/count/week/"+annoSemana+"/socail").then(function(response){
+        $http.get("/ticketCrud/count/week/"+annoSemana4+"/tipo/socail").then(function(response){
             $scope.dataSemana = [
                 //response.data,
                 response.data
@@ -61,11 +61,11 @@ angular.module("app", ["chart.js"]).controller("MixedChartCtrlSocial", function 
             $scope.labelsSemana = range(1, 53, 1);
         });
 
-        var annoMes = document.getElementById("annoMes").value;
-        if(!annoMes){
-            annoMes = 2017;
+        var annoMes4 = document.getElementById("annoMes").value;
+        if(!annoMes4){
+            annoMes4 = 2017;
         }
-        $http.get("/ticketCrud/count/month/"+annoMes+"/socail").then(function(response){
+        $http.get("/ticketCrud/count/month/"+annoMes4+"/tipo/socail").then(function(response){
             $scope.dataMes = [
                 response.data
             ];
@@ -73,11 +73,11 @@ angular.module("app", ["chart.js"]).controller("MixedChartCtrlSocial", function 
             $scope.labelsMes = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
         });
 
-        var annoTrimestre = document.getElementById("annoTrimestre").value;
-        if(!annoTrimestre){
-            annoTrimestre = 2017;
+        var annoTrimestre4 = document.getElementById("annoTrimestre").value;
+        if(!annoTrimestre4){
+            annoTrimestre4 = 2017;
         }
-        $http.get("/ticketCrud/count/trimestre/"+annoTrimestre+"/socail").then(function(response){
+        $http.get("/ticketCrud/count/trimestre/"+annoTrimestre4+"/tipo/socail").then(function(response){
             $scope.dataTrimestre = [
                 response.data
             ];
@@ -85,11 +85,11 @@ angular.module("app", ["chart.js"]).controller("MixedChartCtrlSocial", function 
             $scope.labelsTrimestre = ["Primero", "Segundo", "Tercero", "Cuarto"];
         });
 
-        var annoSemestre = document.getElementById("annoSemestre").value;
-        if(!annoSemestre){
-            annoSemestre = 2017;
+        var annoSemestre4 = document.getElementById("annoSemestre").value;
+        if(!annoSemestre4){
+            annoSemestre4 = 2017;
         }
-        $http.get("/ticketCrud/count/semestre/"+annoSemestre+"/socail").then(function(response){
+        $http.get("/ticketCrud/count/semestre/"+annoSemestre4+"/tipo/socail").then(function(response){
             var Data = response.data;
             Data.push(0);
             $scope.dataSemestre = [
@@ -99,18 +99,18 @@ angular.module("app", ["chart.js"]).controller("MixedChartCtrlSocial", function 
             $scope.labelsSemestre = ["Primero", "Segundo", ""];
         });
 
-        var annoYear = document.getElementById("annoYear").value;
-        if(!annoYear){
-            annoYear = 2017;
+        var annoYear4 = document.getElementById("annoYear").value;
+        if(!annoYear4){
+            annoYear4 = 2017;
         }
-        $http.get("/ticketCrud/count/year/"+annoYear+"/socail").then(function(response){
+        $http.get("/ticketCrud/count/year/"+annoYear4+"/tipo/socail").then(function(response){
             var Data = response.data;
             $scope.dataYear = [
                 Data
             ];
 
             var yearsLabel = [];
-            for(var i = annoYear; i<(parseInt(annoYear)+5); i++){
+            for(var i = annoYear4; i<(parseInt(annoYear4)+5); i++){
                 yearsLabel.push(i)
             }
 

@@ -17,41 +17,41 @@ angular.module("app", ["chart.js"]).controller("MixedChartCtrlAlmacenamiento", f
 
     $scope.update = function(){
 
-        var annoDia = document.getElementById("annoDia").value;
-        var mesDia = document.getElementById("mesDia").value;
-        if(!mesDia){
-            mesDia = 1;
+        var annoDia5 = document.getElementById("annoDia").value;
+        var mesDia5 = document.getElementById("mesDia").value;
+        if(!mesDia5){
+            mesDia5 = 1;
         }
-        if(!annoDia){
-            annoDia = 2017;
+        if(!annoDia5){
+            annoDia5 = 2017;
         }
 
-        $http.get("/ticketCrud/count/day/"+annoDia+"/"+mesDia+"/almacenamiento").then(function(response){
+        $http.get("/ticketCrud/count/day/"+annoDia5+"/"+mesDia5+"/tipo/almacenamiento").then(function(response){
             $scope.dataDia = [
                 //response.data,
                 response.data
 
             ];
 
-            if(mesDia===1 || mesDia===3 || mesDia===5 || mesDia===7 || mesDia===8 || mesDia===10 || mesDia===12){
+            if(mesDia5===1 || mesDia5===3 || mesDia5===5 || mesDia5===7 || mesDia5===8 || mesDia5===10 || mesDia5===12){
                 $scope.labelsDia = range(1, 32, 1);
             }
-            else if(mesDia===4 || mesDia===6 || mesDia===9 || mesDia===11){
+            else if(mesDia5===4 || mesDia5===6 || mesDia5===9 || mesDia5===11){
                 $scope.labelsDia = range(1, 32, 1);
             }
             else{
-                if(annoDia%4===0){
+                if(annoDia5%4===0){
 
                 }
             }
 
         });
 
-        var annoSemana = document.getElementById("annoSemana").value;
-        if(!annoSemana){
-            annoSemana = 2017;
+        var annoSemana5 = document.getElementById("annoSemana").value;
+        if(!annoSemana5){
+            annoSemana5 = 2017;
         }
-        $http.get("/ticketCrud/count/week/"+annoSemana+"/almacenamiento").then(function(response){
+        $http.get("/ticketCrud/count/week/"+annoSemana5+"/tipo/almacenamiento").then(function(response){
             $scope.dataSemana = [
                 //response.data,
                 response.data
@@ -61,11 +61,11 @@ angular.module("app", ["chart.js"]).controller("MixedChartCtrlAlmacenamiento", f
             $scope.labelsSemana = range(1, 53, 1);
         });
 
-        var annoMes = document.getElementById("annoMes").value;
-        if(!annoMes){
-            annoMes = 2017;
+        var annoMes5 = document.getElementById("annoMes").value;
+        if(!annoMes5){
+            annoMes5 = 2017;
         }
-        $http.get("/ticketCrud/count/month/"+annoMes+"/almacenamiento").then(function(response){
+        $http.get("/ticketCrud/count/month/"+annoMes5+"/tipo/almacenamiento").then(function(response){
             $scope.dataMes = [
                 response.data
             ];
@@ -73,11 +73,11 @@ angular.module("app", ["chart.js"]).controller("MixedChartCtrlAlmacenamiento", f
             $scope.labelsMes = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
         });
 
-        var annoTrimestre = document.getElementById("annoTrimestre").value;
-        if(!annoTrimestre){
-            annoTrimestre = 2017;
+        var annoTrimestre5 = document.getElementById("annoTrimestre").value;
+        if(!annoTrimestre5){
+            annoTrimestre5 = 2017;
         }
-        $http.get("/ticketCrud/count/trimestre/"+annoTrimestre+"/almacenamiento").then(function(response){
+        $http.get("/ticketCrud/count/trimestre/"+annoTrimestre5+"/tipo/almacenamiento").then(function(response){
             $scope.dataTrimestre = [
                 response.data
             ];
@@ -85,11 +85,11 @@ angular.module("app", ["chart.js"]).controller("MixedChartCtrlAlmacenamiento", f
             $scope.labelsTrimestre = ["Primero", "Segundo", "Tercero", "Cuarto"];
         });
 
-        var annoSemestre = document.getElementById("annoSemestre").value;
-        if(!annoSemestre){
-            annoSemestre = 2017;
+        var annoSemestre5 = document.getElementById("annoSemestre").value;
+        if(!annoSemestre5){
+            annoSemestre5 = 2017;
         }
-        $http.get("/ticketCrud/count/semestre/"+annoSemestre+"/almacenamiento").then(function(response){
+        $http.get("/ticketCrud/count/semestre/"+annoSemestre5+"/tipo/almacenamiento").then(function(response){
             var Data = response.data;
             Data.push(0);
             $scope.dataSemestre = [
@@ -99,18 +99,18 @@ angular.module("app", ["chart.js"]).controller("MixedChartCtrlAlmacenamiento", f
             $scope.labelsSemestre = ["Primero", "Segundo", ""];
         });
 
-        var annoYear = document.getElementById("annoYear").value;
-        if(!annoYear){
-            annoYear = 2017;
+        var annoYear5 = document.getElementById("annoYear").value;
+        if(!annoYear5){
+            annoYear5 = 2017;
         }
-        $http.get("/ticketCrud/count/year/"+annoYear+"/almacenamiento").then(function(response){
+        $http.get("/ticketCrud/count/year/"+annoYear5+"/tipo/almacenamiento").then(function(response){
             var Data = response.data;
             $scope.dataYear = [
                 Data
             ];
 
             var yearsLabel = [];
-            for(var i = annoYear; i<(parseInt(annoYear)+5); i++){
+            for(var i = annoYear5; i<(parseInt(annoYear5)+5); i++){
                 yearsLabel.push(i)
             }
 
