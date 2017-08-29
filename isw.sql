@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2017-08-20 15:30:25
+Date: 2017-08-28 23:30:11
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -57,7 +57,7 @@ CREATE TABLE `logs_login` (
   `conn_successful` tinyint(4) DEFAULT NULL,
   `timeOnline` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=226 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=257 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of logs_login
@@ -287,6 +287,37 @@ INSERT INTO `logs_login` VALUES ('222', '2', 'supervisor', '2017-08-20 18:13:25'
 INSERT INTO `logs_login` VALUES ('223', '2', 'supervisor', '2017-08-20 18:16:29', '::ffff:127.0.0.1', null, '1', null);
 INSERT INTO `logs_login` VALUES ('224', '2', 'supervisor', '2017-08-20 18:20:54', '::ffff:127.0.0.1', null, '1', null);
 INSERT INTO `logs_login` VALUES ('225', '2', 'supervisor', '2017-08-20 18:29:19', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('226', '2', 'supervisor', '2017-08-20 18:30:51', '::ffff:127.0.0.1', null, '1', '48');
+INSERT INTO `logs_login` VALUES ('227', '3', 'jefe', '2017-08-20 18:31:44', '::ffff:127.0.0.1', null, '1', '1856');
+INSERT INTO `logs_login` VALUES ('228', '-1', 'admin', '2017-08-20 19:02:45', '::ffff:127.0.0.1', null, '0', null);
+INSERT INTO `logs_login` VALUES ('229', '-1', 'admin', '2017-08-20 19:02:49', '::ffff:127.0.0.1', null, '0', null);
+INSERT INTO `logs_login` VALUES ('230', '-1', 'admin', '2017-08-20 19:02:53', '::ffff:127.0.0.1', null, '0', null);
+INSERT INTO `logs_login` VALUES ('231', '4', 'admin', '2017-08-20 19:03:09', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('232', '3', 'jefe', '2017-08-28 17:16:21', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('233', '3', 'jefe', '2017-08-28 17:39:04', '::ffff:127.0.0.1', null, '1', '2484');
+INSERT INTO `logs_login` VALUES ('234', '2', 'supervisor', '2017-08-28 18:20:35', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('235', '2', 'supervisor', '2017-08-28 19:06:41', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('236', '2', 'supervisor', '2017-08-28 19:30:00', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('237', '2', 'supervisor', '2017-08-28 19:40:46', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('238', '2', 'supervisor', '2017-08-28 19:52:49', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('239', '2', 'supervisor', '2017-08-28 19:58:02', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('240', '2', 'supervisor', '2017-08-28 20:23:01', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('241', '2', 'supervisor', '2017-08-28 20:25:35', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('242', '2', 'supervisor', '2017-08-28 20:28:36', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('243', '2', 'supervisor', '2017-08-28 20:31:29', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('244', '2', 'supervisor', '2017-08-28 20:34:41', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('245', '2', 'supervisor', '2017-08-28 20:36:19', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('246', '2', 'supervisor', '2017-08-28 20:46:26', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('247', '2', 'supervisor', '2017-08-28 20:48:00', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('248', '2', 'Supervisor', '2017-08-28 20:54:55', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('249', '2', 'supervisor', '2017-08-28 20:58:34', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('250', '2', 'supervisor', '2017-08-28 22:09:18', '::ffff:127.0.0.1', null, '1', '2098');
+INSERT INTO `logs_login` VALUES ('251', '2', 'supervisor', '2017-08-28 22:44:21', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('252', '2', 'supervisor', '2017-08-28 23:00:55', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('253', '2', 'supervisor', '2017-08-29 00:11:29', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('254', '2', 'supervisor', '2017-08-29 00:17:47', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('255', '2', 'supervisor', '2017-08-29 00:19:09', '::ffff:127.0.0.1', null, '1', null);
+INSERT INTO `logs_login` VALUES ('256', '2', 'supervisor', '2017-08-29 00:25:51', '::ffff:127.0.0.1', null, '1', null);
 
 -- ----------------------------
 -- Table structure for notifications
@@ -301,7 +332,7 @@ CREATE TABLE `notifications` (
   `fecha` datetime DEFAULT NULL,
   `link` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of notifications
@@ -324,6 +355,13 @@ INSERT INTO `notifications` VALUES ('20', '2', 'Hay un ticket nuevo sin encargad
 INSERT INTO `notifications` VALUES ('21', '2', 'Hay un ticket nuevo sin encargado.', '2', '0', '2017-08-20 13:21:18', '/users/viewTickets/');
 INSERT INTO `notifications` VALUES ('22', '3', 'Un supervisor ha modificado un ticket.', '2', '0', '2017-08-20 13:48:40', '/users/viewTickets/66');
 INSERT INTO `notifications` VALUES ('23', '3', 'Un usuario ha cerrado un ticket.', '2', '0', '2017-08-20 15:17:37', '/users/viewTickets/4');
+INSERT INTO `notifications` VALUES ('24', '3', 'Un usuario ha cerrado un ticket.', '2', '0', '2017-08-20 15:31:16', '/users/viewTickets/3');
+INSERT INTO `notifications` VALUES ('25', '3', 'Un jefe ha re-abierto un ticket.', '3', '1', '2017-08-28 14:43:22', '/users/viewTickets/3');
+INSERT INTO `notifications` VALUES ('26', '2', 'Hay un ticket nuevo sin encargado.', '2', '0', '2017-08-29 21:16:46', '/users/viewTickets/');
+INSERT INTO `notifications` VALUES ('27', '2', 'Hay un ticket nuevo sin encargado.', '2', '0', '2017-08-29 21:18:33', '/users/viewTickets/');
+INSERT INTO `notifications` VALUES ('28', '2', 'Hay un ticket nuevo sin encargado.', '2', '0', '2017-08-29 21:19:43', '/users/viewTickets/');
+INSERT INTO `notifications` VALUES ('29', '2', 'Hay un ticket nuevo sin encargado.', '2', '0', '2017-08-29 21:26:16', '/users/viewTickets/');
+INSERT INTO `notifications` VALUES ('30', '2', 'Hay un ticket nuevo sin encargado.', '2', '0', '2017-08-29 21:27:28', '/users/viewTickets/');
 
 -- ----------------------------
 -- Table structure for ticketdata
@@ -387,7 +425,7 @@ CREATE TABLE `tickets` (
 -- ----------------------------
 -- Records of tickets
 -- ----------------------------
-INSERT INTO `tickets` VALUES ('3', '1', '2017-04-30 17:39:12', null, '1', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', '2016-08-05 00:00:00', null, 'asd', 'asd@asd.com', 'asd@asd.com', '0', null, null, null, '0', null, null);
+INSERT INTO `tickets` VALUES ('3', '1', '2017-04-30 17:39:12', null, '1', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', '2016-08-05 00:00:00', null, 'asd', 'asd@asd.com', 'asd@asd.com', '0', null, null, null, '0', '2', 'wea de la wea');
 INSERT INTO `tickets` VALUES ('4', '2', '2017-04-30 23:32:39', '2017-06-04', '1', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', '2017-04-18 00:00:00', null, 'asd', 'asd@asd.com', 'asd@asd.com', '1', null, null, null, '0', '2', 'undefined');
 INSERT INTO `tickets` VALUES ('5', '2', '2017-05-03 03:10:28', null, null, 'fuente', '123.123.123.123', '123.123.123.123', '9999', 'protocolo', 'tipo', 'intencionalidad', 'sub', 'seguridad', '2017-05-31 00:00:00', null, 'comentarios', 'asd@asd.com', 'asd@asd.com', '0', '0', null, null, '0', null, null);
 INSERT INTO `tickets` VALUES ('6', '2', '2017-06-05 01:02:26', null, '1', 'fuente', '0.0.0.0', '1.1.1.1', '443', 'asd', 'asd', 'asd', 'asd', 'asd', '2017-06-21 00:00:00', null, 'asd', 'asd@asd.com', 'asd@asd.com', '0', '0', null, null, '0', null, null);
@@ -445,12 +483,12 @@ INSERT INTO `tickets` VALUES ('57', '1', '2017-08-20 11:41:42', null, null, 'Fue
 INSERT INTO `tickets` VALUES ('58', '1', '2017-08-20 11:42:39', null, null, 'Fuente', '1.1.1.1', '1.1.1.2', '345', 'Protocolo', 'Tipo', '1', 'Subarea', 'SS', '2015-11-29 00:00:00', null, 'nada', 'corre@gmail.com', 'correo2@gmail.com', '0', null, null, '51', '0', null, null);
 INSERT INTO `tickets` VALUES ('59', '1', '2017-08-20 11:44:59', null, null, 'Fuente', '1.1.1.1', '1.1.1.2', '345', 'Protocolo', 'Tipo', '1', 'Subarea', 'SS', '2015-11-29 00:00:00', null, 'nada', 'corre@gmail.com', 'correo2@gmail.com', '0', null, null, '54', '0', null, null);
 INSERT INTO `tickets` VALUES ('60', '1', '2017-08-20 11:46:55', null, null, 'Fuente', '1.1.1.1', '1.1.1.2', '345', 'Protocolo', 'Tipo', '1', 'Subarea', 'SS', '2015-11-30 00:00:00', null, 'nada', 'corre@gmail.com', 'correo2@gmail.com', '0', null, null, '54', '0', null, null);
-INSERT INTO `tickets` VALUES ('61', '1', '2017-08-20 11:48:50', null, null, 'Fuente', '1.1.1.1', '1.1.1.2', '345', 'Protocolo', 'Tipo', '1', 'Subarea', 'SS', '2015-11-29 00:00:00', null, 'nada', 'corre@gmail.com', 'correo2@gmail.com', '0', null, null, '54', '0', null, null);
-INSERT INTO `tickets` VALUES ('62', '1', '2017-08-20 11:53:54', null, null, 'Fuente', '1.1.1.1', '1.1.1.2', '345', 'Protocolo', 'Tipo', '1', 'Subarea', 'SS', '2016-11-30 00:00:00', null, 'nada', 'corre@gmail.com', 'correo2@gmail.com', '0', null, null, '54', '0', null, null);
-INSERT INTO `tickets` VALUES ('63', '1', '2017-08-20 11:58:01', null, null, 'Fuente', '1.1.1.1', '1.1.1.2', '345', 'Protocolo', 'Tipo', '1', 'Subarea', 'SS', '2016-11-30 00:00:00', null, 'nada', 'corre@gmail.com', 'correo2@gmail.com', '0', null, null, '54', '0', null, null);
-INSERT INTO `tickets` VALUES ('64', '1', '2017-08-20 11:59:28', null, null, 'Fuente', '1.1.1.1', '1.1.1.2', '345', 'Protocolo', 'Tipo', '1', 'Subarea', 'SS', '2016-11-30 00:00:00', null, 'nada', 'corre@gmail.com', 'correo2@gmail.com', '0', null, null, '55', '0', null, null);
-INSERT INTO `tickets` VALUES ('65', '1', '2017-08-20 12:02:56', null, null, 'Fuente', '1.1.1.1', '1.1.1.2', '345', 'Protocolo', 'Tipo', '1', 'Subarea', 'SS', '2015-11-30 00:00:00', null, 'nada', 'corre@gmail.com', 'correo2@gmail.com', '0', null, null, '54', '0', null, null);
-INSERT INTO `tickets` VALUES ('66', '2', '2017-08-20 12:21:18', null, null, 'fuente', '1.1.1.1', '1.1.1.2', '443', 'proto', 'tipo', 'inte', 'fuente', 'sis', '2017-08-08 00:00:00', null, 'asd', 'mail@mail.com', 'mail@mail.com', '0', null, null, '63', '0', null, null);
+INSERT INTO `tickets` VALUES ('61', '1', '2017-08-20 11:48:50', null, null, 'Fuente', '1.1.1.1', '1.1.1.2', '345', 'Protocolo', 'exposicion', '1', 'Subarea', 'SS', '2015-11-29 00:00:00', null, 'nada', 'corre@gmail.com', 'correo2@gmail.com', '0', null, null, '54', '0', null, null);
+INSERT INTO `tickets` VALUES ('62', '1', '2017-08-20 11:53:54', null, null, 'Fuente', '1.1.1.1', '1.1.1.2', '345', 'Protocolo', 'almacenamiento', '1', 'Subarea', 'SS', '2016-11-30 00:00:00', null, 'nada', 'corre@gmail.com', 'correo2@gmail.com', '0', null, null, '54', '0', null, null);
+INSERT INTO `tickets` VALUES ('63', '1', '2017-08-20 11:58:01', null, null, 'Fuente', '1.1.1.1', '1.1.1.2', '345', 'Protocolo', 'social', '1', 'Subarea', 'SS', '2016-11-30 00:00:00', null, 'nada', 'corre@gmail.com', 'correo2@gmail.com', '0', null, null, '54', '0', null, null);
+INSERT INTO `tickets` VALUES ('64', '1', '2017-08-20 11:59:28', null, null, 'Fuente', '1.1.1.1', '1.1.1.2', '345', 'Protocolo', 'web', '1', 'Subarea', 'SS', '2016-11-30 00:00:00', null, 'nada', 'corre@gmail.com', 'correo2@gmail.com', '0', null, null, '55', '0', null, null);
+INSERT INTO `tickets` VALUES ('65', '1', '2017-08-20 12:02:56', null, null, 'Fuente', '1.1.1.1', '1.1.1.2', '345', 'Protocolo', 'explotacion', '1', 'Subarea', 'SS', '2015-11-30 00:00:00', null, 'nada', 'corre@gmail.com', 'correo2@gmail.com', '0', null, null, '54', '0', null, null);
+INSERT INTO `tickets` VALUES ('66', '2', '2017-08-20 12:21:18', null, null, 'fuente', '1.1.1.1', '1.1.1.2', '443', 'proto', 'malicioso', 'inte', 'fuente', 'sis', '2017-08-08 00:00:00', null, 'asd', 'mail@mail.com', 'mail@mail.com', '0', null, null, '63', '0', null, null);
 
 -- ----------------------------
 -- Table structure for ticketskeywords
