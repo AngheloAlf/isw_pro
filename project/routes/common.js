@@ -11,9 +11,13 @@ exports.verificateLogin = function(req, res, callback){
         var lastTimestamp = req.session.userData.timestamp;
         var datetime = new Date();
         var actualTimestamp = datetime.getTime()/1000;
+
+        var firstTimestamp = req.session.userData.firstTimestamp;
+        var timeConnected = datetime.getTime() / 1000 - firstTimestamp;
         if(lastTimestamp + 30*60 > datetime.getTime()/1000){
             // Si todavia no excede su tiempo maximo, este se resetea y se ejecuta la funcion que se entrego como parametro
             req.session.userData.timestamp = actualTimestamp;
+            require("../models/logs_login").updateLogLogOut(req, res, req.session.userData.userID, timeConnected);
             callback(req, res);
         }
         else{
