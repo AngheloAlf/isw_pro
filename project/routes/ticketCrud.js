@@ -60,7 +60,7 @@ router.post('/create', function(req, res){
                     usersModel.allUsersByType(req, res, 1, function(notificadoId){
                         notificationsModel.addNotification(req, res, notificadoId, "Hay un ticket nuevo sin encargado.", userId, "/users/viewTickets/");
                     });
-                    if (vinculo !== "NULL") {
+                    if (vinculo !== "") {
                       ticketsModel.getLastTicketsByUser(req, res, userId, vinculo);
                     }
                     else {
