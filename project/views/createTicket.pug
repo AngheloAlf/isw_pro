@@ -56,7 +56,7 @@ block content
                                                             span.col-md-1.col-md-offset-2.text-center
                                                             .col-md-6
                                                                 label Clase de incidente
-                                                                select#tipo.form-control(name='tipo', placeholder='Tipo', type='text')
+                                                                select#tipo.form-control(name='tipo')
                                                                     option(ng-repeat="tipo in tipos", value="{{ tipo[0] }}") {{ tipo[1] }}
 
                                                         .form-group
